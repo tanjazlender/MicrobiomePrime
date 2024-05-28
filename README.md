@@ -38,10 +38,10 @@ source1, source2, source3, source4, source5 | Target sources. | source1=Swan, so
 source_group_name | The name of the target source group you are analysing (trying to design primers for). The source group name only needs to be set if you define more than one target sources. | source_group_name=Anatids 
 specificity_exception1, specificity_exception2, specificity_exception3, specificity_exception4, specificity_exception5 | Sources excluded from the specificity calculations | specificity_exception1=Bird unknown
 kmer_sensitivity_cutoff | A minimum value for sensitivity of a K-mer to be used as a primer in in-silico PCR | kmer_sensitivity_cutoff=50
-kmer_specificity_cutoff
+kmer_specificity_cutoff | A minimum value for specificity of a K-mer to be used as a primer. Only one of the primers (forward OR reverse) has to match specificity criteria. | kmer_specificity_cutoff=70
+marker_sensitivity_cutoff | Minimum sensitivity of markers amplified with a given primer pair. This value is different from the kmer_sensitivity_cutoff and can be either the same or higher | marker_sensitivity_cutoff=60
+marker_specificity_cutoff | Minimum specificity of markers amplified with a given primer pair. This value is different from the kmer_specificity_cutoff and can be either the same or higher |
 
-kmer_specificity_cutoff=70
-marker_sensitivity_cutoff=60
 marker_specificity_cutoff=95
 min_amplicon_length=70
 rarefy_cutoff=10000
@@ -78,7 +78,10 @@ Specificity
 Sensitivity
 K-mer
 
+##License and third-party software
+MicrobiomePrime is distributed under a ??? licence. Additionally, it redistributes the following third party software:
+ThermonucleotideBLAST
+Usearch
 
-
-
-Copyright (c) 2024 Zlender T. tanja.zlender@nlzoh.si (see LICENSE)
+MicrobiomePrime is developed by Tanja Zlender, Lucija Brezocnik and Vili Podgorelec.
+For support, please contact tanja.zlender@nlzoh.si.
