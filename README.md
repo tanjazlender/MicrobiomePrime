@@ -7,6 +7,8 @@ You can find the MicrobiomePrime paper at: (link)
 - Installation
 - Variables
 - Code overview
+- Primer pair validation
+- Definitions
 
 ## About
 MicrobiomePrime is a tool for identifying identifying microbiome-associated markers that can be detected using Polymerase Chain Reaction.
@@ -44,9 +46,20 @@ In the last section, we perform an in silico PCR using selected K-mers as primer
 - Source sensitivity: Evaluating how many samples from a specific source can be detected using the given primer pair.
 - Specificity to a Particular Source: Assessing whether the primers also detect microbiota from other sources.
 This is useful in 
-- Differential Abundance: Determining the strength of the association with the target source.
-- differential abundance (based on how strong the association is)
+- Differential Abundance: Determining the strength of the association with the target source (is a marker more abundant in target than in non-target samples?)
 
+## Validation
+The primer pairs should always be validated in a laboratory on multiple target (where you want the primers to amplify) and non-target samples (the number of samples in the validation process depends on the study itself). If you are testing sensitivity and specificity of primer pairs, you can use e.g. end-point PCR, real-time PCR or digital PCR. If the differentiation of target and non-target samples is based on differential abundance of a particular marker, the amplification should be quantified (whether using real-time or digital PCR).
+
+
+
+## Definitions
+Marker
+Primer pair
+Target samples
+Non-target samples
+Specificity
+Sensitivity
 
 
 
