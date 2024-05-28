@@ -78,7 +78,7 @@ Specificity
 Sensitivity
 K-mer
 
-##License and third-party software
+## License and third-party software
 MicrobiomePrime is distributed under a ??? licence. Additionally, it redistributes the following third party software:
 ThermonucleotideBLAST
 Usearch
