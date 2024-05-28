@@ -36,6 +36,14 @@ In this section, we eliminate primer sequences and filter out low-quality reads 
 ### Section 2: Generation of K-mers
 ![splitting kmers_small](https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/0300193e-dc1b-44b1-bc9f-6231b781fafb)
 
+## Section 3: In silico PCR and selection of best primer pairs
+In the last section, we perform an in silico PCR using selected K-mers as primers. When looking for primer pairs that detect markers found in a target microbiota source and not in other sources, we calculate:
+- Source sensitivity: Evaluating how many samples from a specific source can be detected using the given primer pair.
+- Specificity to a Particular Source: Assessing whether the primers also detect microbiota from other sources.
+This is useful in 
+- Differential Abundance: Determining the strength of the association with the target source.
+- differential abundance (based on how strong the association is)
+
 
 
 
