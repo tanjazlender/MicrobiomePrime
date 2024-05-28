@@ -61,6 +61,9 @@ In this section, we eliminate primer sequences and filter out low-quality reads 
   ![splitting kmers_small](https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/0300193e-dc1b-44b1-bc9f-6231b781fafb)
 </p>
 
+<p align="center">
+  <img src="https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/0300193e-dc1b-44b1-bc9f-6231b781fafb" alt="splitting kmers_small">
+</p>
 
 ![splitting kmers_small](https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/0300193e-dc1b-44b1-bc9f-6231b781fafb)
 
