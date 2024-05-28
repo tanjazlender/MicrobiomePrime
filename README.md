@@ -32,22 +32,13 @@ You also need to install two programs:
 
 ## Variables
 You can change the variables in the variables.ini file found in scripts folder.
-Attempt | #1 | #2 
+Variable | Explanation | Example 
 --- | --- | --- 
-source_group_name | 301 | 283 
+source1, source2, source3, source4, source5 | Target sources. | source1=Swan, source2=Wild duck, source3=Domestic duck, source4=Goose
+source_group_name | The name of the target source group you are analysing (trying to design primers for). The source group name only needs to be set if you have more than one target sources (source1, source2, source3, source4, source5) | source_group_name=Anatids 
+specificity_exception1, specificity_exception2, specificity_exception3, specificity_exception4, specificity_exception5 | Sources excluded from the specificity calculations | specificity_exception1=Bird unknown
+kmer_sensitivity_cutoff | A minimum value for sensitivity of a K-mer to be used as a primer in in-silico PCR | kmer_sensitivity_cutoff=50
 
-source_group_name
-source1=Swan
-source2=Wild duck
-source3=Domestic duck
-source4=Goose
-source5=
-specificity_exception1=Bird unknown
-specificity_exception2=
-specificity_exception3=
-specificity_exception4=
-specificity_exception5=
-kmer_sensitivity_cutoff=50
 kmer_specificity_cutoff=70
 marker_sensitivity_cutoff=60
 marker_specificity_cutoff=95
@@ -84,6 +75,7 @@ Target samples
 Non-target samples
 Specificity
 Sensitivity
+K-mer
 
 
 
