@@ -34,14 +34,14 @@ You also need to install two programs:
 You can change the variables in the variables.ini file found in scripts folder.
 Variable | Explanation | Example | Default value
 --- | --- | --- | --- 
-source1, source2, source3, source4, source5 | Target sources. | source1=Swan, source2=Wild duck, source3=Domestic duck, source4=Goose |
-source_group_name | The name of the target source group you are analysing (trying to design primers for). The source group name only needs to be set if you define more than one target sources. | source_group_name=Anatids |
-specificity_exception1, specificity_exception2, specificity_exception3, specificity_exception4, specificity_exception5 | Sources excluded from the specificity calculations | specificity_exception1=Bird unknown |
-kmer_sensitivity_cutoff | A minimum value for sensitivity of a K-mer to be used as a primer in in-silico PCR | kmer_sensitivity_cutoff=50 |
-kmer_specificity_cutoff | A minimum value for specificity of a K-mer to be used as a primer. Only one of the primers (forward OR reverse) has to match specificity criteria. | kmer_specificity_cutoff=70 |
-marker_sensitivity_cutoff | Minimum sensitivity of markers amplified with a given primer pair. This value is different from the kmer_sensitivity_cutoff and can be either the same or higher | marker_sensitivity_cutoff=60 |
-marker_specificity_cutoff | Minimum specificity of markers amplified with a given primer pair. This value is different from the kmer_specificity_cutoff and can be either the same or higher | marker_specificity_cutoff=95 |
-minimum_amplicon_length | Minimum length of an amplicon. Deafult value is set to 70 | min_amplicon_length=70 |
+source1, source2, source3, source4, source5 | Target sources. | source1=Swan, source2=Wild duck, source3=Domestic duck, source4=Goose | /
+source_group_name | The name of the target source group you are analysing (trying to design primers for). The source group name only needs to be set if you define more than one target sources. | source_group_name=Anatids | /
+specificity_exception1, specificity_exception2, specificity_exception3, specificity_exception4, specificity_exception5 | Sources excluded from the specificity calculations | specificity_exception1=Bird unknown | /
+kmer_sensitivity_cutoff | A minimum value for sensitivity of a K-mer to be used as a primer in in-silico PCR | kmer_sensitivity_cutoff=50 | /
+kmer_specificity_cutoff | A minimum value for specificity of a K-mer to be used as a primer. Only one of the primers (forward OR reverse) has to match specificity criteria. | kmer_specificity_cutoff=70 | /
+marker_sensitivity_cutoff | Minimum sensitivity of markers amplified with a given primer pair. This value is different from the kmer_sensitivity_cutoff and can be either the same or higher | marker_sensitivity_cutoff=60 | /
+marker_specificity_cutoff | Minimum specificity of markers amplified with a given primer pair. This value is different from the kmer_specificity_cutoff and can be either the same or higher | marker_specificity_cutoff=95 | /
+minimum_amplicon_length | Minimum length of an amplicon. Deafult value is set to 70 | min_amplicon_length=70 | /
 rarefy_cutoff | Rarefaction depth. | rarefy_cutoff=10000 | rarefy_cutoff=10000
 zotu_prevalence_cutoff | ZOTUs prevalent in less than this threshold [%] within a single source, it is treated as a low prevalent ZOTU | zotu_prevalence_cutoff=30 | zotu_prevalence_cutoff=30
 rare_zotu_cutoff | If a ZOTU is low prevalent and has a relative abundance <= rare_zotu_cutoff, it is removed from the given sample | rare_zotu_cutoff=0.0001 | rare_zotu_cutoff=0.0001
