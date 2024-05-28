@@ -28,9 +28,14 @@ You also need to install two programs:
 - a **software for generation of taxonomic units** (OTUs or ZOTUs) **or amplicon sequence variants** (ASVs). We used Usearch for which you need to purchase a licence (there is a free version for very small data sets). If you would like to install Usearch, follow the instructions on their [official page](https://www.drive5.com/usearch/). Alternatively, you can use other software, such as Qiime2, DADA2 or Mothur.
 
 ## Code overview
-The code is split into three main parts.
+The code is split into three main sections. In the first section, we analyse raw sequencing data and generate taxonomic units or sequence variants. In the second part, the filtered amplicon sequences are split into K-mers that are length of a primer. The sequences are split in a one bp window slide approach. Finally, selected K-mers linked to a specific microbiota source function as primers in an in silico PCR.  Primer pairs with highest sensitivity and specificity (or differential abundance) can potentially be used to amplify microbiota source-associated markers.
 
-### Part 1: Generation of taxonomic units or sequence variants
-In this part we generate Zero Radius Operational Taxonomic Units (ZOTUs) using Usearch-UNOISE3 software. Alternatively you can use other bioinformatic pipelines for the analysis of amplicon sequence data such as Mothur, Qiime2 and DADA2 to generate Operational Taxonomic Units (OTUs) or Amplicon Sequence Variants (ASVs). Just be careful with the formatting of the output files ( check the row names, is the table transposed differently? etc.) as it has to be the same as in our example.
+### Section 1: Generation of taxonomic units or sequence variants
+In this section, we eliminate primer sequences and filter out low-quality reads before generating Zero Radius Operational Taxonomic Units (ZOTUs) using Usearch software. Alternatively you can use other bioinformatic pipelines for the analysis of amplicon sequence data such as Mothur, Qiime2 and DADA2 to generate Operational Taxonomic Units (OTUs) or Amplicon Sequence Variants (ASVs). If you are not using Usearch, make sure that the output files are formatted to match our example (check file names, row names and table formatting).
+
+### Section 2: Generation of K-mers
+
+![splitting k-mers](https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/e0ad3020-9377-4657-a2aa-eb48ebeba366)
+
 
 Copyright (c) 2024 Zlender T. tanja.zlender@nlzoh.si (see LICENSE)
