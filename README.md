@@ -12,9 +12,11 @@ The pipeline was originally developed for use in Microbial Source Tracking (MST)
 
 ## Installation
 MicrobiomePrime is intended to be run in a x86-64 Linux OS (tested on Ubuntu). The easiest way to install all the necessary libraries is by using conda. 
->conda env create -f environment.yml
+```
+conda env create -f environment.yml
+```
 
-If you do not have conda installed on your computer, you can find the installation instructions [here](https://conda.io/projects/conda/en/latest/index.html).
+*If you do not have conda installed on your computer, you can find the installation instructions [here](https://conda.io/projects/conda/en/latest/index.html).*
 
 Now you created a new conda environment named MicrobiomePrime, which must always be activated before using the pipline:
 >conda activate MicrobiomePrime
