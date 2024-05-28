@@ -34,8 +34,8 @@ The code is split into three main sections. In the first section, we analyse raw
 In this section, we eliminate primer sequences and filter out low-quality reads before generating Zero Radius Operational Taxonomic Units (ZOTUs) using Usearch software. Alternatively you can use other bioinformatic pipelines for the analysis of amplicon sequence data such as Mothur, Qiime2 and DADA2 to generate Operational Taxonomic Units (OTUs) or Amplicon Sequence Variants (ASVs). If you are not using Usearch, make sure that the output files are formatted to match our example (check file names, row names and table formatting).
 
 ### Section 2: Generation of K-mers
+![splitting k-mers (1)](https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/451094ad-8b70-445b-b011-e2931c89715c)
 
-![splitting k-mers](https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/e0ad3020-9377-4657-a2aa-eb48ebeba366)
 
 
 Copyright (c) 2024 Zlender T. tanja.zlender@nlzoh.si (see LICENSE)
