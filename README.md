@@ -1,5 +1,5 @@
 # MicrobiomePrime
-A tool for identifying primer pairs with high sensitivity and specificity for a particular source of microbiota
+A tool for identifying primer pairs with high sensitivity and specificity for a particular source of microbiota. It is designed for analysing amplicon sequencing data, however it could (with some modifications) also be used on shotgun sequencing data.
 You can find the MicrobiomePrime paper at: (link)
 
 ## Contents
