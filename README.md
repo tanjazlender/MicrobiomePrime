@@ -33,7 +33,7 @@ You also need to install two programs:
 ## Variables
 You can change the variables in the variables.ini file found in scripts folder.
 Variable | Explanation | Example | Default value
---- | --- | --- 
+--- | --- | --- | --- 
 source1, source2, source3, source4, source5 | Target sources. | source1=Swan, source2=Wild duck, source3=Domestic duck, source4=Goose |
 source_group_name | The name of the target source group you are analysing (trying to design primers for). The source group name only needs to be set if you define more than one target sources. | source_group_name=Anatids |
 specificity_exception1, specificity_exception2, specificity_exception3, specificity_exception4, specificity_exception5 | Sources excluded from the specificity calculations | specificity_exception1=Bird unknown |
