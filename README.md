@@ -31,6 +31,30 @@ You also need to install two programs:
 - a **software for generation of taxonomic units** (OTUs or ZOTUs) **or amplicon sequence variants** (ASVs). We used Usearch for which you need to purchase a licence (there is a free version for very small data sets). If you would like to install Usearch, follow the instructions on their [official page](https://www.drive5.com/usearch/). Alternatively, you can use other software, such as Qiime2, DADA2 or Mothur.
 
 ## Variables
+You can change the variables in the variables.ini file found in scripts folder.
+Attempt | #1 | #2 
+--- | --- | --- 
+source_group_name | 301 | 283 
+
+source_group_name
+source1=Swan
+source2=Wild duck
+source3=Domestic duck
+source4=Goose
+source5=
+specificity_exception1=Bird unknown
+specificity_exception2=
+specificity_exception3=
+specificity_exception4=
+specificity_exception5=
+kmer_sensitivity_cutoff=50
+kmer_specificity_cutoff=70
+marker_sensitivity_cutoff=60
+marker_specificity_cutoff=95
+min_amplicon_length=70
+rarefy_cutoff=10000
+rare_zotu_cutoff=0.0001
+zotu_prevalence_cutoff=30
 
 ## Code overview
 The code is split into three main sections. In the first section, we analyse raw sequencing data and generate taxonomic units or sequence variants. In the second part, the filtered amplicon sequences are split into K-mers that are length of a primer. The sequences are split in a one bp window slide approach. Finally, selected K-mers linked to a specific microbiota source function as primers in an in silico PCR.  Primer pairs with highest sensitivity and specificity (or differential abundance) can potentially be used to amplify microbiota source-associated markers.
