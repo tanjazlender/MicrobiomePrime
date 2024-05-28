@@ -12,17 +12,22 @@ MicrobiomePrime is a tool for identifying identifying microbiome-associated mark
 The pipeline was originally developed for use in Microbial Source Tracking (MST), but can also be used for designing primers in medicine or environmental ecology.
 
 ## Installation
-MicrobiomePrime is intended to be run in a x86-64 Linux OS (tested on Ubuntu). The best way to start is to create a conda environment with all the dependencies you need for this pipeline:
+MicrobiomePrime is intended to be run in a x86-64 Linux OS (tested on Ubuntu). The best way to start is to create a conda environment with all the necessary dependencies using the provided environment.yml file:
 ```
 conda env create -f environment.yml
 ```
-*If you do not have conda installed on your computer, you can find the installation instructions [here](https://conda.io/projects/conda/en/latest/index.html).*
+*If Conda is not installed on your system, you can find installation instructions [here](https://conda.io/projects/conda/en/latest/index.html).*
 
+Once the environment named MicrobiomePrime is created, activate it using:
 Now you created a new conda environment named MicrobiomePrime, which must always be activated before using the pipline:
 ```
 conda activate MicrobiomePrime
 ```
 You also need to install a program for *in silico* PCR, ThermonucleotideBLAST. It can be installed following the [instructions](https://public.lanl.gov/jgans/tntblast/tntblast_doc.html) on their official page. For this program to work across multiple CPUs, we installed OpenMPI.
+
+You also need a software to analyse raw amplicon sequencing data and generate taxonomic units (OTUs or ZOTUs) or amplicon sequence variants (ASVs). We used Usearch for which you need to purchase a licence (there is a free version for very small data sets). If you would like to install Usearch, follow the instructions on their [official page](https://www.drive5.com/usearch/).
+
+Alternatively, you can use other software, such as Qiime2, DADA2 or Mothur.
 
 
 
