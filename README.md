@@ -11,7 +11,10 @@ MicrobiomePrime is a tool for identifying identifying microbiome-associated mark
 The pipeline was originally developed for use in Microbial Source Tracking (MST), but can also be used for designing primers in medicine or environmental ecology.
 
 ## Installation
-MicrobiomePrime is intended to be run in a x86-64 Linux OS (tested on Ubuntu). The easiest way to install all the necessary libraries is by using conda. 
+MicrobiomePrime is intended to be run in a x86-64 Linux OS (tested on Ubuntu). The easiest way to install all the necessary libraries is by using conda: 
+conda env create -f environment.yml
+
+If you do not have conda installed on your computer, you can find the installation instructions [here](https://conda.io/projects/conda/en/latest/index.html).
 
 This will create a new conda environment named MicrobiomePrime, which must always be activated before using the pipline:
 conda activate MicrobiomePrime
