@@ -5,7 +5,8 @@ You can find the MicrobiomePrime paper at: (link)
 ## Contents
 - About
 - Installation
-- 
+- Variables
+- Code overview
 
 ## About
 MicrobiomePrime is a tool for identifying identifying microbiome-associated markers that can be detected using Polymerase Chain Reaction.
@@ -26,6 +27,8 @@ conda activate MicrobiomePrime
 You also need to install two programs:
 - **ThermonucleotideBLAST**, a program for *in silico* PCR. It can be installed following the [instructions](https://public.lanl.gov/jgans/tntblast/tntblast_doc.html) on their official page. For this program to work across multiple CPUs, we installed OpenMPI.
 - a **software for generation of taxonomic units** (OTUs or ZOTUs) **or amplicon sequence variants** (ASVs). We used Usearch for which you need to purchase a licence (there is a free version for very small data sets). If you would like to install Usearch, follow the instructions on their [official page](https://www.drive5.com/usearch/). Alternatively, you can use other software, such as Qiime2, DADA2 or Mothur.
+
+## Variables
 
 ## Code overview
 The code is split into three main sections. In the first section, we analyse raw sequencing data and generate taxonomic units or sequence variants. In the second part, the filtered amplicon sequences are split into K-mers that are length of a primer. The sequences are split in a one bp window slide approach. Finally, selected K-mers linked to a specific microbiota source function as primers in an in silico PCR.  Primer pairs with highest sensitivity and specificity (or differential abundance) can potentially be used to amplify microbiota source-associated markers.
