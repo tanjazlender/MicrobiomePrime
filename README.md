@@ -5,8 +5,9 @@ You can find the MicrobiomePrime paper at: (link)
 ## Contents
 - About
 - Installation
+- 
 
-## About MicrobiomePrime
+## About
 MicrobiomePrime is a tool for identifying identifying microbiome-associated markers that can be detected using Polymerase Chain Reaction.
 The pipeline was originally developed for use in Microbial Source Tracking (MST), but can also be used for designing primers in medicine or environmental ecology.
 
