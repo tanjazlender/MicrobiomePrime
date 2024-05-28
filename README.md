@@ -58,14 +58,8 @@ In this section, we eliminate primer sequences and filter out low-quality reads 
 ### Section 2: Generation of K-mers
 
 <p align="center">
-  ![splitting kmers_small](https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/0300193e-dc1b-44b1-bc9f-6231b781fafb)
-</p>
-
-<p align="center">
   <img src="https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/0300193e-dc1b-44b1-bc9f-6231b781fafb" alt="splitting kmers_small">
 </p>
-
-![splitting kmers_small](https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/0300193e-dc1b-44b1-bc9f-6231b781fafb)
 
 ### Section 3: In silico PCR and selection of best primer pairs
 In the last section, we perform an in silico PCR using selected K-mers as primers. When looking for primer pairs that detect markers found in a target microbiota source and not in other sources, we calculate:
