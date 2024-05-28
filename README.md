@@ -28,7 +28,7 @@ conda activate MicrobiomePrime
 ```
 You also need to install two programs:
 - **ThermonucleotideBLAST**, a program for *in silico* PCR. It can be installed following the [instructions](https://public.lanl.gov/jgans/tntblast/tntblast_doc.html) on their official page. For this program to work across multiple CPUs, we installed OpenMPI.
-- a **software for generation of taxonomic units** (OTUs or ZOTUs) **or amplicon sequence variants** (ASVs). We used Usearch for which you need to purchase a licence (there is a free version for very small data sets). If you would like to install Usearch, follow the instructions on their [official page](https://www.drive5.com/usearch/). Alternatively, you can use other software, such as Qiime2, DADA2 or Mothur.
+- a **software for generation of taxonomic units** (OTUs or ZOTUs) **or amplicon sequence variants** (ASVs). For this you can use Usearch or other similar software such as Qiime2, DADA2 and Mothur. We recommend to use Usearch because the outputs of this program are correctly formatted for our analysis. If you use any other program, make sure to correctly format the outputs. If you would like to install Usearch, follow the instructions on their [official page](https://www.drive5.com/usearch/).
 
 ## Variables
 You can change the variables in the variables.ini file found in scripts folder.
