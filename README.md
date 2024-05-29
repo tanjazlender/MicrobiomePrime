@@ -22,7 +22,6 @@ conda env create -f environment.yml
 *If Conda is not installed on your system, you can find installation instructions [here](https://conda.io/projects/conda/en/latest/index.html). Alternatively, you can manually install all the dependencies in the environment.yml file.*
 
 Once the environment named MicrobiomePrime is created, activate it using:
-Now you created a new conda environment named MicrobiomePrime, which must always be activated before using the pipline:
 ```
 conda activate MicrobiomePrime
 ```
