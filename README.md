@@ -31,6 +31,13 @@ You also need to install two programs:
 
 ## Inputs
 OTU table with relative abundance values.Samples must be in rows and OTUs in columns.
+metadata.tsv
+Sample | Source 
+--- | --- 
+Sample1 | Human feces 
+Sample2 | Cattle feces
+Sample3 | Pig feces
+Sample4 | Human feces
 
 otutab_relabund.tsv
 |        | Otu1   | Otu2   | Otu3   | Otu4   | Otu5   | Otu6   | Otu7   |
@@ -50,14 +57,6 @@ otu4 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	| Prevotellaceae	|
 otu5 | Bacteria	| Fusobacteria	| Fusobacteriia	| Fusobacteriales	| Fusobacteriaceae | 
 otu6 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Enterococcaceae	| Enterococcus
 otu7 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	| Bacteroidaceae	| 
-
-metadata.tsv
-Sample | Source 
---- | --- 
-Sample1 | Human feces 
-Sample2 | Cattle feces
-Sample3 | Pig feces
-Sample4 | Human feces
 
 otus.fa
 ```plaintext
