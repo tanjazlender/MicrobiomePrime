@@ -33,12 +33,24 @@ You also need to install two programs:
 OTU table with relative abundance values.Samples must be in rows and OTUs in columns.
 
 otutab_relabund.tsv
-Sample | otu1 | otu2 | otu3 | otu4 | otu5 | otu6 | otu7 
+ | otu1 | otu2 | otu3 | otu4 | otu5 | otu6 | otu7 
 --- | --- | --- | --- | --- | --- | --- | ---
 sample1 | 0.1000 | 0.0200 | 0.8800 | 0.0000 | 0.0000 | 0.0000 | 0.0000
 sample2 | 0.0200 | 0.3500 | 0.0000 | 0.0000 | 0.2550 | 0.3750 | 0.0000
 sample3 | 0.0000 | 0.0920 | 0.4050 | 0.3253 | 0.0000 | 0.0000 | 0.1777
 sample4 | 0.4250 | 0.1005 | 0.0000 | 0.0000 | 0.2145 | 0.0600 | 0.2000
+
+taxonomy.tsv
+otu | domain | phylum | class | order | family | genus  
+--- | --- | --- | --- | --- | --- | --- | ---
+otu1 | Bacteria	| Firmicutes	| Clostridia	| Clostridiales	| Peptostreptococcaceae	| Romboutsia
+otu2 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Carnobacteriaceae	| Catellicoccus
+otu3 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Streptococcaceae	| Streptococcus
+otu4 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	| Prevotellaceae	| Prevotella
+otu5 | Bacteria	| Fusobacteria	| Fusobacteriia	| Fusobacteriales	| Fusobacteriaceae | 
+otu6 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Enterococcaceae	| Enterococcus
+otu7 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	| Bacteroidaceae	| 
+
 
 ## Variables
 You can change the variables in the variables.ini file found in scripts folder.
