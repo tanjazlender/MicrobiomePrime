@@ -33,7 +33,7 @@ You also need to install two programs:
 OTU table with relative abundance values.Samples must be in rows and OTUs in columns.
 
 otutab_relabund.tsv
-     | otu1 | otu2 | otu3 | otu4 | otu5 | otu6 | otu7 
+---| otu1 | otu2 | otu3 | otu4 | otu5 | otu6 | otu7 
 --- | --- | --- | --- | --- | --- | --- | ---
 sample1 | 0.1000 | 0.0200 | 0.8800 | 0.0000 | 0.0000 | 0.0000 | 0.0000
 sample2 | 0.0200 | 0.3500 | 0.0000 | 0.0000 | 0.2550 | 0.3750 | 0.0000
