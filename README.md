@@ -42,7 +42,7 @@ sample4 | 0.4250 | 0.1005 | 0.0000 | 0.0000 | 0.2145 | 0.0600 | 0.2000
 
 taxonomy.tsv
 otu | domain | phylum | class | order | family | genus  
---- | --- | --- | --- | --- | --- | --- | ---
+--- | --- | --- | --- | --- | --- | ---
 otu1 | Bacteria	| Firmicutes	| Clostridia	| Clostridiales	| Peptostreptococcaceae	| Romboutsia
 otu2 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Carnobacteriaceae	| Catellicoccus
 otu3 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Streptococcaceae	| Streptococcus
