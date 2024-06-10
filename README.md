@@ -1,5 +1,5 @@
 # MicrobiomePrime
-A tool for identifying primer pairs with high sensitivity and specificity for a particular source of microbiota. It is designed for analysing amplicon sequencing data, however it could (with some modifications) also be used on shotgun sequencing data.
+A tool for identifying primer pairs with high sensitivity and specificity for a particular source of microbiota. It is designed for analysing amplicon sequencing data.
 You can find the MicrobiomePrime paper at: (link)
 
 ## Contents
@@ -11,8 +11,8 @@ You can find the MicrobiomePrime paper at: (link)
 - Definitions
 
 ## About
-MicrobiomePrime is a tool for identifying identifying microbiome-associated markers that can be detected using Polymerase Chain Reaction.
-The pipeline was originally developed for use in Microbial Source Tracking (MST), but can also be used for designing primers in medicine or environmental ecology.
+MicrobiomePrime is a tool for identifying identifying microbiome source-associated markers that can be detected using Polymerase Chain Reaction.
+The pipeline was originally developed for use in Microbial Source Tracking (MST).
 
 ## Installation
 MicrobiomePrime is intended to be run in a x86-64 Linux OS (tested on Ubuntu). The best way to start is to create a conda environment with all the necessary dependencies using the provided environment.yml file:
@@ -25,12 +25,15 @@ Once the environment named MicrobiomePrime is created, activate it using:
 ```
 conda activate MicrobiomePrime
 ```
-You also need to install two programs:
-- **ThermonucleotideBLAST**, a program for *in silico* PCR. It can be installed following the [instructions](https://public.lanl.gov/jgans/tntblast/tntblast_doc.html) on their official page. For this program to work across multiple CPUs, we installed OpenMPI.
+You also need to install ThermonucleotideBLAST, a program for *in silico* PCR. It can be installed following the [instructions](https://public.lanl.gov/jgans/tntblast/tntblast_doc.html) on their official page. For this program to work across multiple CPUs, we installed OpenMPI.
+
+
 - a **software for generation of taxonomic units** (OTUs or ZOTUs) **or amplicon sequence variants** (ASVs). For this you can use [Usearch](https://www.drive5.com/usearch/) or other similar software such as [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/) and [Mothur](https://mothur.org/). We recommend to use Usearch because the outputs of this program are correctly formatted for our analysis.
 
 ## Inputs
-OTU table with relative abundance values.Samples must be in rows and OTUs in columns.
+To begin, you need to generate operational taxonomic units or amplicon sequence variants. Suitable options include [Usearch](https://www.drive5.com/usearch/), [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/), and [Mothur](https://mothur.org/).
+
+OTU or ASV table with relative abundance values. Samples must be in rows and OTUs in columns. The sum of each row should be 1.
 metadata.tsv
 Sample | Source 
 --- | --- 
