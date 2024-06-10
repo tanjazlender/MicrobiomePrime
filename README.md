@@ -31,9 +31,17 @@ You also need to install ThermonucleotideBLAST, a program for *in silico* PCR. I
 - a **software for generation of taxonomic units** (OTUs or ZOTUs) **or amplicon sequence variants** (ASVs). For this you can use [Usearch](https://www.drive5.com/usearch/) or other similar software such as [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/) and [Mothur](https://mothur.org/). We recommend to use Usearch because the outputs of this program are correctly formatted for our analysis.
 
 ## Inputs
-To begin, you need to generate operational taxonomic units or amplicon sequence variants. Suitable options include [Usearch](https://www.drive5.com/usearch/), [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/), and [Mothur](https://mothur.org/).
+To begin, you need to generate operational taxonomic units or amplicon sequence variants. Suitable software options include [Usearch](https://www.drive5.com/usearch/), [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/), and [Mothur](https://mothur.org/).
 
-OTU or ASV table with relative abundance values. Samples must be in rows and OTUs in columns. The sum of each row should be 1.
+For the analysis itself, you will need the following four files:
+Metadata file
+OTU or ASV table
+Taxonomy file
+FASTA file
+
+The specific structure and format of each file are detailed below.
+
+OTU or ASV table with relative abundance values. Samples must be in rows and OTUs/ASVs in columns. The sum of each row should be 1.
 metadata.tsv
 Sample | Source 
 --- | --- 
@@ -60,6 +68,7 @@ otu4 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	| Prevotellaceae	|
 otu5 | Bacteria	| Fusobacteria	| Fusobacteriia	| Fusobacteriales	| Fusobacteriaceae | 
 otu6 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Enterococcaceae	| Enterococcus
 otu7 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	| Bacteroidaceae	| 
+Ensure that the column names in your file match our format. The first column should be named "Otu" regardless of whether you are analysing ASVs or ZOTUs.
 
 otus.fa
 ```plaintext
@@ -100,8 +109,6 @@ kmer_specificity_cutoff | A minimum value for specificity of a K-mer to be used 
 marker_sensitivity_cutoff | Minimum sensitivity of markers amplified with a given primer pair. This value is different from the kmer_sensitivity_cutoff and can be either the same or higher | marker_sensitivity_cutoff=60 | /
 marker_specificity_cutoff | Minimum specificity of markers amplified with a given primer pair. This value is different from the kmer_specificity_cutoff and can be either the same or higher | marker_specificity_cutoff=95 | /
 minimum_amplicon_length | Minimum length of an amplicon. Deafult value is set to 70 | min_amplicon_length=70 | /
-
-
 
 
 ## Code overview
