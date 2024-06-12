@@ -110,9 +110,10 @@ kmer_specificity_cutoff | A minimum value for specificity of a K-mer to be used 
 marker_sensitivity_cutoff | Minimum sensitivity of markers amplified with a given primer pair. This value is different from the kmer_sensitivity_cutoff and can be either the same or higher | marker_sensitivity_cutoff=60 | /
 marker_specificity_cutoff | Minimum specificity of markers amplified with a given primer pair. This value is different from the kmer_specificity_cutoff and can be either the same or higher | marker_specificity_cutoff=95 | /
 minimum_amplicon_length | Minimum length of an amplicon. Deafult value is set to 70 | min_amplicon_length=70 | /
-
+cpus | The number of CPUs to run the program on. | /
 
 ## Code overview
+T
 The code is split into three main sections. In the first section, we analyse raw sequencing data and generate taxonomic units or sequence variants. In the second part, the filtered amplicon sequences are split into K-mers that are length of a primer. The sequences are split in a one bp window slide approach. Finally, selected K-mers linked to a specific microbiota source function as primers in an in silico PCR.  Primer pairs with highest sensitivity and specificity (or differential abundance) can potentially be used to amplify microbiota source-associated markers.
 
 ### Input
@@ -151,7 +152,7 @@ K-mer
 ## License and third-party software
 MicrobiomePrime is distributed under a ??? licence. Additionally, it redistributes the following third party software:
 - [ThermonucleotideBLAST](https://public.lanl.gov/jgans/tntblast/tntblast_doc.html)
-- [Usearch](https://www.drive5.com/usearch/)
+
 The licenses for all dependencies used in this pipeline are detailed in the NOTICE file.
 
 MicrobiomePrime is developed by Tanja Zlender, Lucija Brezocnik and Vili Podgorelec.
