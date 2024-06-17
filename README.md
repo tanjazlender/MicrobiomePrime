@@ -40,7 +40,7 @@ The specific structure and format of each file are detailed below.
 
 1. Metadata
 
-File name: metadata.tsv
+*File name: metadata.tsv*
 
 Sample | Source 
 --- | --- 
@@ -78,6 +78,7 @@ otu7 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	| Bacteroidaceae	|
 Ensure that the column names in your file match our format. The first column should be named "Otu" regardless of whether you are analysing ASVs or OTUs.
 
 4. FASTA file
+
 File name: otus.fa
 ```plaintext
 >otu1
