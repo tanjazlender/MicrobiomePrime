@@ -31,10 +31,10 @@ You also need to install ThermonucleotideBLAST, a program for *in silico* PCR. I
 To begin, you need to generate operational taxonomic units or amplicon sequence variants. Suitable software options include [Usearch](https://www.drive5.com/usearch/), [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/), and [Mothur](https://mothur.org/).
 
 For the analysis itself, you will need the following four files:
-Metadata file
-OTU or ASV table
-Taxonomy file
-FASTA file
+- Metadata file
+- OTU or ASV table
+- Taxonomy file
+- FASTA file
 
 The specific structure and format of each file are detailed below.
 
