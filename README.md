@@ -39,6 +39,7 @@ For the analysis itself, you will need the following four files:
 The specific structure and format of each file are detailed below.
 
 1. Metadata
+
 File name: metadata.tsv
 
 Sample | Source 
