@@ -31,10 +31,10 @@ You also need to install ThermonucleotideBLAST, a program for *in silico* PCR. I
 To begin, you need to generate operational taxonomic units or amplicon sequence variants. Suitable software options include [Usearch](https://www.drive5.com/usearch/), [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/), and [Mothur](https://mothur.org/).
 
 For the analysis itself, you will need the following four files:
-- Metadata file
-- OTU or ASV table
-- Taxonomy file
-- FASTA file
+1. Metadata file
+2. OTU or ASV table
+3. Taxonomy file
+4. FASTA file
 
 The specific structure and format of each file are detailed below.
 
@@ -51,6 +51,7 @@ Sample4 | Human feces
 
 2. OTU or ASV table
 OTU or ASV table with relative abundance values. Samples must be in rows and OTUs/ASVs in columns. The sum of each row should be 1.
+
 File name: otutab_relabund.tsv
 
 |        | Otu1   | Otu2   | Otu3   | Otu4   | Otu5   | Otu6   | Otu7   |
@@ -61,7 +62,9 @@ File name: otutab_relabund.tsv
 | Sample4| 0.4250 | 0.1005 | 0.0000 | 0.0000 | 0.2145 | 0.0600 | 0.2000 |
 
 3. Taxonomy
+
 File name: taxonomy.tsv
+
 Otu | Domain | Phylum | Class | Order | Family | Genus  
 --- | --- | --- | --- | --- | --- | ---
 otu1 | Bacteria	| Firmicutes	| Clostridia	| Clostridiales	| Peptostreptococcaceae	| Romboutsia
