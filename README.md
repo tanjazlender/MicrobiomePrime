@@ -27,9 +27,6 @@ conda activate MicrobiomePrime
 ```
 You also need to install ThermonucleotideBLAST, a program for *in silico* PCR. It can be installed following the [instructions](https://public.lanl.gov/jgans/tntblast/tntblast_doc.html) on their official page. For this program to work across multiple CPUs, we installed OpenMPI.
 
-
-- a **software for generation of taxonomic units** (OTUs or ZOTUs) **or amplicon sequence variants** (ASVs). For this you can use [Usearch](https://www.drive5.com/usearch/) or other similar software such as [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/) and [Mothur](https://mothur.org/). We recommend to use Usearch because the outputs of this program are correctly formatted for our analysis.
-
 ## Inputs
 To begin, you need to generate operational taxonomic units or amplicon sequence variants. Suitable software options include [Usearch](https://www.drive5.com/usearch/), [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/), and [Mothur](https://mothur.org/).
 
