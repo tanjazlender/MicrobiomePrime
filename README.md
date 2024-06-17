@@ -50,6 +50,7 @@ Sample3 | Pig feces
 Sample4 | Human feces
 
 **2. OTU or ASV table**
+
 OTU or ASV table with relative abundance values. Samples must be in rows and OTUs/ASVs in columns. The sum of each row should be 1.
 
 *File name: otutab_relabund.tsv*
