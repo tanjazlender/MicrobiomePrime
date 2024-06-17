@@ -40,6 +40,7 @@ The specific structure and format of each file are detailed below.
 
 1. Metadata
 File name: metadata.tsv
+
 Sample | Source 
 --- | --- 
 Sample1 | Human feces 
@@ -50,6 +51,7 @@ Sample4 | Human feces
 2. OTU or ASV table
 OTU or ASV table with relative abundance values. Samples must be in rows and OTUs/ASVs in columns. The sum of each row should be 1.
 File name: otutab_relabund.tsv
+
 |        | Otu1   | Otu2   | Otu3   | Otu4   | Otu5   | Otu6   | Otu7   |
 |--------|--------|--------|--------|--------|--------|--------|--------|
 | Sample1| 0.1000 | 0.0200 | 0.8800 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
