@@ -66,7 +66,7 @@ otu5 | Bacteria	| Fusobacteria	| Fusobacteriia	| Fusobacteriales	| Fusobacteriac
 otu6 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Enterococcaceae	| Enterococcus
 otu7 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	| Bacteroidaceae	| 
 
-Ensure that the column names in your file match our format. The first column should be named "Otu" regardless of whether you are analysing ASVs or ZOTUs.
+Ensure that the column names in your file match our format. The first column should be named "Otu" regardless of whether you are analysing ASVs or OTUs.
 
 otus.fa
 ```plaintext
