@@ -38,7 +38,7 @@ For the analysis itself, you will need the following four files:
 
 The specific structure and format of each file are detailed below.
 
-1. Metadata
+**1. Metadata**
 
 *File name: metadata.tsv*
 
@@ -49,10 +49,10 @@ Sample2 | Cattle feces
 Sample3 | Pig feces
 Sample4 | Human feces
 
-2. OTU or ASV table
+**2. OTU or ASV table**
 OTU or ASV table with relative abundance values. Samples must be in rows and OTUs/ASVs in columns. The sum of each row should be 1.
 
-File name: otutab_relabund.tsv
+*File name: otutab_relabund.tsv*
 
 |        | Otu1   | Otu2   | Otu3   | Otu4   | Otu5   | Otu6   | Otu7   |
 |--------|--------|--------|--------|--------|--------|--------|--------|
@@ -61,9 +61,9 @@ File name: otutab_relabund.tsv
 | Sample3| 0.0000 | 0.0920 | 0.4050 | 0.3253 | 0.0000 | 0.0000 | 0.1777 |
 | Sample4| 0.4250 | 0.1005 | 0.0000 | 0.0000 | 0.2145 | 0.0600 | 0.2000 |
 
-3. Taxonomy
+**3. Taxonomy**
 
-File name: taxonomy.tsv
+*File name: taxonomy.tsv*
 
 Otu | Domain | Phylum | Class | Order | Family | Genus  
 --- | --- | --- | --- | --- | --- | ---
@@ -77,9 +77,9 @@ otu7 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	| Bacteroidaceae	|
 
 Ensure that the column names in your file match our format. The first column should be named "Otu" regardless of whether you are analysing ASVs or OTUs.
 
-4. FASTA file
+**4. FASTA file**
 
-File name: otus.fa
+*File name: otus.fa*
 ```plaintext
 >otu1
 TGGGGAATATTGCACAATGGGCGCAAGCCTGATGCAGCCATGCCGCGTGTATGAAGAAGG
