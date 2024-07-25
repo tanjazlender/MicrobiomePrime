@@ -166,3 +166,7 @@ The licenses for all dependencies used in this pipeline are detailed in the NOTI
 
 MicrobiomePrime is developed by Tanja Zlender, Lucija Brezocnik and Vili Podgorelec.
 For support, please contact tanja.zlender@nlzoh.si.
+
+
+## Other - add to the readme
+- log files
