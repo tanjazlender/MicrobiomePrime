@@ -27,12 +27,15 @@ conda activate MicrobiomePrime
 ```
 You also need to install ThermonucleotideBLAST, a program for *in silico* PCR. It can be installed following the [instructions](https://public.lanl.gov/jgans/tntblast/tntblast_doc.html) on their official page. For this program to work across multiple CPUs, we installed OpenMPI.
 
-## Inputs
-To begin, you need to generate operational taxonomic units or amplicon sequence variants. Suitable software options include [Usearch](https://www.drive5.com/usearch/), [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/), and [Mothur](https://mothur.org/).
+## Data preprocessing
+Before searching for primers using MicrobiomePrime, you need need to preprocess your data. This typically involves steps such as removal of primer sequences, quality filtering, chimera detection and removal, sequence clustering or denoising and some form of normalization. A sequence ID (SeqID) must be assigned to each sequence and must consist of letters first and then numbers.
 
+Suitable software options data preprocessing include [Usearch](https://www.drive5.com/usearch/), [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/), and [Mothur](https://mothur.org/).
+
+## Inputs
 For the analysis itself, you will need the following four files:
 1. Metadata file
-2. OTU or ASV table
+2. Relative abundances table
 3. Taxonomy file
 4. FASTA file
 
@@ -40,7 +43,9 @@ The specific structure and format of each file are detailed below.
 
 **1. Metadata**
 
-*File name: metadata.tsv*
+*File name: metadata.csv or metadata.tsv*
+This is a file that contains the information about the samples being analysed. To this analysis the key information is the source of microbiota.
+If trying to find primers for tracking fecal pollution deriving from pigs, these sources can be for example human, cattle and pig feces.
 
 Sample | Source 
 --- | --- 
@@ -49,11 +54,12 @@ Sample2 | Cattle feces
 Sample3 | Pig feces
 Sample4 | Human feces
 
-**2. OTU or ASV table**
+**2. Relative abundances table**
 
-OTU or ASV table with relative abundance values. Samples must be in rows and OTUs/ASVs in columns. The sum of each row should be 1.
+A table with relative abundances. Samples must be in rows and sequence IDs (e.g. names of OTUs, ZOTUs or ASVs) must be in columns. 
+The sum of each row should be 1.
 
-*File name: otutab_relabund.tsv*
+*File name: relabund_tab.csv or relabund_tab.tsv*
 
 |        | Otu1   | Otu2   | Otu3   | Otu4   | Otu5   | Otu6   | Otu7   |
 |--------|--------|--------|--------|--------|--------|--------|--------|
@@ -64,9 +70,9 @@ OTU or ASV table with relative abundance values. Samples must be in rows and OTU
 
 **3. Taxonomy**
 
-*File name: taxonomy.tsv*
+*File name: taxonomy.csv or taxonomy.tsv*
 
-Otu | Domain | Phylum | Class | Order | Family | Genus  
+SeqID | Domain | Phylum | Class | Order | Family | Genus  
 --- | --- | --- | --- | --- | --- | ---
 otu1 | Bacteria	| Firmicutes	| Clostridia	| Clostridiales	| Peptostreptococcaceae	| Romboutsia
 otu2 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Carnobacteriaceae	| Catellicoccus
@@ -76,11 +82,11 @@ otu5 | Bacteria	| Fusobacteria	| Fusobacteriia	| Fusobacteriales	| Fusobacteriac
 otu6 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Enterococcaceae	| Enterococcus
 otu7 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	| Bacteroidaceae	| 
 
-Ensure that the column names in your file match our format. The first column should be named "Otu" regardless of whether you are analysing ASVs or OTUs.
+Ensure that the column names in your file match our format. The first column should be named "SeqID".
 
 **4. FASTA file**
 
-*File name: otus.fa*
+*File name: sequences.fa*
 ```plaintext
 >otu1
 TGGGGAATATTGCACAATGGGCGCAAGCCTGATGCAGCCATGCCGCGTGTATGAAGAAGG
