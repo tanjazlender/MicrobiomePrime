@@ -1,18 +1,16 @@
-# MicrobiomePrime
-A tool for identifying primer pairs with high sensitivity and specificity for a particular source of microbiota. It is designed for analysing amplicon sequencing data.
-You can find the MicrobiomePrime paper at: (link)
-
 ## Contents
 - About
 - Installation
+- Data preprocessing
+- Inputs
 - Variables
 - Code overview
 - Primer pair validation
 - Definitions
 
-## About
-MicrobiomePrime is a tool for identifying identifying microbiome source-associated markers that can be detected using Polymerase Chain Reaction.
-The pipeline was originally developed for use in Microbial Source Tracking (MST).
+# About MicrobiomePrime
+MicrobiomePrime is a tool for identifying primer pairs with high specificity and sensitivity for a particular source of microbiota by analysing amplicon sequences. The pipeline was originally developed for use in Microbial Source Tracking (MST).
+You can find more about MicrobiomePrime at: (link available soon)
 
 ## Installation
 MicrobiomePrime is intended to be run in a x86-64 Linux OS (tested on Ubuntu). The best way to start is to create a conda environment with all the necessary dependencies using the provided environment.yml file:
@@ -28,16 +26,18 @@ conda activate MicrobiomePrime
 You also need to install ThermonucleotideBLAST, a program for *in silico* PCR. It can be installed following the [instructions](https://public.lanl.gov/jgans/tntblast/tntblast_doc.html) on their official page. For this program to work across multiple CPUs, we installed OpenMPI.
 
 ## Data preprocessing
-Before searching for primers using MicrobiomePrime, you need need to preprocess your data. This typically involves steps such as removal of primer sequences, quality filtering, chimera detection and removal, sequence clustering or denoising and some form of normalization. A sequence ID (SeqID) must be assigned to each sequence and must consist of letters first and then numbers.
+Before searching for primers using MicrobiomePrime, you need need to preprocess raw amplicon sequences. This typically involves steps such as removal of primer sequences, quality filtering, chimera detection and removal, sequence clustering or denoising and some form of normalization. A sequence ID (SeqID) must be assigned to each sequence and must consist of letters first and then numbers.
 
 Suitable software options data preprocessing include [Usearch](https://www.drive5.com/usearch/), [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/), and [Mothur](https://mothur.org/).
+
+The final step in preprocessing involves calculating the relative abundance of each sequence within each sample. For details on the required format of the preprocessed file outputs, please refer to the section titled "Inputs."
 
 ## Inputs
 For the analysis itself, you will need the following four files:
 1. Metadata file
 2. Relative abundances table
-3. Taxonomy file
-4. FASTA file
+3. FASTA file
+4. Taxonomy file
 
 The specific structure and format of each file are detailed below.
 
@@ -68,23 +68,7 @@ The sum of each row should be 1.
 | Sample3| 0.0000 | 0.0920 | 0.4050 | 0.3253 | 0.0000 | 0.0000 | 0.1777 |
 | Sample4| 0.4250 | 0.1005 | 0.0000 | 0.0000 | 0.2145 | 0.0600 | 0.2000 |
 
-**3. Taxonomy**
-
-*File name: taxonomy.csv or taxonomy.tsv*
-
-SeqID | Domain | Phylum | Class | Order | Family | Genus  
---- | --- | --- | --- | --- | --- | ---
-otu1 | Bacteria	| Firmicutes	| Clostridia	| Clostridiales	| Peptostreptococcaceae	| Romboutsia
-otu2 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Carnobacteriaceae	| Catellicoccus
-otu3 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Streptococcaceae	| Streptococcus
-otu4 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	| Prevotellaceae	| Prevotella
-otu5 | Bacteria	| Fusobacteria	| Fusobacteriia	| Fusobacteriales	| Fusobacteriaceae | 
-otu6 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Enterococcaceae	| Enterococcus
-otu7 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	| Bacteroidaceae	| 
-
-Ensure that the column names in your file match our format. The first column should be named "SeqID".
-
-**4. FASTA file**
+**3. FASTA file**
 
 *File name: sequences.fa*
 ```plaintext
@@ -112,6 +96,22 @@ CCTTCGGGTCGTAAAGCTCTGTCCTCAAGGAAGATAATGACGGTACTTGAGGAGGAA
 TAGGGAATCTTCGGCAATGGGGGCAACCCTGACCGAGCAACGCCGCGTGAGTGAAGAAGG
 TTTTCGGATCGTAAAGCTCTGTTGTAAGAGAAGAACGTGTGTG
 ```
+
+**4. Taxonomy**
+
+*File name: taxonomy.csv or taxonomy.tsv*
+
+SeqID | Domain | Phylum | Class | Order | Family | Genus  
+--- | --- | --- | --- | --- | --- | ---
+otu1 | Bacteria	| Firmicutes	| Clostridia	| Clostridiales	| Peptostreptococcaceae	| Romboutsia
+otu2 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Carnobacteriaceae	| Catellicoccus
+otu3 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Streptococcaceae	| Streptococcus
+otu4 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	| Prevotellaceae	| Prevotella
+otu5 | Bacteria	| Fusobacteria	| Fusobacteriia	| Fusobacteriales	| Fusobacteriaceae | 
+otu6 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Enterococcaceae	| Enterococcus
+otu7 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	| Bacteroidaceae	| 
+
+Ensure that the column names in your file match our format. The first column should be named "SeqID".
 
 ## Variables
 You can change the variables in the variables.ini file found in scripts folder.
