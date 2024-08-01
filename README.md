@@ -155,9 +155,6 @@ The code consists of three main parts:
 2. Creating primer pairs
 3. Assessing the sensitivity and specificity of primer pairs in an *in silico* PCR analysis
 
-### Input
-???
-
 ### Section 1: Generating K-mers
 In the first part, amplicon sequences are split into K-mers that are length of a primer. The sequences are split in a one bp window slide approach.
 <p align="center">
