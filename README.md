@@ -8,7 +8,7 @@ You can find more about MicrobiomePrime at: (link available soon)
 - Inputs
 - Variables and settings
 - Code overview
-- Primer pair validation
+- Progress and error monitoring
 - Definitions
 
 ## Installation
@@ -181,8 +181,14 @@ Although 100% sensitivity and 100% specificity would be ideal, it is often chall
 
 Write about marker_sensitivity_threshold and marker_specificity_threshold
 
-## Validation
-The primer pairs should always be validated in a laboratory on multiple target (where you want the primers to amplify) and non-target samples. If you are testing sensitivity and specificity of primer pairs, you can use e.g. end-point PCR, real-time PCR or digital PCR.
+**Important:** The primer pairs should always be validated in a laboratory on multiple target (where you want the primers to amplify) and non-target samples. If you are testing sensitivity and specificity of primer pairs, you can use e.g. end-point PCR, real-time PCR or digital PCR.
+
+## Progress and error monitoring
+
+
+
+
+
 
 ## Definitions
 Marker
