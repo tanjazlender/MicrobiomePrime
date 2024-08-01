@@ -1,6 +1,8 @@
 # MicrobiomePrime
+MicrobiomePrime is a tool for identifying primer pairs with high specificity and sensitivity for a particular source of microbiota by analysing amplicon sequences. The pipeline was originally developed for use in Microbial Source Tracking (MST).
+You can find more about MicrobiomePrime at: (link available soon)
+
 ## Contents
-- About
 - Installation
 - Data preprocessing
 - Inputs
@@ -8,10 +10,6 @@
 - Code overview
 - Primer pair validation
 - Definitions
-
-## About
-MicrobiomePrime is a tool for identifying primer pairs with high specificity and sensitivity for a particular source of microbiota by analysing amplicon sequences. The pipeline was originally developed for use in Microbial Source Tracking (MST).
-You can find more about MicrobiomePrime at: (link available soon)
 
 ## Installation
 MicrobiomePrime is intended to be run in a x86-64 Linux OS (tested on Ubuntu). The best way to start is to create a conda environment with all the necessary dependencies using the provided environment.yml file:
