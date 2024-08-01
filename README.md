@@ -8,7 +8,7 @@
 - Primer pair validation
 - Definitions
 
-# About MicrobiomePrime
+# About
 MicrobiomePrime is a tool for identifying primer pairs with high specificity and sensitivity for a particular source of microbiota by analysing amplicon sequences. The pipeline was originally developed for use in Microbial Source Tracking (MST).
 You can find more about MicrobiomePrime at: (link available soon)
 
@@ -30,7 +30,7 @@ Before searching for primers using MicrobiomePrime, you need need to preprocess 
 
 Suitable software options data preprocessing include [Usearch](https://www.drive5.com/usearch/), [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/), and [Mothur](https://mothur.org/).
 
-The final step in preprocessing involves calculating the relative abundance of each sequence within each sample. For details on the required format of the preprocessed file outputs, please refer to the section titled "Inputs."
+In the final step of data preprocessing, relative abundances of each sequence within each sample must be calculated. For details on the required format of the preprocessed file outputs (which serve as inputs for MicrobiomePrime analysis), please refer to the section titled "Inputs."
 
 ## Inputs
 For the analysis itself, you will need the following four files:
