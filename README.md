@@ -32,6 +32,8 @@ Suitable software options data preprocessing include [Usearch](https://www.drive
 In the final step of data preprocessing, relative abundances of each sequence within each sample must be calculated. For details on the required format of the preprocessed file outputs (which serve as inputs for MicrobiomePrime analysis), please refer to the section titled "Inputs."
 
 ## Inputs
+Make sure that the MicrobiomePrime input files are formatted to match our example. Do not forget to check file names, row names, column names and table formatting.
+
 For the analysis itself, you will need the following four files:
 1. Metadata file
 2. Relative abundances table
@@ -114,45 +116,71 @@ Ensure that the column names in your file match our format. The first column sho
 
 ## Variables
 You can change the variables in the variables.ini file found in scripts folder.
-Variable | Explanation | Example | Default value
---- | --- | --- | --- 
-source1, source2, source3, source4, source5 | Target sources. | source1=Swan, source2=Wild duck, source3=Domestic duck, source4=Goose | /
-source_group_name | The name of the target source group you are analysing (trying to design primers for). The source group name only needs to be set if you define more than one target sources. | source_group_name=Anatids | /
-specificity_exception1, specificity_exception2, specificity_exception3, specificity_exception4, specificity_exception5 | Sources excluded from the specificity calculations | specificity_exception1=Bird unknown | /
-kmer_sensitivity_cutoff | A minimum value for sensitivity of a K-mer to be used as a primer in in-silico PCR | kmer_sensitivity_cutoff=50 | /
-kmer_specificity_cutoff | A minimum value for specificity of a K-mer to be used as a primer. Only one of the primers (forward OR reverse) has to match specificity criteria. | kmer_specificity_cutoff=70 | /
-marker_sensitivity_cutoff | Minimum sensitivity of markers amplified with a given primer pair. This value is different from the kmer_sensitivity_cutoff and can be either the same or higher | marker_sensitivity_cutoff=60 | /
-marker_specificity_cutoff | Minimum specificity of markers amplified with a given primer pair. This value is different from the kmer_specificity_cutoff and can be either the same or higher | marker_specificity_cutoff=95 | /
-minimum_amplicon_length | Minimum length of an amplicon. Deafult value is set to 70 | min_amplicon_length=70 | /
-cpus | The number of CPUs to run the program on. | /
+Variable | Explanation | Example 
+--- | --- | ---
+target1, target2, target3, target4, target5 | Target sources. | target1=Stork, target2=Duck, target3=Pigeon
+target_group_name | The name of the target source group you are analysing (trying to design primers for). The source group name only needs to be set if you define more than one target sources. | source_group_name=Birds
+specificity_exception1, specificity_exception2, specificity_exception3, specificity_exception4, specificity_exception5 | Sources excluded from the specificity calculations. This is useful if you have samples of unknown origin that could include target samples. | specificity_exception1=Bird_unknown
+kmer_sensitivity_cutoff | A minimum value for sensitivity of a K-mer to be used as a primer in in-silico PCR | kmer_sensitivity_cutoff=50
+kmer_specificity_cutoff | A minimum value for specificity of a K-mer to be used as a primer. Only one of the primers (forward OR reverse) has to match specificity criteria. | kmer_specificity_cutoff=70
+marker_sensitivity_cutoff | Minimum sensitivity of markers amplified with a given primer pair. This value is different from the kmer_sensitivity_cutoff and can be either the same or higher | marker_sensitivity_cutoff=60
+marker_specificity_cutoff | Minimum specificity of markers amplified with a given primer pair. This value is different from the kmer_specificity_cutoff and can be either the same or higher | marker_specificity_cutoff=95
+*The examples in this table do not correspond with the example dataset, where there is only one target source - Pig feces.
+
+Setting | Explanation | Example | Default value
+--- | --- | --- | ---
+tntblast_path | The path of ThermonucleotideBLAST on your computer. | tntblast_path=/usr/bin/thermonucleotideBLAST/tntblast | 
+cpus | Number of CPUs allocated for running the program. | cpus=200 | 
+memory | Amount of RAM (in GB) available for this analysis. Ensure that you allocate sufficient memory based on your input data requirements. | memory=100 | 
+min_amplicon_length | Minimum length of the amplicons in the *in silico* PCR. | min_amplicon_length=70 | min_amplicon_length=0
+max_amplicon_length | Maximum length of the amplicons. | max_amplicon_length=150 | max_amplicon_length=2000
+max_primer_tm | The maximum allowed temperature (in °C) for a primer oligo to bind to a target sequence. | max_primer_tm=70 |  max_primer_tm=9999
+min_primer_tm | The minimum allowed temperature (in °C) for a primer oligo to bind to a target sequence | min_primer_tm=50 | min_primer_tm=50
+max_primer_delta | The maximum allowed delta G (in Kcal/Mole) for a primer oligo to bind a target sequence |max_primer_delta=-1 | max_primer_delta=9999
+min_primer_delta | The minimum allowed delta G (in Kcal/Mole) for a primer oligo to bind a target sequence | min_primer_delta=-10 | min_primer_delta=-9999
+max_mismatch | The maximum number of mismatches allowed in an oligonucleotide match. | max_mismatch=2 | max_mismatch=999
+primer_clamp | Specifies the number of bases at the 3' end of each primer that must perfectly match the target sequence. | primer_clamp=2 | primer_clamp=0
+*The examples in this table do not correspond with the example dataset.
+
 
 ## Code overview
 T
-The code is split into three main sections. In the first section, we analyse raw sequencing data and generate taxonomic units or sequence variants. In the second part, the filtered amplicon sequences are split into K-mers that are length of a primer. The sequences are split in a one bp window slide approach. Finally, selected K-mers linked to a specific microbiota source function as primers in an in silico PCR.  Primer pairs with highest sensitivity and specificity (or differential abundance) can potentially be used to amplify microbiota source-associated markers.
+The code consists of three main parts:
+1. Generating K-mers
+2. Creating primer pairs
+3. Assessing the sensitivity and specificity of primer pairs in an *in silico* PCR analysis
 
 ### Input
 ???
 
-### Section 1: Generation of taxonomic units or sequence variants
-In this section, we eliminate primer sequences and filter out low-quality reads before generating Zero Radius Operational Taxonomic Units (ZOTUs) using Usearch software. Alternatively you can use other bioinformatic pipelines for the analysis of amplicon sequence data such as Mothur, Qiime2 and DADA2 to generate Operational Taxonomic Units (OTUs) or Amplicon Sequence Variants (ASVs). If you are not using Usearch, make sure that the output files are formatted to match our example (check file names, row names and table formatting).
-
-### Section 2: Generation of K-mers
-
+### Section 1: Generating K-mers
+In the first part, amplicon sequences are split into K-mers that are length of a primer. The sequences are split in a one bp window slide approach.
 <p align="center">
   <img src="https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/0300193e-dc1b-44b1-bc9f-6231b781fafb" alt="splitting kmers_small">
 </p>
 
-### Section 3: In silico PCR and selection of best primer pairs
-In the last section, we perform an in silico PCR using selected K-mers as primers. When looking for primer pairs that detect markers found in a target microbiota source and not in other sources, we calculate:
-- Source sensitivity: Evaluating how many samples from a specific source can be detected using the given primer pair.
-- Specificity to a Particular Source: Assessing whether the primers also detect microbiota from other sources.
-This is useful in 
-- Differential Abundance: Determining the strength of the association with the target source (is a marker more abundant in target than in non-target samples?)
+### Section 2: Creating primer pairs
+Primers are essentially K-mers produced in Section 1. 
+When designing primer pairs, we use two key thresholds:
+- kmer_sensitivity_threshold
+- kmer_specificity_threshold
+For a primer pair to be considered valid, both primers must meet or exceed the kmer_sensitivity_threshold. Additionally, at least one of the primers must meet or exceed the kmer_specificity_threshold.
+
+Here are some important factors to consider when setting thresholds for primer pairs:
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+### Section 3: Assessing the sensitivity and specificity of primer pairs in an *in silico* PCR analysis
+In the final section, we conduct an in silico PCR analysis using the primer pairs generated in Section 2. The main two parameters we calculate here are source sensitivity and specificity.
+Source sensitivity measures how effectively the primer pair detects samples from the target source. Specificity, on the other hand, evaluates whether the primers also recognize sequences from nontarget microbiotas, ensuring they are not falsely detected in unrelated samples.
+Although 100% sensitivity and 100% specificity would be ideal, it is often challenging to achieve in practice.
+
+Write about marker_sensitivity_threshold and marker_specificity_threshold
 
 ## Validation
-The primer pairs should always be validated in a laboratory on multiple target (where you want the primers to amplify) and non-target samples (the number of samples in the validation process depends on the study itself). If you are testing sensitivity and specificity of primer pairs, you can use e.g. end-point PCR, real-time PCR or digital PCR. If the differentiation of target and non-target samples is based on differential abundance of a particular marker, the amplification should be quantified (whether using real-time or digital PCR).
-
-
+The primer pairs should always be validated in a laboratory on multiple target (where you want the primers to amplify) and non-target samples. If you are testing sensitivity and specificity of primer pairs, you can use e.g. end-point PCR, real-time PCR or digital PCR.
 
 ## Definitions
 Marker
