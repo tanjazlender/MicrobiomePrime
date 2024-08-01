@@ -125,6 +125,7 @@ kmer_sensitivity_cutoff | A minimum value for sensitivity of a K-mer to be used 
 kmer_specificity_cutoff | A minimum value for specificity of a K-mer to be used as a primer. Only one of the primers (forward OR reverse) has to match specificity criteria. | kmer_specificity_cutoff=70
 marker_sensitivity_cutoff | Minimum sensitivity of markers amplified with a given primer pair. This value is different from the kmer_sensitivity_cutoff and can be either the same or higher | marker_sensitivity_cutoff=60
 marker_specificity_cutoff | Minimum specificity of markers amplified with a given primer pair. This value is different from the kmer_specificity_cutoff and can be either the same or higher | marker_specificity_cutoff=95
+
 *The examples in this table do not correspond with the example dataset, where there is only one target source - Pig feces.
 
 Setting | Explanation | Example | Default value
@@ -140,6 +141,7 @@ max_primer_delta | The maximum allowed delta G (in Kcal/Mole) for a primer oligo
 min_primer_delta | The minimum allowed delta G (in Kcal/Mole) for a primer oligo to bind a target sequence | min_primer_delta=-10 | min_primer_delta=-9999
 max_mismatch | The maximum number of mismatches allowed in an oligonucleotide match. | max_mismatch=2 | max_mismatch=999
 primer_clamp | Specifies the number of bases at the 3' end of each primer that must perfectly match the target sequence. | primer_clamp=2 | primer_clamp=0
+
 *The examples in this table do not correspond with the example dataset.
 
 
