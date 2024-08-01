@@ -6,7 +6,7 @@ You can find more about MicrobiomePrime at: (link available soon)
 - Installation
 - Data preprocessing
 - Inputs
-- Variables
+- Variables and settings
 - Code overview
 - Primer pair validation
 - Definitions
@@ -114,8 +114,10 @@ otu7 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	| Bacteroidaceae	|
 
 Ensure that the column names in your file match our format. The first column should be named "SeqID".
 
-## Variables
-You can change the variables in the variables.ini file found in scripts folder.
+## Variables and settings
+You can change variables and settings in the variables.ini and settings.ini files found in scripts folder.
+
+### Variables
 Variable | Explanation | Example 
 --- | --- | ---
 target1, target2, target3, target4, target5 | Target sources. | target1=Stork, target2=Duck, target3=Pigeon
@@ -128,6 +130,7 @@ marker_specificity_cutoff | Minimum specificity of markers amplified with a give
 
 *The examples in this table do not correspond with the example dataset, where there is only one target source - Pig feces.
 
+### Settings
 Setting | Explanation | Example | Default value
 --- | --- | --- | ---
 tntblast_path | The path of ThermonucleotideBLAST on your computer. | tntblast_path=/usr/bin/thermonucleotideBLAST/tntblast | 
