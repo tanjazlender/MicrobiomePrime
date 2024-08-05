@@ -1,0 +1,52 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘config’
+
+The following objects are masked from ‘package:base’:
+
+    get, merge
+
+Reading variables.
+
+Attaching package: ‘data.table’
+
+The following objects are masked from ‘package:dplyr’:
+
+    between, first, last
+
+Reading input files.
+Joining with `by = join_by(Sample)`
+
+Calculating K-mer sensitivity.
+Joining with `by = join_by(seqID)`
+K-mer sensitivity calculation completed.
+
+Calculating K-mer specificity.
+Joining with `by = join_by(seqID)`
+`summarise()` has grouped output by 'Sample', 'kmers'. You can override using
+the `.groups` argument.
+Joining with `by = join_by(kmer)`
+K-mer specificity calculation completed.
+
+Attaching package: ‘seqinr’
+
+The following object is masked from ‘package:dplyr’:
+
+    count
+
+Generating forward primers.
+Generating reverse primers.
+Writing the generated forward and reverse primers into FASTA files.
+Primer FASTA files were written.
+
+DONE: The script has completed successfully.

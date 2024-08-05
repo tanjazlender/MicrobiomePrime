@@ -1,0 +1,14 @@
+[settings]
+tntblast_path=/home/storage/thermonucleotideBLAST/tntblast
+cpus=200
+memory=
+max_amplicon_length=
+min_amplicon_length=70
+min_primer_tm=50
+max_primer_tm=
+min_primer_delta=
+primer_clamp=2
+max_mismatch=2
+
+
+

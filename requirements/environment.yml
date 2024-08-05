@@ -1,0 +1,20 @@
+name: MicrobiomePrime
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python
+  - biopython
+  - pandas
+  - pip
+  - r-base
+  - r-config
+  - r-data.table
+  - r-dplyr
+  - r-ini
+  - r-seqinr
+  - r-stringr
+  - r-tibble
+  - r-tidyr
+  - pip:
+    - configparser # Necessary only if you are using Python <3.2 or need a specific version
