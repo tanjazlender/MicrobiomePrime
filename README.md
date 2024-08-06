@@ -12,7 +12,7 @@ You can find more about MicrobiomePrime at: (link available soon)
 - Definitions
 
 ## Installation
-MicrobiomePrime is intended to be run in a x86-64 Linux OS (tested on Ubuntu). The best way to start is to create a conda environment with all the necessary dependencies using the provided environment.yml file:
+MicrobiomePrime is intended to be run in a x86-64 Linux OS (tested on Ubuntu). The best way to start is to create a conda environment with all the necessary dependencies using the provided environment.yml file in the requirements folder:
 ```
 conda env create -f environment.yml
 ```
