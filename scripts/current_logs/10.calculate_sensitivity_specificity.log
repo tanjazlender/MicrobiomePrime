@@ -1,0 +1,49 @@
+Reading variables.
+Reading variables.
+Reading input files.
+Calculating the number of samples.
+Preparing data for sensitivity and specificity calculations.
+Computing sensitivity, specificity, and other key metrics for each primer pair.
+Checking for and removing any existing files in the output directory.
+
+File 1/10
+Analysing file Pig_sens90_spec90_results_table1.txt
+Output tables for Pig_msens90_mspec95were written.
+
+File 2/10
+Analysing file Pig_sens90_spec90_results_table10.txt
+Output tables for Pig_msens90_mspec95were written.
+
+File 3/10
+Analysing file Pig_sens90_spec90_results_table2.txt
+Output tables for Pig_msens90_mspec95were written.
+
+File 4/10
+Analysing file Pig_sens90_spec90_results_table3.txt
+Output tables for Pig_msens90_mspec95were written.
+
+File 5/10
+Analysing file Pig_sens90_spec90_results_table4.txt
+Output tables for Pig_msens90_mspec95were written.
+
+File 6/10
+Analysing file Pig_sens90_spec90_results_table5.txt
+Output tables for Pig_msens90_mspec95were written.
+
+File 7/10
+Analysing file Pig_sens90_spec90_results_table6.txt
+Output tables for Pig_msens90_mspec95were written.
+
+File 8/10
+Analysing file Pig_sens90_spec90_results_table7.txt
+Output tables for Pig_msens90_mspec95were written.
+
+File 9/10
+Analysing file Pig_sens90_spec90_results_table8.txt
+Output tables for Pig_msens90_mspec95were written.
+
+File 10/10
+Analysing file Pig_sens90_spec90_results_table9.txt
+Output tables for Pig_msens90_mspec95were written.
+
+DONE: The script has completed successfully.

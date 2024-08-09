@@ -1,0 +1,18 @@
+Reading variables.
+Clearing existing files in the 'tntblast_tables' folder.
+Rearranging ThermonucleotideBLAST output files into formatted tables.
+Target = Pig, kmer_sensitivity_cutoff = 90, kmer_specificity_cutoff = 90
+
+Rearranging ThermonucleotideBLAST output into a table format.
+Formatted table for file no.2 written to Pig_sens90_spec90_results_table2.txt
+Formatted table for file no.10 written to Pig_sens90_spec90_results_table10.txt
+Formatted table for file no.6 written to Pig_sens90_spec90_results_table6.txt
+Formatted table for file no.3 written to Pig_sens90_spec90_results_table3.txt
+Formatted table for file no.1 written to Pig_sens90_spec90_results_table1.txt
+Formatted table for file no.4 written to Pig_sens90_spec90_results_table4.txt
+Formatted table for file no.9 written to Pig_sens90_spec90_results_table9.txt
+Formatted table for file no.7 written to Pig_sens90_spec90_results_table7.txt
+Formatted table for file no.8 written to Pig_sens90_spec90_results_table8.txt
+Formatted table for file no.5 written to Pig_sens90_spec90_results_table5.txt
+
+DONE: The script has completed successfully.

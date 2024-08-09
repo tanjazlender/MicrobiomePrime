@@ -3,7 +3,7 @@
 
 # Set the working directory to the parent folder (useful if running the script
 # from its originating directory).
-setwd("../../")
+setwd("../")
 
 library(dplyr)
 library(tidyr)
@@ -22,7 +22,7 @@ if (file.exists("data/input_files/relabund_tab.tsv")) {
                               header = TRUE, 
                               row.names = 1)
 } else {
-  cat("\nERROR: No relabund_tab found in the input_files folder.\n")
+  stop("No relabund_tab found in the input_files folder.\n")
 }
 
 # Read metadata
@@ -33,45 +33,38 @@ if (file.exists("data/input_files/metadata.tsv")) {
   metadata <- read.csv("data/input_files/metadata.csv", 
                        header = TRUE)
 } else {
-  cat("\n: No metadata found in the input_files folder.\n")
+  stop("No metadata found in the input_files folder.\n")
 }
 
 ################################################################################
 ############################### Read variables #################################
-cat("Reading variables.\n")
-
 library(config)
 library(ini)
 
 # Read parameters from variables.ini
+cat("Reading variables.\n")
 variables <- read.ini("scripts/variables.ini")
-
-# Access parameters
-# Add a main source (or a group of main sources)
-target1 <- variables$settings$target1
-if (is.null(target1)) {stop("ERROR: target1 needs to be defined!\n")}
-
-target2 <- variables$settings$target2
-if (is.null(target2)) {target2 <- "Not specified"}
-
-target3 <- variables$settings$target3
-if (is.null(target3)) {target3 <- "Not specified"}
-
-target4 <- variables$settings$target4
-if (is.null(target4)) {target4 <- "Not specified"}
-
-target5 <- variables$settings$target5
-if (is.null(target5)) {target5 <- "Not specified"}
-
-# Add group name; this is necessary if you are looking for primer pairs associated with a group of sources
+target_list <- strsplit(variables$settings$target, ",")
+target <- trimws(unlist(target_list))
+target_combined <- paste(target, collapse = " ")
 target_group_name <- variables$settings$target_group_name
-target_group_ID <- gsub(" ", "-", fixed=TRUE, target_group_name)
 
-# If you are looking for primer pairs associated with a single source, the group name will be the name of that source
-# If you have multiple target sources, you MUST define a group name!
-if (target2 == "Not specified" && target3 == "Not specified" && target4 == "Not specified" && target5 == "Not specified") {
-  target_group_name <- target1
+# If target group name is not defined, set automatic target group name
+if (is.null(target_group_name)) {
+  target_group_ID <- gsub(" ", "-", fixed=TRUE, target_combined)
+} else {
   target_group_ID <- gsub(" ", "-", fixed=TRUE, target_group_name)
+}
+
+# Check if all targets are found in metadata and print an error if necessary
+cat("Verifying if all specified targets are present in the metadata file.\n")
+missing_targets <- target[!target %in% metadata$Source]
+
+if (length(missing_targets) > 0) {
+  error_message <- paste("ERROR: these targets were not found in the metadata file:", paste(missing_targets, collapse = ", "))
+  stop(error_message, "\n")
+} else {
+  cat("All defined targets are found in metadata.\n")
 }
 
 detach("package:config", unload = TRUE)
@@ -93,41 +86,54 @@ if (!file.exists(seqID_dir)) {
   dir.create(seqID_dir, showWarnings = FALSE)
 }
 
-# Filter metadata (keep only target samples)
-metadata_target <- metadata %>%
-  filter(Source == target1 | 
-           Source == target2 | 
-           Source == target3 | 
-           Source == target4 | 
-           Source == target5) 
 
-# Filter relabund_tab (keep only target samples)
-relabund_tab_target <- filter(relabund_tab, 
-                              rownames(relabund_tab) %in% unique(metadata_target$Sample))
+# List to keep track of all generated file paths
+file_paths <- vector("list", length(target))
+names(file_paths) <- sapply(target, function(t) gsub(" ", "-", fixed=TRUE, t))
 
-# Find out, which sequence IDs are detected in target samples
-target_seqIDs <- relabund_tab_target %>%
-  mutate(Sample = rownames(.)) %>%
-  pivot_longer(names_to = "seqID", 
-               values_to = "Relabund", 
-               -Sample) %>%
-  filter(Relabund>0)
-
-# List unique sequence IDs found in target samples
-target_seqIDs_unique <- unique(target_seqIDs$seqID)
-
-# Write a list of sequence IDs found in target samples
-output_file_path <- paste("data/generated_files/sequences/seqID_lists/", target_group_ID, ".txt", sep="")
-
-write.table(target_seqIDs_unique, 
-            output_file_path, 
-            quote=F, 
-            col.names=F,
-            row.names=F)
-
-# Check if the final output was written
-if (file.exists(output_file_path)) {
-  cat("\nDONE: The script has completed successfully.\n")
-} else {
-  cat("\n: The file", output_file_path, "was not created.")
+# Generate a list of sequence IDs for each target source
+for (t in target) {
+  t_ID <- gsub(" ", "-", fixed=TRUE, t)
+  
+  # Filter metadata (keep only target t samples)
+  metadata_target <- metadata %>%
+    filter(Source == t) 
+  
+  # Filter relabund_tab (keep only target samples)
+  relabund_tab_target <- filter(relabund_tab, 
+                                rownames(relabund_tab) %in% unique(metadata_target$Sample))
+  
+  # Find out, which sequence IDs are detected in target t samples
+  target_seqIDs <- relabund_tab_target %>%
+    mutate(Sample = rownames(.)) %>%
+    pivot_longer(names_to = "seqID", 
+                 values_to = "Relabund", 
+                 -Sample) %>%
+    filter(Relabund>0)
+  
+  # List unique sequence IDs found in target t samples
+  target_seqIDs_unique <- unique(target_seqIDs$seqID)
+  
+  # Write a list of sequence IDs found in target samples
+  output_file_path <- paste("data/generated_files/sequences/seqID_lists/", t_ID, ".txt", sep="")
+  
+  write.table(target_seqIDs_unique, 
+              output_file_path, 
+              quote=F, 
+              col.names=F,
+              row.names=F)
+  
+  # Add file path to the list
+  file_paths[[t_ID]] <- output_file_path
 }
+
+# Check if all output files were created
+missing_files <- file_paths[!sapply(file_paths, file.exists)]
+
+if (length(missing_files) > 0) {
+  cat("\nERROR: The following files were not created:\n")
+  cat(paste(names(missing_files), collapse = ", "), "\n")
+} else {
+  cat("\nDONE: The script has completed successfully.\n")
+}
+

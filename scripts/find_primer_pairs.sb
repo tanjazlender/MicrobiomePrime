@@ -1,0 +1,85 @@
+#!/bin/bash
+#SBATCH --nodelist=heracpu01.nlzoh.si
+#SBATCH --job-name=tnt
+#SBATCH --tasks=245
+#SBATCH --time=15-24:00:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=150
+#SBATCH --output=/dev/null
+#SBATCH --error=/dev/null
+
+# Exit script if any command fails
+set -e
+
+# Define current log file path and create the main output folder for a given target
+current_log_path="current_logs"
+
+# Create log directory if it does not exist
+mkdir -p "$current_log_path"
+
+# Create a list of sequence IDs found in target samples
+stdbuf -oL -eL Rscript -e "source('subscripts/01.write_target_seqIDs.R')" | tee ${current_log_path}/01.write_target_seqIDs.log > /dev/null
+
+# Extract FASTA sequences based on the list of sequence IDs
+stdbuf -oL -eL python -u subscripts/02.extract_fasta_files.py | tee ${current_log_path}/02.extract_fasta_files.log > /dev/null
+
+# Extract valid kmers
+stdbuf -oL -eL python -u subscripts/03.extract_valid_kmers.py | tee ${current_log_path}/03.extract_valid_kmers.log > /dev/null
+
+# Organize directories
+stdbuf -oL -eL python -u subscripts/04.organize_directories.py | tee ${current_log_path}/04.organize_directories.log > /dev/null
+
+# Generate primers
+stdbuf -oL -eL Rscript -e "source('subscripts/05.generate_primers.R')" | tee ${current_log_path}/05.generate_primers.log > /dev/null
+
+# Generate primer pairs
+stdbuf -oL -eL python -u subscripts/06.generate_PPs.py | tee ${current_log_path}/06.generate_PPs.log > /dev/null
+
+# Split the list of primer pairs into multiple files (otherwise the tntblast output files are too large)
+stdbuf -oL -eL python -u subscripts/07.split_PP_lists.py | tee ${current_log_path}/07.split_PP_lists.log > /dev/null
+
+# Run ThermonucleotideBLAST
+stdbuf -oL -eL python -u subscripts/08.run_tntblast.py | tee ${current_log_path}/08.run_tntblast.log > /dev/null
+
+# Generate a table out of ThermonucleotideBLAST output
+stdbuf -oL -eL python -u subscripts/09.rearrange_tntblast_output.py | tee ${current_log_path}/09.rearrange_tntblast_output.log > /dev/null
+
+# Calculate the sensitivity and specificity of primer pairs (PPs)
+stdbuf -oL -eL Rscript -e "source('subscripts/10.calculate_sensitivity_specificity.R')" | tee ${current_log_path}/10.calculate_sensitivity_specificity.log > /dev/null
+
+# Generate the results table
+stdbuf -oL -eL Rscript -e "source('subscripts/11.join_all_results.R')" | tee ${current_log_path}/11.join_all_results.log > /dev/null
+
+# Read the variables
+config_file="scripts/variables.ini"
+
+sensitivity=$(awk -F= '/kmer_sensitivity_cutoff/ {print $2}' "$config_file")
+specificity=$(awk -F= '/kmer_specificity_cutoff/ {print $2}' "$config_file")
+target_group_name=$(awk -F= '/target_group_name/ {gsub(/ /, "-", $2); print $2}' "$config_file")
+target=$(awk -F= '/target/ {print $2}' "$config_file")
+
+# Process the target list
+IFS=',' read -r -a target_array <<< "$target"
+target_list=$(printf "%s " "${target_array[@]}")
+target_combined=$(echo "$target_list" | sed 's/ $//')
+
+# Check if target_group_name is empty; if yes, set target name automatically
+if [ -z "$target_group_name" ]; then
+  target_group_ID=$(echo "$target_combined" | sed 's/ /-/g')
+else
+  target_group_ID=$(echo "$target_group_name" | sed 's/ /-/g')
+fi
+
+echo "Target group ID: $target_group_ID"
+
+# Define log file path and create the main output folder for a given target
+final_log_path="../out/${target_group_ID}/sens${sensitivity}_spec${specificity}/log_files"
+
+# Ensure the final log directory exists
+mkdir -p "$final_log_path"
+
+# Move all files from current_log_path to final_log_path
+for file in "$current_log_path"/*; do
+    mv "$file" "$final_log_path"
+    echo "Moved: $file to $final_log_path"
+done

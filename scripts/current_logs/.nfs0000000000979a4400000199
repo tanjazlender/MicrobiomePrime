@@ -1,0 +1,249 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Reading input files.
+
+Attaching package: ‘config’
+
+The following objects are masked from ‘package:base’:
+
+    get, merge
+
+Reading variables.
+Verifying if all specified targets are present in the metadata file.
+All defined targets are found in metadata.
+Writing sequence IDs.
+
+DONE: The script has completed successfully.
+Conversion of multiline to singleline FASTA completed.
+FASTA file for source Pig written.
+
+DONE: The script has completed successfully.
+Processing file'data/generated_files/sequences/fasta_files/Pig'.fa 
+From all 18848 k-mers, there were 13540 non-valid k-mers and 1788 valid k-mers were repeated.
+Sample:
+  seqIDs: 48
+  possible kmers: 18848
+  extracted kmers: 3520
+
+DONE: The script has completed successfully.
+Creating directories.
+Created base directory: out/Pig/sens90_spec90
+Created directory: out/Pig/sens90_spec90/marker_tables
+Created directory: out/Pig/sens90_spec90/tntblast
+Created directory: out/Pig/sens90_spec90/final_results
+Created directory: out/Pig/sens90_spec90/tntblast_tables
+Created directory: out/Pig/sens90_spec90/detected_sequences
+Created directory: out/Pig/sens90_spec90/primers/split_primer_pairs
+Created directory: out/Pig/sens90_spec90/primers/original
+Created directory: out/Pig/sens90_spec90/log_files
+Created directory: out/Pig/sens90_spec90/variables_settings
+
+DONE: The script has completed successfully.
+
+Attaching package: ‘config’
+
+The following objects are masked from ‘package:base’:
+
+    get, merge
+
+Reading variables.
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:data.table’:
+
+    between, first, last
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Reading input files.
+Verifying if all specified specificity exceptions are present in the metadata file.
+All defined targets are found in metadata.
+Joining with `by = join_by(Sample)`
+
+Calculating K-mer sensitivity.
+Joining with `by = join_by(seqID)`
+K-mer sensitivity calculation completed.
+
+Calculating K-mer specificity.
+Joining with `by = join_by(seqID)`
+`summarise()` has grouped output by 'Sample', 'kmers'. You can override using
+the `.groups` argument.
+Joining with `by = join_by(kmer)`
+K-mer specificity calculation completed.
+
+Attaching package: ‘seqinr’
+
+The following object is masked from ‘package:dplyr’:
+
+    count
+
+Generating forward primers.
+Generating reverse primers.
+Writing the generated forward and reverse primers into FASTA files.
+Primer FASTA files were written.
+
+DONE: The script has completed successfully.Reading variables.
+Deleted out/Pig/sens90_spec90/primers/original/primer_pairs_sens90_spec90.tsv
+Creating primer pairs.
+Primers for target source(s) Pig were combined into primer pairs (fw1-rv1 and fw2-rv2) and written into file out/Pig/sens90_spec90/primers/original/primer_pairs_sens90_spec90.tsv.
+
+DONE: The script has completed successfully.
+Setting file paths.
+Reading the input file
+Checking for and removing any existing files in the output directory.
+Splitting primer pairs (3000 lines/file).
+Total lines in input file: 441540
+
+Primer pairs were split into 148 files.
+
+DONE: The script has completed successfully.
+Reading variables.
+Target group ID = Pig
+Setting file paths.
+Clearing existing files in the output directory.
+Reading optional PCR parameters.
+Found 148 primer files.
+Running command: mpirun -np 245 /home/storage/thermonucleotideBLAST/tntblast -i out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers120.txt -o out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results120.txt -D data/generated_files/sequences/fasta_files/sequences_singleline.fa -l 200 -e 50 --primer-clamp 2 --max-mismatch 2
+Query segmentation: adaptive
+Reading assays from out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers120.txt
+Reading sequence database: data/generated_files/sequences/fasta_files/sequences_singleline.fa
+Found 141 database sequences
+Found 3000 query assays
+Search parameters:
+	Output = out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results120.txt
+	[Na+] = 0.05 M
+	max gap = 999
+	max mismatch = 2
+	[primer Ct] = 9e-07 M
+	[probe Ct] = 2.5e-07 M
+	50 <= Primer Tm (C) <= 9999
+	-9999 <= Primer Delta G (Kcal/Mol) <= 0
+	0 <= Probe Tm (C) <= 9999
+	-9999 <= Probe Delta G (Kcal/Mol) <= 0
+	3' Primer clamp = 2
+	5' Probe clamp = 0
+	3' Probe clamp = 0
+	Max amplicon len = 200
+Assay format is PCR and/or PROBE
+Searching database:                1.42% [qs]     2.84% [qs]     4.26% [qs]     5.67% [qs]     7.09% [qs]     8.51% [qs]     9.93% [qs]     11.3% [qs]     12.8% [qs]     14.2% [qs]     15.6% [qs]     17% [qs]       18.4% [qs]     19.9% [qs]     21.3% [qs]     22.7% [qs]     24.1% [qs]     25.5% [qs]     27% [qs]       28.4% [qs]     29.8% [qs]     31.2% [qs]     32.6% [qs]     34% [qs]       35.5% [qs]     36.9% [qs]     38.3% [qs]     39.7% [qs]     41.1% [qs]     42.6% [qs]     44% [qs]       45.4% [qs]     46.8% [qs]     48.2% [qs]     49.6% [qs]     51.1% [qs]     52.5% [qs]     53.9% [qs]     55.3% [qs]     56.7% [qs]     58.2% [qs]     59.6% [qs]     61% [qs]       62.4% [qs]     63.8% [qs]     65.2% [qs]     66.7% [qs]     68.1% [qs]     69.5% [qs]     70.9% [qs]     72.3% [qs]     73.8% [qs]     75.2% [qs]     76.6% [qs]     78% [qs]       79.4% [qs]     80.9% [qs]     82.3% [qs]     83.7% [qs]     85.1% [qs]     86.5% [qs]     87.9% [qs]     89.4% [qs]     90.8% [qs]     91.49% [qs]    92.2% [qs]     92.91% [qs]    93.62% [qs]    94.33% [qs]    95.04% [qs]    95.74% [qs]    96.45% [qs]    97.16% [qs]    97.87% [qs]    98.58% [qs]    99.29% [qs]    100% [qs]      search complete
+Collecting results:                10%            20%            30%            40%            50%            60%            70%            80%            90%            collection complete
+Found 37 (total) target sequence  matches
+Amplicon:
+	44 <= Amplicon length <= 200
+Forward primer:
+	50.6605 <= Tm (C) <= 64.7578
+	-23.1197 <= Delta G (Kcal/Mol) <= -14.6897
+	45.4545 <= %GC <= 59.0909
+	22 <= length <= 22
+Reverse primer:
+	50.1825 <= Tm (C) <= 66.5569
+	-24.2997 <= Delta G (Kcal/Mol) <= -14.1497
+	40.9091 <= %GC <= 59.0909
+	22 <= length <= 22
+Max primer hairpin Tm = 53.8751
+Max primer heterodimer Tm = 13.9455
+Max primer homodimer Tm = 23.0234
+
+Finished processing out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers120.txt. Results saved to out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results120.txt.
+Running command: mpirun -np 245 /home/storage/thermonucleotideBLAST/tntblast -i out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers14.txt -o out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results14.txt -D data/generated_files/sequences/fasta_files/sequences_singleline.fa -l 200 -e 50 --primer-clamp 2 --max-mismatch 2
+Query segmentation: adaptive
+Reading assays from out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers14.txt
+Reading sequence database: data/generated_files/sequences/fasta_files/sequences_singleline.fa
+Found 141 database sequences
+Found 3000 query assays
+Search parameters:
+	Output = out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results14.txt
+	[Na+] = 0.05 M
+	max gap = 999
+	max mismatch = 2
+	[primer Ct] = 9e-07 M
+	[probe Ct] = 2.5e-07 M
+	50 <= Primer Tm (C) <= 9999
+	-9999 <= Primer Delta G (Kcal/Mol) <= 0
+	0 <= Probe Tm (C) <= 9999
+	-9999 <= Probe Delta G (Kcal/Mol) <= 0
+	3' Primer clamp = 2
+	5' Probe clamp = 0
+	3' Probe clamp = 0
+	Max amplicon len = 200
+Assay format is PCR and/or PROBE
+Searching database:                1.42% [qs]     2.84% [qs]     4.26% [qs]     5.67% [qs]     7.09% [qs]     8.51% [qs]     9.93% [qs]     11.3% [qs]     12.8% [qs]     14.2% [qs]     15.6% [qs]     17% [qs]       18.4% [qs]     19.9% [qs]     21.3% [qs]     22.7% [qs]     24.1% [qs]     25.5% [qs]     27% [qs]       28.4% [qs]     29.8% [qs]     31.2% [qs]     32.6% [qs]     34% [qs]       35.5% [qs]     36.9% [qs]     38.3% [qs]     39.7% [qs]     41.1% [qs]     42.6% [qs]     44% [qs]       45.4% [qs]     46.8% [qs]     48.2% [qs]     49.6% [qs]     51.1% [qs]     52.5% [qs]     53.9% [qs]     55.3% [qs]     56.7% [qs]     58.2% [qs]     59.6% [qs]     61% [qs]       62.4% [qs]     63.8% [qs]     65.2% [qs]     66.7% [qs]     68.1% [qs]     69.5% [qs]     70.9% [qs]     72.3% [qs]     73.8% [qs]     75.2% [qs]     76.6% [qs]     78% [qs]       79.4% [qs]     80.9% [qs]     82.3% [qs]     83.7% [qs]     85.1% [qs]     86.5% [qs]     87.9% [qs]     89.4% [qs]     90.8% [qs]     91.49% [qs]    92.2% [qs]     92.91% [qs]    93.62% [qs]    94.33% [qs]    95.04% [qs]    95.74% [qs]    96.45% [qs]    97.16% [qs]    97.87% [qs]    98.58% [qs]    99.29% [qs]    100% [qs]      search complete
+Collecting results:                10%            20%            30%            40%            50%            60%            70%            80%            90%            collection complete
+Found 25 (total) target sequence  matches
+Amplicon:
+	44 <= Amplicon length <= 200
+Forward primer:
+	50.92 <= Tm (C) <= 64.7726
+	-23.1597 <= Delta G (Kcal/Mol) <= -14.5697
+	45.4545 <= %GC <= 59.0909
+	22 <= length <= 22
+Reverse primer:
+	50.1058 <= Tm (C) <= 66.5569
+	-24.2997 <= Delta G (Kcal/Mol) <= -14.1497
+	40.9091 <= %GC <= 59.0909
+	22 <= length <= 22
+Max primer hairpin Tm = 53.8751
+Max primer heterodimer Tm = 14.4712
+Max primer homodimer Tm = 19.3445
+
+Finished processing out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers14.txt. Results saved to out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results14.txt.
+Running command: mpirun -np 245 /home/storage/thermonucleotideBLAST/tntblast -i out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers103.txt -o out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results103.txt -D data/generated_files/sequences/fasta_files/sequences_singleline.fa -l 200 -e 50 --primer-clamp 2 --max-mismatch 2
+Query segmentation: adaptive
+Reading assays from out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers103.txt
+Reading sequence database: data/generated_files/sequences/fasta_files/sequences_singleline.fa
+Found 141 database sequences
+Found 3000 query assays
+Search parameters:
+	Output = out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results103.txt
+	[Na+] = 0.05 M
+	max gap = 999
+	max mismatch = 2
+	[primer Ct] = 9e-07 M
+	[probe Ct] = 2.5e-07 M
+	50 <= Primer Tm (C) <= 9999
+	-9999 <= Primer Delta G (Kcal/Mol) <= 0
+	0 <= Probe Tm (C) <= 9999
+	-9999 <= Probe Delta G (Kcal/Mol) <= 0
+	3' Primer clamp = 2
+	5' Probe clamp = 0
+	3' Probe clamp = 0
+	Max amplicon len = 200
+Assay format is PCR and/or PROBE
+Searching database:                1.42% [qs]     2.84% [qs]     4.26% [qs]     5.67% [qs]     7.09% [qs]     8.51% [qs]     9.93% [qs]     11.3% [qs]     12.8% [qs]     14.2% [qs]     15.6% [qs]     17% [qs]       18.4% [qs]     19.9% [qs]     21.3% [qs]     22.7% [qs]     24.1% [qs]     25.5% [qs]     27% [qs]       28.4% [qs]     29.8% [qs]     31.2% [qs]     32.6% [qs]     34% [qs]       35.5% [qs]     36.9% [qs]     38.3% [qs]     39.7% [qs]     41.1% [qs]     42.6% [qs]     44% [qs]       45.4% [qs]     46.8% [qs]     48.2% [qs]     49.6% [qs]     51.1% [qs]     52.5% [qs]     53.9% [qs]     55.3% [qs]     56.7% [qs]     58.2% [qs]     59.6% [qs]     61% [qs]       62.4% [qs]     63.8% [qs]     65.2% [qs]     66.7% [qs]     68.1% [qs]     69.5% [qs]     70.9% [qs]     72.3% [qs]     73.8% [qs]     75.2% [qs]     76.6% [qs]     78% [qs]       79.4% [qs]     80.9% [qs]     82.3% [qs]     83.7% [qs]     85.1% [qs]     86.5% [qs]     87.9% [qs]     89.4% [qs]     90.8% [qs]     91.49% [qs]    92.2% [qs]     92.91% [qs]    93.62% [qs]    94.33% [qs]    95.04% [qs]    95.74% [qs]    96.45% [qs]    97.16% [qs]    97.87% [qs]    98.58% [qs]    99.29% [qs]    100% [qs]      search complete
+Collecting results:                10%            20%            30%            40%            50%            60%            70%            80%            90%            collection complete
+Found 24 (total) target sequence  matches
+Amplicon:
+	45 <= Amplicon length <= 184
+Forward primer:
+	50.9396 <= Tm (C) <= 63.9239
+	-22.7497 <= Delta G (Kcal/Mol) <= -14.1797
+	50 <= %GC <= 59.0909
+	22 <= length <= 22
+Reverse primer:
+	50.1058 <= Tm (C) <= 66.4341
+	-23.9997 <= Delta G (Kcal/Mol) <= -14.4697
+	40.9091 <= %GC <= 59.0909
+	22 <= length <= 22
+Max primer hairpin Tm = 42.8961
+Max primer heterodimer Tm = 31.8889
+Max primer homodimer Tm = 14.8763
+
+Finished processing out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers103.txt. Results saved to out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results103.txt.
+Running command: mpirun -np 245 /home/storage/thermonucleotideBLAST/tntblast -i out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers69.txt -o out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results69.txt -D data/generated_files/sequences/fasta_files/sequences_singleline.fa -l 200 -e 50 --primer-clamp 2 --max-mismatch 2
+slurmstepd-heracpu01.nlzoh.si: error: *** JOB 6130 ON heracpu01.nlzoh.si CANCELLED AT 2024-08-09T10:56:12 ***

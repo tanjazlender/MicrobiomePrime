@@ -4,39 +4,34 @@
 import pandas as pd
 import configparser
 import os
+import re
 from Bio import SeqIO
 
+os.chdir('..')
 
 #######################################################################
 ########### Retrieve variables and define files location ##############
 
 
 config = configparser.ConfigParser()
-config.read('../variables.ini')
+config.read('scripts/variables.ini')
 
-target_group_name = config.get('settings','target_group_name')
-
-if target_group_name !='':
-    target_group_ID = target_group_name
-else:
-    target_group_ID = config.get('settings', 'target1')
-
-# convert the comma-separated string to a list
-target_group_ID = [name.strip() for name in target_group_ID.split(',')]
+target = config.get('settings', 'target')
+target_list = [t.strip() for t in target.split(',')]
 
 # define the length of the kmer. If nothing is set in the variables,
-# set the length of kmer to 20
+# set the length of kmer to 22
 kmer_size = config.get('settings', 'kmer_size')
 if kmer_size !='':
     kmer_size = int(config.get('settings', 'kmer_size'))
 else:
-    kmer_size = 20
+    kmer_size = 22
 
 # provide location of fasta files
-fasta_files_location = '../../data/generated_files/sequences/fasta_files/'
+fasta_files_location = 'data/generated_files/sequences/fasta_files/'
 
 # provide location of the output file(s)
-output_files_location = '../../data/generated_files/kmers/'
+output_files_location = 'data/generated_files/kmers/'
 
 # check if the folder exists, and if not, create it
 if not os.path.exists(output_files_location):
@@ -52,8 +47,8 @@ if not os.path.exists(output_files_location):
 # load content from FASTA file
 def loadFasta(file):
     sample=[]
-    for zotu in SeqIO.parse(file, "fasta"):
-        sample.append(zotu)
+    for seqID in SeqIO.parse(file, "fasta"):
+        sample.append(seqID)
     return sample
 
 # check if kmer has repeats
@@ -137,7 +132,7 @@ def processSample(folder, species, verbose=False):
     kmers,allKmers=extractValidKmers(sample, kmer_size)
     if verbose:
         print('Sample:')
-        print('  zotus:',len(sample))
+        print('  seqIDs:',len(sample))
         print('  possible kmers:',allKmers)
         print('  extracted kmers:',len(kmers))
     sampleItem={'species':species, 'sample':sample, 'kmers':kmers, 'numKmers':len(kmers), 'allKmers':allKmers}
@@ -149,14 +144,14 @@ def prepareValidKmers(folder, species):
     return kmers
 
 # add ZOTU(s) to corresponding kmer
-def prepareKmersWithZotus(kmers):
-    df = pd.DataFrame(dict.fromkeys(['kmer', 'Zotus'], []))
+def prepareKmersWithSeqIDs(kmers):
+    df = pd.DataFrame(dict.fromkeys(['kmer', 'seqIDs'], []))
     for kmer in kmers:
-        zotus_list = []
-        for zotu in singleline_fasta:
-            if kmer in zotu.seq:
-                zotus_list.append(zotu.name)
-        df = pd.concat([df, pd.DataFrame({'kmer': [kmer], 'Zotus': [', '.join(zotus_list)]})], ignore_index=True)
+        seqIDs_list = []
+        for seqID in singleline_fasta:
+            if kmer in seqID.seq:
+                seqIDs_list.append(seqID.name)
+        df = pd.concat([df, pd.DataFrame({'kmer': [kmer], 'seqIDs': [', '.join(seqIDs_list)]})], ignore_index=True)
     return df
 
 
@@ -171,10 +166,20 @@ singleline_fasta = loadFasta(fasta_files_location+'sequences_singleline.fa')
 # 1.) prepare valid kmers
 # 2.) add ZOTUs to corresponding kmer
 # 3.) save outputs in folder "kmers" for each animal
-for s in target_group_ID:
+all_files_saved = True
+for s in target_list:
+  try:
     kmers = prepareValidKmers(fasta_files_location, s)
-    df = prepareKmersWithZotus(kmers)
+    df = prepareKmersWithSeqIDs(kmers)
     df.to_csv(output_files_location+s+'_kmers.csv', sep=';', decimal=',', index=False)
+  except Exception as e:
+    print(f"Error processing target '{s}': {e}")
+    all_files_saved = False  # Set flag to False if any file fails to save
+
+if all_files_saved:
+    print("\nDONE: The script has completed successfully.")
+else:
+    print("\nERROR: Some files could not be saved.")
 
 
 

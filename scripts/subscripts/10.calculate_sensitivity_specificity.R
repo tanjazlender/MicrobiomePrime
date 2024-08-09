@@ -5,7 +5,7 @@
 
 # Set the working directory to the parent folder (useful if running the script
 # from its originating directory).
-setwd("../../")
+setwd("../")
 
 ################################################################################
 ######################## Load variables and parameters #########################
@@ -15,82 +15,42 @@ library(config)
 library(ini)
 
 # Read parameters from variables.ini
+cat("Reading variables.\n")
 variables <- read.ini("scripts/variables.ini")
-settings <- read.ini("scripts/settings.ini")
 
-# Access parameters
-# Add a target source (or a group of target sources)
-target1 <- variables$settings$target1
-if (is.null(target1)) {
-  stop("\nERROR: target1 needs to be defined!\n")
-  }
-
-target2 <- variables$settings$target2
-if (is.null(target2)) {
-  target2 <- "Not specified"
-  }
-
-target3 <- variables$settings$target3
-if (is.null(target3)) {
-  target3 <- "Not specified"
-  }
-
-target4 <- variables$settings$target4
-if (is.null(target4)) {
-  target4 <- "Not specified"
-  }
-
-target5 <- variables$settings$target5
-if (is.null(target5)) {
-  target5 <- "Not specified"
-  }
-
-# Add an additional source/sources you don't want to incorporate in your specificity calculations
-specificity_exception1 <- variables$settings$specificity_exception1
-if (is.null(specificity_exception1)) {
-  specificity_exception1 <- "Not specified"
-  }
-
-specificity_exception2 <- variables$settings$specificity_exception2
-if (is.null(specificity_exception2)) {
-  specificity_exception2 <- "Not specified"
-  }
-
-specificity_exception3 <- variables$settings$specificity_exception3
-if (is.null(specificity_exception3)) {
-  specificity_exception3 <- "Not specified"
-  }
-
-specificity_exception4 <- variables$settings$specificity_exception4
-if (is.null(specificity_exception4)) {
-  specificity_exception4 <- "Not specified"
-  }
-
-specificity_exception5 <- variables$settings$specificity_exception5
-if (is.null(specificity_exception5)) {
-  specificity_exception5 <- "Not specified"
-  }
-
-# Add group name; this is necessary if you are looking for primer pairs associated with a group of sources
-target_group_name <- variables$settings$target_group_name
-target_group_ID <- gsub(" ", "-", fixed=TRUE, target_group_name)
-
-# If you are looking for primer pairs associated with a single source, the group name will be the name of that source
-# If you have multiple target sources, you MUST define a group name!
-if (target2 == "Not specified" && 
-    target3 == "Not specified" && 
-    target4 == "Not specified" && 
-    target5 == "Not specified") {
-  target_group_name <- target1
-  target_group_ID <- gsub(" ", "-", fixed=TRUE, target_group_name)
-}
-
-# Add other parameters
 kmer_sensitivity_cutoff <- as.numeric(variables$settings$kmer_sensitivity_cutoff)
 kmer_specificity_cutoff <- as.numeric(variables$settings$kmer_specificity_cutoff)
 marker_sensitivity_cutoff <- as.numeric(variables$settings$marker_sensitivity_cutoff)
 marker_specificity_cutoff <- as.numeric(variables$settings$marker_specificity_cutoff)
-min_amplicon_length <- as.numeric(settings$settings$min_amplicon_length)
+min_amplicon_length <- as.numeric(variables$settings$min_amplicon_length)
+target_list <- strsplit(variables$settings$target, ",")
+target <- trimws(unlist(target_list))
+target_combined <- paste(target, collapse = " ")
+target_group_name <- variables$settings$target_group_name
+
+# Set target_group_ID
+if (is.null(target_group_name)  || !nzchar(target_group_name)) {
+  target_group_ID <- gsub(" ", "-", fixed=TRUE, target_combined)
+} else {
+  target_group_ID <- gsub(" ", "-", fixed=TRUE, target_group_name)
+}
+
+# Extract specificity_exception_raw, defaulting to an empty string if it does not exist or is NULL
+specificity_exception_raw <- if (!is.null(variables$settings$specificity_exception)) {
+  variables$settings$specificity_exception
+} else {
+  # Default to an empty string if not available
+  ""
+}
+
+# Check if the string specificity_exceptionis not empty
+if (nchar(specificity_exception_raw) > 0) {
+  # Split by comma if there are any commas
+  specificity_exception <- unlist(strsplit(specificity_exception_raw, ",\\s*"))
+} else {
+  # If the string is empty, set an empty character vector
+  specificity_exception <- character(0)
+}
 
 detach("package:config", unload = TRUE)
 detach("package:ini", unload = TRUE)
@@ -115,7 +75,7 @@ if (file.exists("data/input_files/relabund_tab.tsv")) {
                               header = TRUE, 
                               row.names = 1)
 } else {
-  stop("\nERROR: No relabund_tab found in the input_files folder.\n")
+  stop("No relabund_tab found in the input_files folder.\n")
 }
 
 relabund_tab_long <- pivot_longer(data.frame(Sample = rownames(relabund_tab), relabund_tab), 
@@ -133,7 +93,7 @@ if (file.exists("data/input_files/metadata.tsv")) {
   metadata <- read.csv("data/input_files/metadata.csv", 
                        header = TRUE)
 } else {
-  stop("\nERROR: No metadata found in the input_files folder.\n")
+  stop("No metadata found in the input_files folder.\n")
 }
 
 cat("Calculating the number of samples.\n")
@@ -144,27 +104,13 @@ nsamples_per_source <- metadata %>%
   summarise(Nsamples = length(unique(Sample)))
 
 # Calculate the number of target samples
-nsamples_target <- nsamples_per_source %>%
-  filter(Source == target1 |
-           Source == target2 |
-           Source == target3 |
-           Source == target4 |
-           Source == target5) %>%
-  summarise(sum(Nsamples)) %>%
-  pull()
+target_samples <- filter(metadata, Source %in% target) 
+
+nsamples_target <- length(unique(target_samples$Sample))
 
 # Calculate the number of non-target samples
-nontarget_samples <- filter(metadata, 
-                            Source != target1 &
-                              Source != target2 &
-                              Source != target3 &
-                              Source != target4 &
-                              Source != target5 &
-                              Source != specificity_exception1 &
-                              Source != specificity_exception2 &
-                              Source != specificity_exception3 &
-                              Source != specificity_exception4 &
-                              Source != specificity_exception5)
+nontarget_samples <- filter(metadata, !Source %in% target & 
+                              !Source %in% specificity_exception)
 
 nsamples_nontarget <- length(unique(nontarget_samples$Sample))
 
@@ -176,36 +122,19 @@ relabund_tab_long_metadata <-  relabund_tab_long %>%
 
 # Find target sequence IDs and the samples in which they were found
 seqIDs_samples_target <- relabund_tab_long_metadata %>%
-  filter(Source == target1 | 
-           Source == target2 | 
-           Source == target3 | 
-           Source == target4 | 
-           Source == target5) %>%
+  filter(Sample %in% target_samples$Sample) %>%
   group_by(SeqID, Source) %>%
   summarise(samples = paste0(Sample, collapse = ", "))
 
 # Find nontarget sequences and the samples in which they were found
 seqIDs_samples_nontarget <- relabund_tab_long_metadata %>%
-  filter(Source != target1 & 
-           Source != target2 & 
-           Source != target3 & 
-           Source != target4 & 
-           Source != target5 &
-           Source != specificity_exception1 & 
-           Source != specificity_exception2 & 
-           Source != specificity_exception3 &
-           Source != specificity_exception4 & 
-           Source != specificity_exception5) %>%
+  filter(Sample %in% nontarget_samples$Sample) %>%
   group_by(SeqID, Source) %>%
   summarise(Samples = paste0(Sample, collapse = ", "))
 
 # Find sequence IDs of samples excluded from specificity calculations
 seqIDs_samples_exceptions <- relabund_tab_long_metadata %>%
-  filter(Source == specificity_exception1 |
-           Source == specificity_exception2 | 
-           Source == specificity_exception3 |
-           Source == specificity_exception4 | 
-           Source == specificity_exception5) %>%
+  filter(Source %in% specificity_exception) %>%
   group_by(SeqID, Source) %>%
   summarise(Samples = paste0(Sample, collapse = ", "))
 
@@ -219,7 +148,7 @@ if (file.exists("data/input_files/taxonomy.tsv")) {
   taxonomy <- read.csv("data/input_files/taxonomy.csv", 
                               header = TRUE)
 } else {
-  stop("\nERROR: Taxonomy file was not found in the input_files folder.\n")
+  stop("Taxonomy file was not found in the input_files folder.\n")
 }
 
 # Function to find the last non-empty value (taxa) in each row
@@ -251,16 +180,29 @@ cat("Computing sensitivity, specificity, and other key metrics for each primer p
 input_directory_path <- paste0("out/", target_group_ID, 
                                "/sens", kmer_sensitivity_cutoff, 
                                "_spec", kmer_specificity_cutoff, 
-                               "/tntblast_tables/", 
-                               sep = "")
+                               "/tntblast_tables/")
 
 # Set input file name pattern
 input_name_pattern <- paste0(target_group_ID, 
                         "_sens", kmer_sensitivity_cutoff, 
                         "_spec", kmer_specificity_cutoff, 
                         "_results_table", 
-                        "\\d+.txt", 
-                        sep = "")
+                        "\\d+.txt")
+
+# Set output file name directory
+output_directory_path <- paste0("out/", target_group_ID, 
+                                "/sens", kmer_sensitivity_cutoff, 
+                                "_spec", kmer_specificity_cutoff)
+
+# List existing files in the directory and delete them
+existing_files <- list.files(path = paste0(output_directory_path, "/marker_tables"), full.names = TRUE)
+
+cat("Checking for and removing any existing files in the output directory.\n")
+if (length(existing_files) > 0) {
+  # Delete files
+  file.remove(existing_files)
+}
+
 
 # Start_index 
 # Change only, if you want to start the loop from a certain file in the file_list, not from the beginning
@@ -309,11 +251,8 @@ for (filename in file_list){
   
   # Presence of sequences in target and nontarget samples
   seqID_presence <- relabund_tab_long_metadata %>%
-    mutate(Target_nontarget = if_else(Source == target1 |
-                                        Source == target2 |
-                                        Source == target3 |
-                                        Source == target4 |
-                                        Source == target5, "T", "NT")) %>%
+    mutate(Target_nontarget = if_else(Source %in% target,
+                                      "T", "NT")) %>%
     group_by(SeqID) %>%
     summarise(Target_nontarget = paste0(unique(Target_nontarget), 
                                         collapse = ",")) %>%
@@ -678,21 +617,8 @@ for (filename in file_list){
   # This is useful for example if you are trying to find swan-associated markers, but some of your samples are of unidentified birds
   # In this case you would treat unidentified birds as specificity exceptions (because they might or might not be swans)
 
-  # Write all specificity exceptions if there are any
-  specificity_exception_values <- c(specificity_exception1, 
-                                    specificity_exception2, 
-                                    specificity_exception3, 
-                                    specificity_exception4, 
-                                    specificity_exception5)
-  
-  if (any(specificity_exception_values != "Not specified")) {
-    specificity_exceptions <- specificity_exception_values[specificity_exception_values != "Not specified"]
-  } else {
-    specificity_exceptions <- NA
-  }
-  
   # Calculate marker sensitivity for exceptions (excluded from specificity calculations) and add the info to the joined data frame
-  if (any(specificity_exception_values != "Not specified")){
+  if (nchar(specificity_exception_raw) > 0){
     
     # Calculate the relative abundance of each marker within each sample excluded from specificity calculations
     abund_long_exceptions <- select(tntblast_results_filt, c("SeqID", PP_ID)) %>%
@@ -717,7 +643,7 @@ for (filename in file_list){
     # See which samples excluded from specificity calculations were detected using the given primer pairs
     pp_presence_exceptions <- abund_long_exceptions %>%
       filter(Percent_abundance > 0) %>%
-      filter(Source %in% specificity_exceptions) %>%
+      filter(Source %in% specificity_exception) %>%
       left_join(nsamples_per_source) %>%
       group_by(Source, PP_ID, Nsamples) %>%
       summarise(N_positive_samples = length(unique(Sample)),
@@ -752,7 +678,7 @@ for (filename in file_list){
     
     # Create a joined table
     pp_exceptions_join <- select(pp_specificity_sensitivity, c("PP_ID")) %>%
-      mutate(Exceptions = paste0(specificity_exceptions)) %>%
+      mutate(Exceptions = paste0(specificity_exception)) %>%
       left_join(pp_presence_exceptions) %>%
       left_join(pp_abundance_exceptions) %>%
       left_join(pp_taxonomy_exceptions)
@@ -848,16 +774,11 @@ for (filename in file_list){
            "HeuristicsF", "HeuristicsR")
   
   # Write the full_table
-  output_directory_path <- paste0("out/", target_group_ID, 
-                                  "/sens", kmer_sensitivity_cutoff, 
-                                  "_spec", kmer_specificity_cutoff, 
-                                  "/")
-  
   marker_table_output_name_prefix <- paste0(target_group_ID,
                                "_msens", marker_sensitivity_cutoff, 
                                "_mspec", marker_specificity_cutoff)
   
-  write.table(full_table, file = paste0(output_directory_path, "marker_tables/", 
+  write.table(full_table, file = paste0(output_directory_path, "/marker_tables/", 
                                         marker_table_output_name_prefix, "_markers", file_number, ".tsv", sep=""), 
               quote = FALSE, 
               sep = "\t", 
@@ -869,7 +790,7 @@ for (filename in file_list){
                                             "msens", marker_sensitivity_cutoff, 
                                             "_mspec", marker_specificity_cutoff)
   
-  write.table(pp_seqIDs_all, file = paste0(output_directory_path, "detected_sequences/", 
+  write.table(pp_seqIDs_all, file = paste0(output_directory_path, "/detected_sequences/", 
                                          seqID_table_output_name_prefix, "_seqIDs", file_number, ".tsv", sep=""), 
               quote = FALSE, 
               sep = "\t", 
@@ -878,7 +799,7 @@ for (filename in file_list){
   # If the full table is not empty, print a success message, otherwise print a warning
   if (nrow(full_table) > 0) {
     # If full_table is not empty, print success message
-    cat(paste0("Tables ", marker_table_output_name_prefix, " and ", seqID_table_output_name_prefix, "were written.\n"))
+    cat(paste0("Output tables for ", marker_table_output_name_prefix, "were written.\n"))
   } else {
     # If full_table is empty, print warning message
     cat(paste0(filename, " does not contain primer pairs meeting the specified criteria.\n"))
@@ -889,7 +810,7 @@ for (filename in file_list){
 }
 
 # List the contents of the folder
-folder_contents <- list.files(paste0(output_directory_path, "marker_tables/"))
+folder_contents <- list.files(paste0(output_directory_path, "/marker_tables/"))
 
 # Check if the folder is empty and print a message
 if(length(folder_contents) == 0) {

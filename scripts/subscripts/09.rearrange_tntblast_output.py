@@ -1,34 +1,56 @@
 # This script formats the output from ThermonucleotideBLAST, which performs in silico PCR,
 # into a structured table format for easier analysis and interpretation.
 
+import os
 import re
 import pandas as pd
 import configparser
 import glob
-import sys
 
+# Change to the parent directory
+os.chdir('..') 
+
+################################################################################
+############################### Read variables #################################
 print('Reading variables.')
 
 # Create a ConfigParser object
 config = configparser.ConfigParser()
 
 # Read the variables
-config.read('../variables.ini')
+config.read('scripts/variables.ini')
 sensitivity = config.get('settings', 'kmer_sensitivity_cutoff')
 specificity = config.get('settings', 'kmer_specificity_cutoff')
-
-# Check if target_group_name is empty; if yes, set target group name to target1
 target_group_name = config.get('settings', 'target_group_name')
-sys.stdout.flush()  # Force flush
+target = config.get('settings', 'target')
 
-if target_group_name != '':
-    target = target_group_name.replace(' ', '-')
+target_list = [t.strip() for t in target.split(',')]
+target_combined = ' '.join(target_list)
+
+# Set target_group_ID
+if target_group_name !='':
+    target_group_ID = re.sub(r'\s+', '-', target_group_name)
 else:
-    target = config.get('settings', 'target1').replace(' ', '-')
+    target_group_ID = re.sub(r'\s+', '-', target_combined)
+
+################################################################################
+################# Rearrange ThermonucleotideBLAST output files #################
+
+# Set base path
+base_path = f'out/{target_group_ID}/sens{sensitivity}_spec{specificity}'
+output_dir = f'{base_path}/tntblast_tables/'
+
+# Ensure the directory exists and remove any existing files
+print("Clearing existing files in the 'tntblast_tables' folder.")
+if os.path.isdir(output_dir):
+    for file in os.listdir(output_dir):
+        try:
+            os.unlink(os.path.join(output_dir, file))
+        except Exception as e:
+            print(f"Warning: Could not remove file {os.path.join(output_dir, file)}: {e}")
 
 print('Rearranging ThermonucleotideBLAST output files into formatted tables.')
-print(f'Target = {target}, kmer_sensitivity_cutoff = {sensitivity}, kmer_specificity_cutoff = {specificity}\n')
-sys.stdout.flush()  # Force flush
+print(f'Target = {target_group_ID}, kmer_sensitivity_cutoff = {sensitivity}, kmer_specificity_cutoff = {specificity}\n')
 
 # Function to extract information from the text
 def extract_info(text):
@@ -73,13 +95,10 @@ def extract_info(text):
         }
     else:
         print("\nERROR: Failed to extract information from section:")
-        sys.stdout.flush()  # Force flush
         print(text)
         return None
 
-base_path = f'../../out/{target}/sens{sensitivity}_spec{specificity}'
-
-file_prefix = f'{target}_sens{sensitivity}_spec{specificity}_results'
+file_prefix = f'{target_group_ID}_sens{sensitivity}_spec{specificity}_results'
 
 input_files = glob.glob(f'{base_path}/tntblast/{file_prefix}[0-9]*.txt')
 
@@ -123,15 +142,13 @@ for input_file in input_files:
 
         if not df.empty:
             # Generate output file name
-            output_file = f'{base_path}/tntblast_tables/{file_prefix}_table{i}.txt'
+            output_file = f'{output_dir}{file_prefix}_table{i}.txt'
 
             # Write the DataFrame to a text file
             df.to_csv(output_file, index=False, sep='\t')
 
             print(f'Formatted table for file no.{i} written to {file_prefix}_table{i}.txt')
-            sys.stdout.flush()  # Force flush
         else:
             print(f'{file_prefix}{i}.txt is empty - table not written.')
-            sys.stdout.flush()  # Force flush
 
 print("\nDONE: The script has completed successfully.")

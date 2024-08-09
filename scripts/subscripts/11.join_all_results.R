@@ -2,7 +2,7 @@
 
 # Set the working directory to the parent folder (useful if running the script
 # from its originating directory).
-setwd("../../")
+setwd("../")
 
 library(dplyr)
 library(tibble)
@@ -17,87 +17,47 @@ library(config)
 library(ini)
 
 # Read parameters from variables.ini
+cat("Reading variables.\n")
 variables <- read.ini("scripts/variables.ini")
-settings <- read.ini("scripts/settings.ini")
 
-# Access parameters
-# Add a target source (or a group of target sources)
-target1 <- variables$settings$target1
-if (is.null(target1)) {
-  cat("\nERROR: target1 needs to be defined!\n")
-}
-
-target2 <- variables$settings$target2
-if (is.null(target2)) {
-  target2 <- "Not specified"
-}
-
-target3 <- variables$settings$target3
-if (is.null(target3)) {
-  target3 <- "Not specified"
-}
-
-target4 <- variables$settings$target4
-if (is.null(target4)) {
-  target4 <- "Not specified"
-}
-
-target5 <- variables$settings$target5
-if (is.null(target5)) {
-  target5 <- "Not specified"
-}
-
-# Add an additional source/sources you don't want to incorporate in your specificity calculations
-specificity_exception1 <- variables$settings$specificity_exception1
-if (is.null(specificity_exception1)) {
-  specificity_exception1 <- "Not specified"
-}
-
-specificity_exception2 <- variables$settings$specificity_exception2
-if (is.null(specificity_exception2)) {
-  specificity_exception2 <- "Not specified"
-}
-
-specificity_exception3 <- variables$settings$specificity_exception3
-if (is.null(specificity_exception3)) {
-  specificity_exception3 <- "Not specified"
-}
-
-specificity_exception4 <- variables$settings$specificity_exception4
-if (is.null(specificity_exception4)) {
-  specificity_exception4 <- "Not specified"
-}
-
-specificity_exception5 <- variables$settings$specificity_exception5
-if (is.null(specificity_exception5)) {
-  specificity_exception5 <- "Not specified"
-}
-
-# Add group name; this is necessary if you are looking for primer pairs associated with a group of sources
-target_group_name <- variables$settings$target_group_name
-target_group_ID <- gsub(" ", "-", fixed=TRUE, target_group_name)
-
-# If you are looking for primer pairs associated with a single source, the group name will be the name of that source
-# If you have multiple target sources, you MUST define a group name!
-if (target2 == "Not specified" && 
-    target3 == "Not specified" && 
-    target4 == "Not specified" && 
-    target5 == "Not specified") {
-  target_group_name <- target1
-  target_group_ID <- gsub(" ", "-", fixed=TRUE, target_group_name)
-}
-
-# Add other parameters
 kmer_sensitivity_cutoff <- as.numeric(variables$settings$kmer_sensitivity_cutoff)
 kmer_specificity_cutoff <- as.numeric(variables$settings$kmer_specificity_cutoff)
 marker_sensitivity_cutoff <- as.numeric(variables$settings$marker_sensitivity_cutoff)
 marker_specificity_cutoff <- as.numeric(variables$settings$marker_specificity_cutoff)
+target_list <- strsplit(variables$settings$target, ",")
+target <- trimws(unlist(target_list))
+target_combined <- paste(target, collapse = " ")
+target_group_name <- variables$settings$target_group_name
+
+# Set target_group_ID
+if (is.null(target_group_name)  || !nzchar(target_group_name)) {
+  target_group_ID <- gsub(" ", "-", fixed=TRUE, target_combined)
+} else {
+  target_group_ID <- gsub(" ", "-", fixed=TRUE, target_group_name)
+}
+
+# Extract specificity_exception_raw, defaulting to an empty string if it does not exist or is NULL
+specificity_exception_raw <- if (!is.null(variables$settings$specificity_exception)) {
+  variables$settings$specificity_exception
+} else {
+  # Default to an empty string if not available
+  ""
+}
+
+# Check if the string specificity_exceptionis not empty
+if (nchar(specificity_exception_raw) > 0) {
+  # Split by comma if there are any commas
+  specificity_exception <- unlist(strsplit(specificity_exception_raw, ",\\s*"))
+} else {
+  # If the string is empty, set an empty character vector
+  specificity_exception <- character(0)
+}
 
 detach("package:config", unload = TRUE)
 detach("package:ini", unload = TRUE)
 
 ################################################################################
-#################### Loop through partial markers files ########################
+################################ Join results ##################################
 
 host_directory_path <-  paste0("out/", target_group_ID, 
                                "/sens", kmer_sensitivity_cutoff, 
@@ -114,6 +74,17 @@ pattern <- paste0(target_group_ID,
                   "_mspec", marker_specificity_cutoff, 
                   "_markers", "\\d+.tsv")
 
+
+# List existing files in the directory and delete them
+existing_files <- list.files(path = paste0(host_directory_path, "/final_results"), full.names = TRUE)
+
+cat("Checking for and removing any existing files in the output directory.\n")
+if (length(existing_files) > 0) {
+  # Delete files
+  file.remove(existing_files)
+}
+
+
 # Write out a list of files
 file_list <- list.files(input_directory_path, 
                         pattern = pattern, 
@@ -127,6 +98,7 @@ if (start_index < 1 || start_index > length(file_list)) {
 }
 
 file_list <- file_list[start_index:length(file_list)]
+file_list_length <- length(file_list)
 
 # Set an empty log file
 log_file <- paste0(host_directory_path, "log_files/", 
@@ -175,8 +147,7 @@ for (filename in file_list){
   final_results <- dplyr::bind_rows(final_results, results_table)
   
   cat(paste0("Finished processing file number ", file_number, 
-               "(", round(counter/length(file_list)*100, digits = 2), 
-               "% finished)\n"))
+               " (progress:", counter, "/", file_list_length, ")\n"))
 }  
 
 
