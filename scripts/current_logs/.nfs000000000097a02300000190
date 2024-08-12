@@ -1,8 +1,0 @@
-Processing file'data/generated_files/sequences/fasta_files/Pig'.fa 
-From all 18848 k-mers, there were 13540 non-valid k-mers and 1788 valid k-mers were repeated.
-Sample:
-  seqIDs: 48
-  possible kmers: 18848
-  extracted kmers: 3520
-
-DONE: The script has completed successfully.

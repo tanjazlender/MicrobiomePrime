@@ -1,6 +1,0 @@
-Reading variables.
-Deleted out/Pig/sens90_spec90/primers/original/primer_pairs_sens90_spec90.tsv
-Creating primer pairs.
-Primers for target source(s) Pig were combined into primer pairs (fw1-rv1 and fw2-rv2) and written into file out/Pig/sens90_spec90/primers/original/primer_pairs_sens90_spec90.tsv.
-
-DONE: The script has completed successfully.
