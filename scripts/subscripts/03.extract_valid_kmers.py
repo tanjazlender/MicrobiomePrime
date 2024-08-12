@@ -1,5 +1,5 @@
 # This script extracts valid kmers that satisfy the requirements
-# and provide kmers corresponding ZOTUs
+# and provide kmers corresponding SeqIDs
 
 import pandas as pd
 import configparser
@@ -41,7 +41,7 @@ if not os.path.exists(output_files_location):
 
 
 #######################################################################
-#### Defined functions for kmers and corresponding ZOTUs extraction ###
+#### Defined functions for kmers and corresponding SeqIDs extraction ###
 
 
 # load content from FASTA file
@@ -143,7 +143,7 @@ def prepareValidKmers(folder, species):
     kmers, item = processSample(folder, species, verbose=True)
     return kmers
 
-# add ZOTU(s) to corresponding kmer
+# add SeqID(s) to corresponding kmer
 def prepareKmersWithSeqIDs(kmers):
     df = pd.DataFrame(dict.fromkeys(['kmer', 'seqIDs'], []))
     for kmer in kmers:
@@ -164,7 +164,7 @@ singleline_fasta = loadFasta(fasta_files_location+'sequences_singleline.fa')
 
 # go through all fasta files (animals) and
 # 1.) prepare valid kmers
-# 2.) add ZOTUs to corresponding kmer
+# 2.) add SeqIDs to corresponding kmer
 # 3.) save outputs in folder "kmers" for each animal
 all_files_saved = True
 for s in target_list:
