@@ -140,11 +140,11 @@ primer_clamp | Specifies the number of bases at the 3' end of each primer that m
 *The examples in this table do not correspond with the example dataset, where there is only one target source - Pig feces.
 
 ### Settings
-Setting | Explanation | Example | Default value
---- | --- | --- | ---
-tntblast_path | The path of ThermonucleotideBLAST on your computer. | tntblast_path=/usr/bin/thermonucleotideBLAST/tntblast | 
-cpus | Number of CPUs allocated for running the program. | cpus=200 | 
-memory | Amount of RAM (in GB) available for this analysis. Ensure that you allocate sufficient memory based on your input data requirements. | memory=100 | 
+Setting | Explanation | Example 
+--- | --- | --- 
+tntblast_path | The path of ThermonucleotideBLAST on your computer. | tntblast_path=/usr/bin/thermonucleotideBLAST/tntblast 
+cpus | Number of CPUs allocated for running the program. | cpus=200 
+memory | Amount of RAM (in GB) available for this analysis. Ensure that you allocate sufficient memory based on your input data requirements. | memory=100 
 
 ## Code overview
 T
