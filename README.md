@@ -162,8 +162,8 @@ In the first part, amplicon sequences are split into K-mers that are length of a
 ### Section 2: Creating primer pairs
 Primers are essentially K-mers produced in Section 1. 
 When designing primer pairs, we use two key thresholds:
-- kmer_sensitivity_threshold
-- kmer_specificity_threshold
+- kmer_sensitivity_cutoff
+- kmer_specificity_cutoff
 For a primer pair to be considered valid, both primers must meet or exceed the kmer_sensitivity_threshold. Additionally, at least one of the primers must meet or exceed the kmer_specificity_threshold.
 
 Here are some important factors to consider when setting thresholds for primer pairs:
