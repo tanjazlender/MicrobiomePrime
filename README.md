@@ -9,6 +9,7 @@ You can find more about MicrobiomePrime at: (link available soon)
 - Variables and settings
 - Code overview
 - Progress and error monitoring
+- Outputs
 - Definitions
 
 ## Installation
@@ -170,8 +171,6 @@ Here are some important factors to consider when setting thresholds for primer p
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-
-
 ### Section 3: Assessing the sensitivity and specificity of primer pairs in an *in silico* PCR analysis
 In the final section, we conduct an in silico PCR analysis using the primer pairs generated in Section 2. The main two parameters we calculate here are source sensitivity and specificity.
 Source sensitivity measures how effectively the primer pair detects samples from the target source. Specificity, on the other hand, evaluates whether the primers also recognize sequences from nontarget microbiotas, ensuring they are not falsely detected in unrelated samples.
@@ -185,6 +184,29 @@ Write about marker_sensitivity_threshold and marker_specificity_threshold
 
 
 
+## Outputs
+| **Column name**                      | **Definition**                                                                                                    | **Example**                                                                                     |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| **PP_ID**                            | The identifier (name) of a primer pair.                                                                            | Anatids101Fw:Anatids117Rv                                                                       |
+| **Specificity**                      | Primer pair specificity [%].                                                                                       | 97.92                                                                                           |
+| **Specificity2**                     | Primer pair specificity [number of non-detected non-target samples/number of nontarget samples].                   | 470/480                                                                                         |
+| **Sensitivity**                      | Primer pair sensitivity [%].                                                                                       | 94.44                                                                                           |
+| **Sensitivity2**                     | Primer pair sensitivity [number of detected target samples/number of target samples].                              | 58/60                                                                                           |
+| **Sensitivity2_detailed**            | Primer pair sensitivity of each target host. Relevant when analyzing multiple target hosts [source (number of detected target samples from source/number of all samples from source)]. | Duck (30/30), Swan (29/30), Goose (26/30) |
+| **N_detected_nontarget_samples**     | Number of detected nontarget samples [source (number of detected samples from source/number of all samples from source)]. | Chicken (3/30), Pigeon (7/30) |
+| **Percent_abundance_target**         | The average relative abundance of target sequences amplified by the primer pair [% abundance, SD].                 | 2.2333 SD=1.0550                                                                 |
+| **Percent_abundance_nontarget**      | The average relative abundance of nontarget sequences amplified by the primer pair [% abundance, SD]               | 0.5051 SD=0.0530                                                                 |
+| **Percent_abundance_target_detailed**| The average relative abundance of target sequences amplified by the primer pair for each source [source (% abundance, SD)]. | Duck (2.8500, SD=1.024), Swan (2.0325, SD=1.1203), Goose (1.7029, SD=0.9588) |
+| **Percent_abundance_nontarget_detailed** | The average relative abundance of nontarget sequences amplified by the primer pair for each source [source (% abundance, SD)]. | Chicken (0.1923, SD=0.5207), Pigeon (0.7942, SD=0.6032) |
+| **Taxonomy_target**                  | The taxonomy of target sequences amplified by the primer pair, including multiple taxa if applicable. If the taxonomic classification does not reach the genus level, "(unknown)" is appended to the taxa name. | Catellicoccus                                                                                  |
+| **Taxonomy_nontarget**               | The taxonomy of nontarget sequences amplified by the primer pair, including multiple taxa if applicable. If the taxonomic classification does not reach the genus level, "(unknown)" is appended to the taxa name. | Catellicoccus, Bacteria (unknown)                                                              |
+| **N_seqIDs_target**                  | The number of unique target sequences amplified by the primer pair.                                                | 5                                                                                               |
+| **Positive_target_samples**          | The list of target sequence IDs that were amplified by the primer pair [source (target sequence IDs)].             | Duck (AF001, AF002, AF003,…), Swan (AF004, AF006, AF007,...), Goose (AF008, AF010, AF014,...)   |
+| **Positive_nontarget_samples**       | The list of non-target sequence IDs that were amplified by the primer pair [source (target sequence IDs)].         | Chicken (AF095, AF096, AF100), Pigeon (AF121, AF122, AF123, AF127, AF152, AF158, AF165)         |
+| **Negative_target_samples**          | The list of target sequence IDs that were not amplified by the primer pair [source (target sequence IDs)].         | Swan (AF005), Goose (AF009, AF011, AF012, AF013)                                                |
+| **Exceptions**                       | Sources that are neither classified as target nor non-target. Therefore, they are excluded from sensitivity, specificity and mean abundance calculations. | Bird unknown                                                                                   |
+| **N_detected_exception_samples**     | Number of detected samples that are neither classified as target nor non-target [source (number of detected samples from source/number of all samples from source)]. | Bird unknown (1/7)                                                                             |
+| **Percent_abundance_exceptions_detailed** | The average relative abundance of exception sequences (classified neither as target nor non-target) amplified by the primer pair for each source [source (% abundance, SD)]. | Bird unknown (2.5783) |
 
 
 
