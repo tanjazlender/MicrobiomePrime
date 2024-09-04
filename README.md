@@ -231,15 +231,25 @@ Table 7: Description of column names in the output tables detecting information 
 
 ## Definitions
 **Microbiota source** - the environment from which a community of microorganisms originates, such as pig gut, human skin or soil.
+
 **Marker** - any genetic sequence or a group of sequences that are amplified by a specific primer pair and are highly associated with a particular microbiota source.
+
 **Primer pair** - two short nucleotide sequences designed to bind to specific regions of a DNA sequence to facilitate the amplification of target genetic material during PCR.
+
 **Target source(s)** - the environment(s) or host(s) of interest for which we aim to develop highly specific and sensitive primer pairs.
+
 **Nontarget source(s)** - the environment(s) or host(s) that are not of primary interest and are used to test the specificity of primer pairs, ensuring that they do not amplify markers from these sources.
+
 **Specificity exception(s)** - source(s) not included in specificity calculations.
+
 **Target samples** - samples from target sources.
+
 **Non-target samples** - samples from non-target sources.
+
 **Specificity** - the proportion non-target samples that was not detected using the primer pair, indicating the primer's ability to avoid false positives.
+
 **Sensitivity** - the proportion of target samples that was detected using the primer pair, indicating the primer's ability to identify true positives.
+
 **K-mer** - A short nucleotide sequence, typically 18-24 bases long (the length of an optimal primer pair).
 
 ## License and third-party software
