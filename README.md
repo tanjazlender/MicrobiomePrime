@@ -190,9 +190,9 @@ Write about marker_sensitivity_threshold and marker_specificity_threshold
 
 
 ## Outputs
-MicrobiomePrime outputs a main results table, and multiple tables with the information about detected sequence IDs.
+MicrobiomePrime generates a primary results table detailing the performance of primer pairs, along with several additional tables containing information about the detected sequence IDs.
 
-Table 6: Description of column names in the main results table. The final output table can be found in folder path: ‘MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/final_table/’.
+Table 6: Description of column names in the main results table detailing the performance of primer pairs. The main output table can be found in folder path: ‘MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/final_table/’.
 | **Column name**                      | **Definition**                                                                                                    | **Example**                                                                                     |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
 | **PP_ID**                            | The identifier (name) of a primer pair.                                                                            | Anatids101Fw:Anatids117Rv                                                                       |
@@ -216,7 +216,7 @@ Table 6: Description of column names in the main results table. The final output
 | **N_detected_exception_samples**     | Number of detected samples that are neither classified as target nor non-target [source (number of detected samples from source/number of all samples from source)]. | Bird unknown (1/7)                                                                             |
 | **Percent_abundance_exceptions_detailed** | The average relative abundance of exception sequences (classified neither as target nor non-target) amplified by the primer pair for each source [source (% abundance, SD)]. | Bird unknown (2.5783) |
 
-Table 7: Description of column names in the output tables detecting information about detected sequences. The tables can be found in folder path: ‘MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/detected_sequences/’.
+Table 7: Description of column names in the output tables detecting information about detected sequence IDs. The tables can be found in folder path: ‘MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/detected_sequences/’.
 | **Column name**          | **Definition**                                                                                      | **Example**                                                                                      |
 |--------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
 | **PP_ID**                | The identifier (name) of a primer pair.                                                             | Anatids101Fw:Anatids117Rv                                                                        |
@@ -230,13 +230,17 @@ Table 7: Description of column names in the output tables detecting information 
 
 
 ## Definitions
-Marker
-Primer pair
-Target samples
-Non-target samples
-Specificity
-Sensitivity
-K-mer
+**Microbiota source** - the environment from which a community of microorganisms originates, such as pig gut, human skin or soil.
+**Marker** - any genetic sequence or a group of sequences that are amplified by a specific primer pair and are highly associated with a particular microbiota source.
+**Primer pair** - two short nucleotide sequences designed to bind to specific regions of a DNA sequence to facilitate the amplification of target genetic material during PCR.
+**Target source(s)** - the environment(s) or host(s) of interest for which we aim to develop highly specific and sensitive primer pairs.
+**Nontarget source(s)** - the environment(s) or host(s) that are not of primary interest and are used to test the specificity of primer pairs, ensuring that they do not amplify markers from these sources.
+**Specificity exception(s)** - source(s) not included in specificity calculations.
+**Target samples** - samples from target sources.
+**Non-target samples** - samples from non-target sources.
+**Specificity** - the proportion non-target samples that was not detected using the primer pair, indicating the primer's ability to avoid false positives.
+**Sensitivity** - the proportion of target samples that was detected using the primer pair, indicating the primer's ability to identify true positives.
+**K-mer** - A short nucleotide sequence, typically 18-24 bases long (the length of an optimal primer pair).
 
 ## License and third-party software
 MicrobiomePrime is distributed under a ??? licence. Additionally, it redistributes the following third party software:
