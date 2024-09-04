@@ -192,7 +192,7 @@ Write about marker_sensitivity_threshold and marker_specificity_threshold
 ## Outputs
 MicrobiomePrime outputs a main results table, and multiple tables with the information about detected sequence IDs.
 
-Table 6: Explanation of column names in the main results table. The final output table can be found in folder path: ‘MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/final_table/’.
+Table 6: Description of column names in the main results table. The final output table can be found in folder path: ‘MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/final_table/’.
 | **Column name**                      | **Definition**                                                                                                    | **Example**                                                                                     |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
 | **PP_ID**                            | The identifier (name) of a primer pair.                                                                            | Anatids101Fw:Anatids117Rv                                                                       |
@@ -215,6 +215,17 @@ Table 6: Explanation of column names in the main results table. The final output
 | **Exceptions**                       | Sources that are neither classified as target nor non-target. Therefore, they are excluded from sensitivity, specificity and mean abundance calculations. | Bird unknown                                                                                   |
 | **N_detected_exception_samples**     | Number of detected samples that are neither classified as target nor non-target [source (number of detected samples from source/number of all samples from source)]. | Bird unknown (1/7)                                                                             |
 | **Percent_abundance_exceptions_detailed** | The average relative abundance of exception sequences (classified neither as target nor non-target) amplified by the primer pair for each source [source (% abundance, SD)]. | Bird unknown (2.5783) |
+
+Table 7: Description of column names in the output tables detecting information about detected sequences. The tables can be found in folder path: ‘MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/detected_sequences/’.
+| **Column name**          | **Definition**                                                                                      | **Example**                                                                                      |
+|--------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| **PP_ID**                | The identifier (name) of a primer pair.                                                             | Anatids101Fw:Anatids117Rv                                                                        |
+| **SeqIDs_all**           | List of all sequence IDs that were amplified by the primer pair in both target and non-target samples. | Otu0001, Otu0002, Otu0003, Otu0004, Otu0005, Otu0006, Otu0007, Otu0008, Otu0009                  |
+| **SeqIDs_target_only**   | List of sequence IDs that were amplified by the primer pair in target samples only.                 | Otu001, Otu0002, Otu0003, Otu0004, Otu005, Otu006                                                |
+| **SeqIDs_nontarget_only**| List of sequence IDs that were amplified by the primer pair in non-target samples only.             | Otu0008                                                                                          |
+| **N_seqIDs_target**      | The number of sequence IDs from non-target sequences that were amplified by the primer pair.        | 8                                                                                                |
+| **N_seqIDs_nontarget**   | The number of sequence IDs from non-target sequences that were amplified by the primer pair.        | 3                                                                                                |
+| **File_number**          | The specific number assigned to each file in the analysis. This number helps locate intermediate results generated during the analysis. | 6 |
 
 
 
