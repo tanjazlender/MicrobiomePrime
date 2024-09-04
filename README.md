@@ -49,6 +49,7 @@ The specific structure and format of each file are detailed below.
 This is a file that contains the information about the samples being analysed. To this analysis the key information is the source of microbiota.
 If trying to find primers for tracking fecal pollution deriving from pigs, these sources can be for example human, cattle and pig feces.
 
+Table1: Metadata example.
 Sample | Source 
 --- | --- 
 Sample1 | Human feces 
@@ -63,6 +64,7 @@ The sum of each row should be 1.
 
 *File name: relabund_tab.csv or relabund_tab.tsv*
 
+Table2: An example of an OTU table with relative abundances.
 |        | Otu1   | Otu2   | Otu3   | Otu4   | Otu5   | Otu6   | Otu7   |
 |--------|--------|--------|--------|--------|--------|--------|--------|
 | Sample1| 0.1000 | 0.0200 | 0.8800 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
@@ -103,6 +105,7 @@ TTTTCGGATCGTAAAGCTCTGTTGTAAGAGAAGAACGTGTGTG
 
 *File name: taxonomy.csv or taxonomy.tsv*
 
+Table3: An example of a taxonomy file.
 SeqID | Domain | Phylum | Class | Order | Family | Genus  
 --- | --- | --- | --- | --- | --- | ---
 otu1 | Bacteria	| Firmicutes	| Clostridia	| Clostridiales	| Peptostreptococcaceae	| Romboutsia
@@ -119,6 +122,7 @@ Ensure that the column names in your file match our format. The first column sho
 You can change variables and settings in the variables.ini and settings.ini files found in scripts folder.
 
 ### Variables
+Table 4: MicrobiomePrime variables.
 Variable | Explanation | Example | Default value
 --- | --- | --- | ---
 target_group_name | The name of the target source group you are analysing (trying to design primers for). The source group name only needs to be set if you define more than one target sources. | source_group_name=Anatids|
@@ -141,6 +145,7 @@ primer_clamp | Specifies the number of bases at the 3' end of each primer that m
 *The examples in this table do not correspond with the example dataset, where there is only one target source - Pig feces.
 
 ### Settings
+Table 5: MicrobiomePrime settings.
 Setting | Explanation | Example 
 --- | --- | --- 
 tntblast_path | The path of ThermonucleotideBLAST on your computer. | tntblast_path=/usr/bin/thermonucleotideBLAST/tntblast 
@@ -185,6 +190,9 @@ Write about marker_sensitivity_threshold and marker_specificity_threshold
 
 
 ## Outputs
+MicrobiomePrime outputs a main results table, and multiple tables with the information about detected sequence IDs.
+
+Table 6: Explanation of column names in the main results table. The final output table can be found in folder path: ‘MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/final_table/’.
 | **Column name**                      | **Definition**                                                                                                    | **Example**                                                                                     |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
 | **PP_ID**                            | The identifier (name) of a primer pair.                                                                            | Anatids101Fw:Anatids117Rv                                                                       |
