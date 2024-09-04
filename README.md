@@ -145,31 +145,12 @@ Table 4: MicrobiomePrime variables.
 | `max_mismatch`           | Maximum number of mismatches allowed in an oligonucleotide match.                                        | `max_mismatch=2`                     | `999`         |
 | `primer_clamp`           | Number of bases at the 3' end of each primer that must perfectly match the target sequence.               | `primer_clamp=2`                     | `0`           |
 
+*The examples in this table do not correspond with the example dataset, where there is only one target source - Pig feces.
 </details>
 
 
 
 
-Variable | Explanation | Example | Default value
---- | --- | --- | ---
-target_group_name | The name of the target source group you are analysing (trying to design primers for). The source group name only needs to be set if you define more than one target sources. | source_group_name=Anatids| /
-target | Target source(s). If you define multiple target sources, separate them with commas. | target=Stork, Duck, Goose | /
-specificity_exception=Bird_unknown | Source(s) excluded from the specificity calculations. This is useful if you have samples of unknown origin that could include target samples. If you define multiple specificity exceptions, separate them with commas. | specificity_exception=Bird_unknown | /
-kmer_size | The size of K-mers (and primers) to be generated. | kmer_size=22 | kmer_size=22
-kmer_sensitivity_cutoff | A minimum value for sensitivity of a K-mer to be used as a primer in in-silico PCR | kmer_sensitivity_cutoff=50 | /
-kmer_specificity_cutoff | A minimum value for specificity of a K-mer to be used as a primer. Only one of the primers (forward OR reverse) has to match specificity criteria. | kmer_specificity_cutoff=70 | /
-marker_sensitivity_cutoff | Minimum sensitivity of markers amplified with a given primer pair. This value is different from the kmer_sensitivity_cutoff and can be either the same or higher | marker_sensitivity_cutoff=60 | /
-marker_specificity_cutoff | Minimum specificity of markers amplified with a given primer pair. This value is different from the kmer_specificity_cutoff and can be either the same or higher | marker_specificity_cutoff=95 | /
-max_amplicon_length | Maximum length of the amplicons. | max_amplicon_length=150 | max_amplicon_length=2000
-min_amplicon_length | Minimum length of the amplicons in the *in silico* PCR. | min_amplicon_length=70 | min_amplicon_length=0
-max_primer_tm | The maximum allowed temperature (in °C) for a primer oligo to bind to a target sequence. | max_primer_tm=70 |  max_primer_tm=9999
-min_primer_tm | The minimum allowed temperature (in °C) for a primer oligo to bind to a target sequence | min_primer_tm=50 | min_primer_tm=50
-max_primer_delta | The maximum allowed delta G (in Kcal/Mole) for a primer oligo to bind a target sequence |max_primer_delta=-1 | max_primer_delta=9999
-min_primer_delta | The minimum allowed delta G (in Kcal/Mole) for a primer oligo to bind a target sequence | min_primer_delta=-10 | min_primer_delta=-9999
-max_mismatch | The maximum number of mismatches allowed in an oligonucleotide match. | max_mismatch=2 | max_mismatch=999
-primer_clamp | Specifies the number of bases at the 3' end of each primer that must perfectly match the target sequence. | primer_clamp=2 | primer_clamp=0
-
-*The examples in this table do not correspond with the example dataset, where there is only one target source - Pig feces.
 
 ### Settings
 Table 5: MicrobiomePrime settings.
