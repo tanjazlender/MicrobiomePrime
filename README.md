@@ -123,22 +123,20 @@ You can change variables and settings in the variables.ini and settings.ini file
 
 ### Variables
 Table 4: MicrobiomePrime variables.
-
-<details>
   <summary>Click to expand table details</summary>
 
 | Variable                 | Explanation                                                                                               | Example                              | Default Value |
 |--------------------------|-----------------------------------------------------------------------------------------------------------|--------------------------------------|---------------|
-| `target_group_name`      | Name of the target source group you are analyzing. Set this if you have multiple target sources.          | `source_group_name=Anatids`          | /             |
-| `target`                 | Target source(s). Separate multiple sources with commas.                                                 | `target=Stork, Duck, Goose`          | /             |
-| `specificity_exception`  | Source(s) excluded from specificity calculations, useful for samples of unknown origin.                   | `specificity_exception=Bird_unknown` | /             |
+| `target_group_name`      | Name of the target source group to be analyzed. Only needs to be set if you define more than one target sources. | `source_group_name=Anatids`          | /             |
+| `target`                 | Target source(s). Multiple sources must be separated with commas.                                         | `target=Stork, Duck, Goose`          | /             |
+| `specificity_exception`  | Source(s) excluded from specificity calculations. Multiple sources must be separated with commas.         | `specificity_exception=Bird_unknown` | /             |
 | `kmer_size`              | Size of K-mers (and primers) to be generated.                                                             | `kmer_size=22`                       | `22`          |
 | `kmer_sensitivity_cutoff`| Minimum sensitivity value for a K-mer to be used as a primer in in-silico PCR.                            | `kmer_sensitivity_cutoff=50`         | /             |
 | `kmer_specificity_cutoff`| Minimum specificity value for a K-mer to be used as a primer. At least one primer (forward or reverse) must meet this criteria. | `kmer_specificity_cutoff=70`         | /             |
-| `marker_sensitivity_cutoff` | Minimum sensitivity of markers amplified with a given primer pair. Can be the same or higher than `kmer_sensitivity_cutoff`. | `marker_sensitivity_cutoff=60`       | /             |
-| `marker_specificity_cutoff` | Minimum specificity of markers amplified with a given primer pair. Can be the same or higher than `kmer_specificity_cutoff`. | `marker_specificity_cutoff=95`       | /             |
+| `marker_sensitivity_cutoff` | Minimum sensitivity of markers amplified with a given primer pair.  | `marker_sensitivity_cutoff=60`       | /             |
+| `marker_specificity_cutoff` | Minimum specificity of markers amplified with a given primer pair.  | `marker_specificity_cutoff=95`       | /             |
 | `max_amplicon_length`    | Maximum length of the amplicons.                                                                         | `max_amplicon_length=150`            | `2000`        |
-| `min_amplicon_length`    | Minimum length of the amplicons in in-silico PCR.                                                        | `min_amplicon_length=70`             | `0`           |
+| `min_amplicon_length`    | Minimum length of the amplicons.                                                        | `min_amplicon_length=70`             | `0`           |
 | `max_primer_tm`          | Maximum allowed melting temperature (in °C) for a primer to bind to the target sequence.                   | `max_primer_tm=70`                   | `9999`        |
 | `min_primer_tm`          | Minimum allowed melting temperature (in °C) for a primer to bind to the target sequence.                   | `min_primer_tm=50`                   | `50`          |
 | `max_primer_delta`       | Maximum allowed delta G (in kcal/mol) for a primer to bind to the target sequence.                        | `max_primer_delta=-1`                | `9999`        |
@@ -147,6 +145,7 @@ Table 4: MicrobiomePrime variables.
 | `primer_clamp`           | Number of bases at the 3' end of each primer that must perfectly match the target sequence.               | `primer_clamp=2`                     | `0`           |
 
 </details>
+
 
 
 Variable | Explanation | Example | Default value
