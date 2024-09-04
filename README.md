@@ -125,14 +125,14 @@ You can change variables and settings in the variables.ini and settings.ini file
 Table 4: MicrobiomePrime variables.
 Variable | Explanation | Example | Default value
 --- | --- | --- | ---
-target_group_name | The name of the target source group you are analysing (trying to design primers for). The source group name only needs to be set if you define more than one target sources. | source_group_name=Anatids|
-target | Target source(s). If you define multiple target sources, separate them with commas. | target=Stork, Duck, Goose |
-specificity_exception=Bird_unknown | Source(s) excluded from the specificity calculations. This is useful if you have samples of unknown origin that could include target samples. If you define multiple specificity exceptions, separate them with commas. | specificity_exception=Bird_unknown |
+target_group_name | The name of the target source group you are analysing (trying to design primers for). The source group name only needs to be set if you define more than one target sources. | source_group_name=Anatids| /
+target | Target source(s). If you define multiple target sources, separate them with commas. | target=Stork, Duck, Goose | /
+specificity_exception=Bird_unknown | Source(s) excluded from the specificity calculations. This is useful if you have samples of unknown origin that could include target samples. If you define multiple specificity exceptions, separate them with commas. | specificity_exception=Bird_unknown | /
 kmer_size | The size of K-mers (and primers) to be generated. | kmer_size=22 | kmer_size=22
-kmer_sensitivity_cutoff | A minimum value for sensitivity of a K-mer to be used as a primer in in-silico PCR | kmer_sensitivity_cutoff=50 |
-kmer_specificity_cutoff | A minimum value for specificity of a K-mer to be used as a primer. Only one of the primers (forward OR reverse) has to match specificity criteria. | kmer_specificity_cutoff=70 |
-marker_sensitivity_cutoff | Minimum sensitivity of markers amplified with a given primer pair. This value is different from the kmer_sensitivity_cutoff and can be either the same or higher | marker_sensitivity_cutoff=60 |
-marker_specificity_cutoff | Minimum specificity of markers amplified with a given primer pair. This value is different from the kmer_specificity_cutoff and can be either the same or higher | marker_specificity_cutoff=95 |
+kmer_sensitivity_cutoff | A minimum value for sensitivity of a K-mer to be used as a primer in in-silico PCR | kmer_sensitivity_cutoff=50 | /
+kmer_specificity_cutoff | A minimum value for specificity of a K-mer to be used as a primer. Only one of the primers (forward OR reverse) has to match specificity criteria. | kmer_specificity_cutoff=70 | /
+marker_sensitivity_cutoff | Minimum sensitivity of markers amplified with a given primer pair. This value is different from the kmer_sensitivity_cutoff and can be either the same or higher | marker_sensitivity_cutoff=60 | /
+marker_specificity_cutoff | Minimum specificity of markers amplified with a given primer pair. This value is different from the kmer_specificity_cutoff and can be either the same or higher | marker_specificity_cutoff=95 | /
 max_amplicon_length | Maximum length of the amplicons. | max_amplicon_length=150 | max_amplicon_length=2000
 min_amplicon_length | Minimum length of the amplicons in the *in silico* PCR. | min_amplicon_length=70 | min_amplicon_length=0
 max_primer_tm | The maximum allowed temperature (in °C) for a primer oligo to bind to a target sequence. | max_primer_tm=70 |  max_primer_tm=9999
