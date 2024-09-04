@@ -123,7 +123,7 @@ You can change variables and settings in the variables.ini and settings.ini file
 
 ### Variables
 Table 4: MicrobiomePrime variables.
-
+<details>
   <summary>Click to expand table details</summary>
 
 | Variable                 | Explanation                                                                                               | Example                              | Default Value |
@@ -146,6 +146,7 @@ Table 4: MicrobiomePrime variables.
 | `primer_clamp`           | Number of bases at the 3' end of each primer that must perfectly match the target sequence.               | `primer_clamp=2`                     | `0`           |
 
 </details>
+
 
 
 
