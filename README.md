@@ -49,7 +49,7 @@ The specific structure and format of each file are detailed below.
 This is a file that contains the information about the samples being analysed. To this analysis the key information is the source of microbiota.
 If trying to find primers for tracking fecal pollution deriving from pigs, these sources can be for example human, cattle and pig feces.
 
-Table1: Metadata example.
+Table 1: Metadata example.
 Sample | Source 
 --- | --- 
 Sample1 | Human feces 
@@ -64,7 +64,7 @@ The sum of each row should be 1.
 
 *File name: relabund_tab.csv or relabund_tab.tsv*
 
-Table2: An example of an OTU table with relative abundances.
+Table 2: An example of an OTU table with relative abundances.
 |        | Otu1   | Otu2   | Otu3   | Otu4   | Otu5   | Otu6   | Otu7   |
 |--------|--------|--------|--------|--------|--------|--------|--------|
 | Sample1| 0.1000 | 0.0200 | 0.8800 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
@@ -105,7 +105,7 @@ TTTTCGGATCGTAAAGCTCTGTTGTAAGAGAAGAACGTGTGTG
 
 *File name: taxonomy.csv or taxonomy.tsv*
 
-Table3: An example of a taxonomy file.
+Table 3: An example of a taxonomy file.
 SeqID | Domain | Phylum | Class | Order | Family | Genus  
 --- | --- | --- | --- | --- | --- | ---
 otu1 | Bacteria	| Firmicutes	| Clostridia	| Clostridiales	| Peptostreptococcaceae	| Romboutsia
