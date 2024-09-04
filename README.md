@@ -123,6 +123,7 @@ You can change variables and settings in the variables.ini and settings.ini file
 
 ### Variables
 Table 4: MicrobiomePrime variables.
+
   <summary>Click to expand table details</summary>
 
 | Variable                 | Explanation                                                                                               | Example                              | Default Value |
