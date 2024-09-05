@@ -58,6 +58,7 @@ Sample1 | Human feces
 Sample2 | Cattle feces
 Sample3 | Pig feces
 Sample4 | Human feces
+
 </details>
 
 **2. Relative abundances table**
