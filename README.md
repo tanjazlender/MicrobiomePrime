@@ -139,9 +139,9 @@ Ensure that the column names in your file match our format. The first column sho
 You can change variables and settings in the variables.ini and settings.ini files found in scripts folder.
 
 ### Variables
-Table 4: MicrobiomePrime variables.
+
 <details>
-  <summary>Click to expand table details</summary>
+  <summary>Click to see the details of MicrobiomePrime variables.</summary>
 
 | Variable                 | Explanation                                                                                               | Example                              | Default Value |
 |--------------------------|-----------------------------------------------------------------------------------------------------------|--------------------------------------|---------------|
@@ -167,15 +167,19 @@ Table 4: MicrobiomePrime variables.
 
 
 
-
-
 ### Settings
 Table 5: MicrobiomePrime settings.
+
+<details>
+  <summary>Click to see MicrobiomePrime settings.</summary>
+  
 Setting | Explanation | Example 
 --- | --- | --- 
 tntblast_path | The path of ThermonucleotideBLAST on your computer. | tntblast_path=/usr/bin/thermonucleotideBLAST/tntblast 
-cpus | Number of CPUs allocated for running the program. | cpus=200 
-memory | Amount of RAM (in GB) available for this analysis. Ensure that you allocate sufficient memory based on your input data requirements. | memory=100 
+cpus | Number of CPUs allocated for running the program. | cpus=250 
+memory | Amount of RAM (in GB) available for this analysis. Ensure that you allocate sufficient memory based on your input data requirements. | memory=500 
+
+</details>
 
 ## Code overview
 T
