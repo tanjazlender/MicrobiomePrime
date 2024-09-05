@@ -41,11 +41,11 @@ ThermonucleotideBLAST is a tool for *in silico* PCR that must be installed separ
 OpenMPI is used for parallelization to speed up the analysis. While ThermonucleotideBLAST can run without OpenMPI, it will take significantly longer. To install OpenMPI, follow the instructions on the [OpenMPI website](https://www.open-mpi.org/).
 
 ## Data preprocessing
-Before searching for primers using MicrobiomePrime, you need need to preprocess raw amplicon sequences. This typically involves steps such as removal of primer sequences, quality filtering, chimera detection and removal, sequence clustering or denoising and some form of normalization. A sequence ID (SeqID) must be assigned to each sequence and must consist of letters first and then numbers.
+Before using MicrobiomePrime, preprocess your raw amplicon sequences by removing primer sequences, quality filtering, detecting and removing chimeras, clustering or denoising sequences, and normalizing the data. Ensure each sequence is assigned a unique sequence ID (SeqID) with letters followed by numbers (e.g. OTU001, OTU002, OTU003).
 
 Suitable software options data preprocessing include [Usearch](https://www.drive5.com/usearch/), [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/), and [Mothur](https://mothur.org/).
 
-In the final step of data preprocessing, relative abundances of each sequence within each sample must be calculated. For details on the required format of the preprocessed file outputs (which serve as inputs for MicrobiomePrime analysis), please refer to the section titled "Inputs."
+In the final step of data preprocessing, calculate the relative abundances of each sequence within each sample. Ensure that the preprocessed file outputs adhere to the required format specified in the "Inputs" section.
 
 ## Inputs
 Make sure that the MicrobiomePrime input files are formatted to match our example. Do not forget to check file names, row names, column names and table formatting.
