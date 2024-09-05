@@ -189,7 +189,7 @@ The code consists of three main parts:
 3. Assessing the sensitivity and specificity of primer pairs in an *in silico* PCR analysis
 
 ### Section 1: Generating K-mers
-In the first part, amplicon sequences are split into K-mers that are length of a primer. The sequences are split in a one bp window slide approach as showed on the picture below.
+In the first part, amplicon sequences are split into K-mers that are length of a primer. The sequences are split in a one bp window slide approach as shown on the picture below.
 <p align="center">
   <img src="https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/0300193e-dc1b-44b1-bc9f-6231b781fafb" alt="splitting kmers_small">
 </p>
