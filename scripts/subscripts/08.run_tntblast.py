@@ -121,15 +121,27 @@ successfully_written = False
 for input_file in split_files:
     number = re.search(r'\d+', input_file.stem.split('_primers')[-1]).group()
     output_file = output_dir / f"{prefix}_results{number}.txt"
+    
+    # Check whether MPIrun exists
+    mpirun_exists = (subprocess.run(['which', 'mpirun'], stdout=subprocess.PIPE, stderr=subprocess.PIPE).returncode == 0)
 
     # Construct the command
-    cmd = [
-        'mpirun', '-np', cpus,
-        str(tntblast_path),
-        '-i', str(input_file),
-        '-o', str(output_file),
-        '-D', singleline_fasta
-    ]
+    if mpirun_exists:
+        cmd = [
+            'mpirun', '-np', cpus,
+            str(tntblast_path),
+            '-i', str(input_file),
+            '-o', str(output_file),
+            '-D', singleline_fasta
+        ]
+    else:
+        cmd = [
+            str(tntblast_path),
+            '-i', str(input_file),
+            '-o', str(output_file),
+            '-D', singleline_fasta
+        ]
+        
     if optional_parameters:
         cmd.extend(optional_parameters.split())
         
