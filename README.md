@@ -17,6 +17,7 @@ MicrobiomePrime is intended to be run in a x86-64 Linux OS (tested on Ubuntu).
 *Note: Due to the complexity and high computational demands of sequencing data, using a High Performance Computing (HPC) system may be necessary to ensure efficient processing and analysis of large datasets.*
 
 **1. Create a conda environment**
+
 Use the provided environment.yml file in the 'requirements' folder to create a Conda environment with all necessary dependencies:
 
 ```
@@ -25,15 +26,18 @@ conda env create -f environment.yml
 *If Conda is not installed on your system, you can find installation instructions [here](https://conda.io/projects/conda/en/latest/index.html).*
 
 **2. Activate the environment**
+
 Once the environment named MicrobiomePrime is created, activate it using:
 ```
 conda activate MicrobiomePrime
 ```
 
 **3. Install ThermonucleotideBLAST**
+
 ThermonucleotideBLAST is a tool for *in silico* PCR that must be installed separately. Follow the installation instructions on the [official ThermonucleotideBLAST page](https://public.lanl.gov/jgans/tntblast/tntblast_doc.html).
 
 **4. Install OpenMPI**
+
 OpenMPI is used for parallelization to speed up the analysis. While ThermonucleotideBLAST can run without OpenMPI, it will take significantly longer. To install OpenMPI, follow the instructions on the [OpenMPI website](https://www.open-mpi.org/).
 
 ## Data preprocessing
