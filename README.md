@@ -46,6 +46,7 @@ The specific structure and format of each file are detailed below.
 **1. Metadata**
 
 *File name: metadata.csv or metadata.tsv*
+
 This is a file that contains the information about the samples being analysed. To this analysis the key information is the source of microbiota.
 If trying to find primers for tracking fecal pollution deriving from pigs, these sources can be for example human, cattle and pig feces.
 
