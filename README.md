@@ -13,31 +13,47 @@ You can find more about MicrobiomePrime at: (link available soon)
 - Definitions
 
 ## Installation
-MicrobiomePrime is intended to be run in a x86-64 Linux OS (tested on Ubuntu). The best way to start is to create a conda environment with all the necessary dependencies using the provided environment.yml file in the requirements folder:
+MicrobiomePrime is intended to be run in a x86-64 Linux OS (tested on Ubuntu). 
+
+*Note: Due to the complexity and high computational demands of sequencing data, using a High Performance Computing (HPC) system may be necessary to ensure efficient processing and analysis of large datasets.*
+
+**1. Create a conda environment**
+
+Use the provided environment.yml file in the `requirements` folder to create a Conda environment with all necessary dependencies:
+
 ```
 conda env create -f environment.yml
 ```
 *If Conda is not installed on your system, you can find installation instructions [here](https://conda.io/projects/conda/en/latest/index.html).*
 
+**2. Activate the environment**
+
 Once the environment named MicrobiomePrime is created, activate it using:
 ```
 conda activate MicrobiomePrime
 ```
-You also need to install ThermonucleotideBLAST, a program for *in silico* PCR. It can be installed following the [instructions](https://public.lanl.gov/jgans/tntblast/tntblast_doc.html) on their official page. For this program to work across multiple CPUs, we installed OpenMPI.
+
+**3. Install ThermonucleotideBLAST**
+
+ThermonucleotideBLAST is a tool for *in silico* PCR that must be installed separately. Follow the installation instructions on the [official ThermonucleotideBLAST page](https://public.lanl.gov/jgans/tntblast/tntblast_doc.html).
+
+**4. Install OpenMPI**
+
+OpenMPI is used for parallelization to speed up the analysis. While ThermonucleotideBLAST can run without OpenMPI, it will take significantly longer. To install OpenMPI, follow the instructions on the [OpenMPI website](https://www.open-mpi.org/).
 
 ## Data preprocessing
-Before searching for primers using MicrobiomePrime, you need need to preprocess raw amplicon sequences. This typically involves steps such as removal of primer sequences, quality filtering, chimera detection and removal, sequence clustering or denoising and some form of normalization. A sequence ID (SeqID) must be assigned to each sequence and must consist of letters first and then numbers.
+Before using MicrobiomePrime, preprocess your raw amplicon sequences by removing primer sequences, quality filtering, detecting and removing chimeras, clustering or denoising sequences, and normalizing the data. Ensure each sequence is assigned a unique sequence ID (SeqID) with letters followed by numbers (e.g. OTU001, OTU002, OTU003).
 
 Suitable software options data preprocessing include [Usearch](https://www.drive5.com/usearch/), [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/), and [Mothur](https://mothur.org/).
 
-In the final step of data preprocessing, relative abundances of each sequence within each sample must be calculated. For details on the required format of the preprocessed file outputs (which serve as inputs for MicrobiomePrime analysis), please refer to the section titled "Inputs."
+In the final step of data preprocessing, calculate the relative abundances of each sequence within each sample. Ensure that the preprocessed file outputs adhere to the required format specified in the "Inputs" section.
 
 ## Inputs
 Make sure that the MicrobiomePrime input files are formatted to match our example. Do not forget to check file names, row names, column names and table formatting.
 
 For the analysis itself, you will need the following four files:
 1. Metadata file
-2. Relative abundances table
+2. Relative abundance table
 3. FASTA file
 4. Taxonomy file
 
@@ -62,9 +78,10 @@ Sample4 | Human feces
 
 </details>
 
-**2. Relative abundances table**
+**2. Relative abundance table**
 
-A table with relative abundances. Samples must be in rows and sequence IDs (e.g. names of OTUs, ZOTUs or ASVs) must be in columns. 
+This table provides the relative abundances of various microbial sequences (identified as OTUs, ASVs, or ZOTUs) across different samples. Each row corresponds to a specific sample, and each column represents a unique sequence ID. 
+
 The sum of each row should be 1.
 
 *File name: relabund_tab.csv or relabund_tab.tsv*
@@ -82,6 +99,8 @@ The sum of each row should be 1.
 </details>
 
 **3. FASTA file**
+
+This file contains the DNA sequences detected in the samples. Each sequence is associated with a unique identifier or sequence ID (e.g. OTU001, OTU002, OTU003,...).
 
 *File name: sequences.fa*
 <details>
@@ -114,7 +133,10 @@ TTTTCGGATCGTAAAGCTCTGTTGTAAGAGAAGAACGTGTGTG
 ```
 </details>
 
+The sequence IDs in this file should match the sequence IDs in the relative abundance and taxonomy tables.
+
 **4. Taxonomy**
+This file contains the taxonomic classification of the sequences identified in the samples. Each sequence ID is assigned to different taxonomic ranks, such as domain, phylum, class, order, family, and genus.
 
 *File name: taxonomy.csv or taxonomy.tsv*
 
@@ -134,11 +156,16 @@ otu7 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	|	|
 </details>
 
 Ensure that the column names in your file match our format. The first column should be named "SeqID".
+The sequence IDs in this file should match those in the relative abundances table and FASTA file.
 
 ## Variables and settings
-You can change variables and settings in the variables.ini and settings.ini files found in scripts folder.
+
+
+You can change variables and settings in the variables.ini and settings.ini files found in `scripts` folder.
 
 ### Variables
+To adjust the MicrobiomePrime analysis to your specific needs, you can adjust various variables and settings in the `variables.ini` and `settings.ini` files located in the `scripts` folder. Key variables you should define include `target`, `kmer_size`, `kmer_sensitivity_cutoff`, `kmer_specificity_cutoff`, `marker_sensitivity_cutoff`, and `marker_specificity_cutoff`.
+
 
 <details>
   <summary>Click to see the details of MicrobiomePrime variables.</summary>
@@ -293,7 +320,7 @@ MicrobiomePrime is distributed under a ??? licence. Additionally, it redistribut
 
 The licenses for all dependencies used in this pipeline are detailed in the NOTICE file.
 
-MicrobiomePrime is developed by Tanja Zlender, Lucija Brezocnik and Vili Podgorelec.
+MicrobiomePrime is developed by Tanja Zlender, Lucija Brezocnik, Vili Podgorelec and Maja Rupnik.
 For support, please contact tanja.zlender@nlzoh.si.
 
 
