@@ -192,13 +192,19 @@ highly_sensitive_nontarget_kmers <- kmer_seqID %>%
   group_by(seqID) %>%
   summarise(kmers = paste0(unique(kmer), collapse = ", "))
 
-nontarget_PA <- highly_sensitive_nontarget_kmers %>%
+highly_sensitive_relabund <- highly_sensitive_nontarget_kmers %>%
   left_join(relabund_tab_long_nontarget) %>%
-  tidyr::separate_rows(kmers, sep = ", ") %>%
-  group_by(Sample, kmers, Source) %>%
-  summarise(relabund = sum(relabund)) %>%
-  rename("kmer" = "kmers") %>%
-  mutate(PA = if_else(relabund>0, 1, 0))
+  tidyr::separate_rows(kmers, sep = ", ") 
+
+library(data.table)
+
+# Convert to data.table
+setDT(highly_sensitive_relabund)
+
+# Perform the operations
+nontarget_PA <- highly_sensitive_relabund[, .(relabund = sum(relabund)), by = .(Sample, kmers, Source)
+                                          ][, PA := as.integer(relabund > 0)][
+                                            , .(kmer = kmers, relabund, PA)]
 
 specificity <- nontarget_PA %>%
   group_by(kmer) %>%
