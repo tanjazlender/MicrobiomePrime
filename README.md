@@ -14,11 +14,12 @@ You can find more about MicrobiomePrime at: (link available soon)
 
 ## Installation
 MicrobiomePrime is intended to be run in a x86-64 Linux OS (tested on Ubuntu). 
+
 *Note: Due to the complexity and high computational demands of sequencing data, using a High Performance Computing (HPC) system may be necessary to ensure efficient processing and analysis of large datasets.*
 
 **1. Create a conda environment**
 
-Use the provided environment.yml file in the 'requirements' folder to create a Conda environment with all necessary dependencies:
+Use the provided environment.yml file in the `requirements` folder to create a Conda environment with all necessary dependencies:
 
 ```
 conda env create -f environment.yml
@@ -160,7 +161,7 @@ The sequence IDs in this file should match those in the relative abundances tabl
 ## Variables and settings
 
 
-You can change variables and settings in the variables.ini and settings.ini files found in scripts folder.
+You can change variables and settings in the variables.ini and settings.ini files found in `scripts` folder.
 
 ### Variables
 To adjust the MicrobiomePrime analysis to your specific needs, you can adjust various variables and settings in the `variables.ini` and `settings.ini` files located in the `scripts` folder. Key variables you should define include `target`, `kmer_size`, `kmer_sensitivity_cutoff`, `kmer_specificity_cutoff`, `marker_sensitivity_cutoff`, and `marker_specificity_cutoff`.
