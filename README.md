@@ -49,6 +49,8 @@ The specific structure and format of each file are detailed below.
 This is a file that contains the information about the samples being analysed. To this analysis the key information is the source of microbiota.
 If trying to find primers for tracking fecal pollution deriving from pigs, these sources can be for example human, cattle and pig feces.
 
+<details>
+  <summary>Click to see an example metadata file.</summary>
 Table 1: Metadata example.
 Sample | Source 
 --- | --- 
@@ -56,6 +58,7 @@ Sample1 | Human feces
 Sample2 | Cattle feces
 Sample3 | Pig feces
 Sample4 | Human feces
+</details>
 
 **2. Relative abundances table**
 
