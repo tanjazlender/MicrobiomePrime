@@ -50,9 +50,8 @@ This is a file that contains the information about the samples being analysed. T
 If trying to find primers for tracking fecal pollution deriving from pigs, these sources can be for example human, cattle and pig feces.
 
 <details>
-  <summary>Click to see an example metadata file.</summary>
+  <summary>Click here to see an example metadata file.</summary>
 
-Table 1: Metadata example.
 Sample | Source 
 --- | --- 
 Sample1 | Human feces 
@@ -69,7 +68,9 @@ The sum of each row should be 1.
 
 *File name: relabund_tab.csv or relabund_tab.tsv*
 
-Table 2: An example of an OTU table with relative abundances.
+<details>
+  <summary>Click here to see an example of a table with relative abundances.</summary>
+
 |        | Otu1   | Otu2   | Otu3   | Otu4   | Otu5   | Otu6   | Otu7   |
 |--------|--------|--------|--------|--------|--------|--------|--------|
 | Sample1| 0.1000 | 0.0200 | 0.8800 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
@@ -77,9 +78,14 @@ Table 2: An example of an OTU table with relative abundances.
 | Sample3| 0.0000 | 0.0920 | 0.4050 | 0.3253 | 0.0000 | 0.0000 | 0.1777 |
 | Sample4| 0.4250 | 0.1005 | 0.0000 | 0.0000 | 0.2145 | 0.0600 | 0.2000 |
 
+</details>
+
 **3. FASTA file**
 
 *File name: sequences.fa*
+<details>
+  <summary>Click here to see a FASTA file example.</summary>
+
 ```plaintext
 >otu1
 TGGGGAATATTGCACAATGGGCGCAAGCCTGATGCAGCCATGCCGCGTGTATGAAGAAGG
@@ -105,12 +111,15 @@ CCTTCGGGTCGTAAAGCTCTGTCCTCAAGGAAGATAATGACGGTACTTGAGGAGGAA
 TAGGGAATCTTCGGCAATGGGGGCAACCCTGACCGAGCAACGCCGCGTGAGTGAAGAAGG
 TTTTCGGATCGTAAAGCTCTGTTGTAAGAGAAGAACGTGTGTG
 ```
+</details>
 
 **4. Taxonomy**
 
 *File name: taxonomy.csv or taxonomy.tsv*
 
-Table 3: An example of a taxonomy file.
+<details>
+  <summary>Click here to see a taxonomy file example.</summary>
+
 SeqID | Domain | Phylum | Class | Order | Family | Genus  
 --- | --- | --- | --- | --- | --- | ---
 otu1 | Bacteria	| Firmicutes	| Clostridia	| Clostridiales	| Peptostreptococcaceae	| Romboutsia
@@ -120,6 +129,8 @@ otu4 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	| Prevotellaceae	|
 otu5 | Bacteria	| Fusobacteria	| Fusobacteriia	| Fusobacteriales	| Fusobacteriaceae | 
 otu6 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Enterococcaceae	| Enterococcus
 otu7 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	|	| 
+
+</details>
 
 Ensure that the column names in your file match our format. The first column should be named "SeqID".
 
