@@ -221,6 +221,9 @@ Write about marker_sensitivity_threshold and marker_specificity_threshold
 ## Outputs
 MicrobiomePrime generates a primary results table detailing the performance of primer pairs, along with several additional tables containing information about the detected sequence IDs.
 
+<details>
+  <summary>Click to see MicrobiomePrime outputs.</summary>
+
 Table 6: Description of column names in the main results table detailing the performance of primer pairs. The main output table can be found in folder path: ‘MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/final_table/’.
 | **Column name**                      | **Definition**                                                                                                    | **Example**                                                                                     |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
@@ -256,7 +259,7 @@ Table 7: Description of column names in the output tables detecting information 
 | **N_seqIDs_nontarget**   | The number of sequence IDs from non-target sequences that were amplified by the primer pair.        | 3                                                                                                |
 | **File_number**          | The specific number assigned to each file in the analysis. This number helps locate intermediate results generated during the analysis. | 6 |
 
-
+</details>
 
 ## Definitions
 
