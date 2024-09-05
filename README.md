@@ -51,6 +51,7 @@ If trying to find primers for tracking fecal pollution deriving from pigs, these
 
 <details>
   <summary>Click to see an example metadata file.</summary>
+
 Table 1: Metadata example.
 Sample | Source 
 --- | --- 
