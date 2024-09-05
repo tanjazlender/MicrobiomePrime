@@ -118,6 +118,8 @@ print(f"Found {len(split_files)} primer files.")
 successfully_written = False
 
 # Run ThermonucleotideBLAST on the split primer pair files
+tntblast_executable = 'tntblast'
+
 for input_file in split_files:
     number = re.search(r'\d+', input_file.stem.split('_primers')[-1]).group()
     output_file = output_dir / f"{prefix}_results{number}.txt"
@@ -129,14 +131,14 @@ for input_file in split_files:
     if mpirun_exists:
         cmd = [
             'mpirun', '-np', cpus,
-            str(tntblast_path),
+            str(tntblast_path) + tntblast_executable,
             '-i', str(input_file),
             '-o', str(output_file),
             '-D', singleline_fasta
         ]
     else:
         cmd = [
-            str(tntblast_path),
+            str(tntblast_path) + tntblast_executable,
             '-i', str(input_file),
             '-o', str(output_file),
             '-D', singleline_fasta
