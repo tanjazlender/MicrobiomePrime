@@ -63,8 +63,8 @@ The specific structure and format of each file are detailed below.
 
 *File name: metadata.csv or metadata.tsv*
 
-This is a file that contains the information about the samples being analysed. To this analysis the key information is the source of microbiota.
-If trying to find primers for tracking fecal pollution deriving from pigs, these sources can be for example human, cattle and pig feces.
+This is a file that contains the information about the samples being analysed. To this analysis the key metadata information is the source of microbiota.
+The metadata file should contain columns: `Sample` and `Source`.
 
 <details>
   <summary>Click here to see an example metadata file.</summary>
@@ -107,27 +107,27 @@ This file contains the DNA sequences detected in the samples. Each sequence is a
   <summary>Click here to see a FASTA file example.</summary>
 
 ```plaintext
->otu1
+>Otu1
 TGGGGAATATTGCACAATGGGCGCAAGCCTGATGCAGCCATGCCGCGTGTATGAAGAAGG
 CCTTCGGGTTGTAAAGTACTTTCAGCGGGGAGGAAGGGAGTAAAGTTAATACCTTTGCTC
 ATTGACG
->otu2
+>Otu2
 TGGGGAATATTGCACAATGGGCGAAAGCCTGATGCAGCAACGCCGCGTGAGCGATGAAGG
 CCTTCGGGTCGTAAAGCTCTGTCCTCAAGGAAGATAATGACGGTACTTGAGGAGGAAGCC
->otu3
+>Otu3
 TGGGGAATATTGCACAATGGGGGAAACCCTGATGCAGCAACGCCGCGTGAGTGATGACGG
 CCTTCGGGTTGTAAAGCTCTGTCTTCAGGGACGATAATGACGGTACCTGAGGAGGAAGCC
 ACGG
->otu4
+>Otu4
 TGGGGAATATTGCACAATGGGGGAAACCCTGATGCAGCAACGCCGCGTGAGTGATGAAGG
 TTTTCGGATCGTAAAGCTCTGTCTTTGGGGAAGATAATGACGGTACCCAAGGA
->otu5
+>Otu5
 TAGGGAATCTTCGGCAATGGGGGCAACCCTGACCGAGCAACGCCGCGTGAGTGAAGAAGG
 TTTTCGGATCGTAAAGCTCTGTTGTAAGAGAAGAACGTGTGTGAGAGTGGAAAGTTCACA
->otu6
+>Otu6
 TGGGGAATATTGCACAATGGGCGCAAGCCTGATGCAGCAACGCCGCGTGAGCGATGAAGG
 CCTTCGGGTCGTAAAGCTCTGTCCTCAAGGAAGATAATGACGGTACTTGAGGAGGAA
->otu7
+>Otu7
 TAGGGAATCTTCGGCAATGGGGGCAACCCTGACCGAGCAACGCCGCGTGAGTGAAGAAGG
 TTTTCGGATCGTAAAGCTCTGTTGTAAGAGAAGAACGTGTGTG
 ```
