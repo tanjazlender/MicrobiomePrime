@@ -7,9 +7,14 @@
 # Row names in relabund_tab must be the same as sample names (column "Sample") in metadata
 # The row sums of relabund_tab must be 1
 
+library(dplyr)
+
 ################################################################################
 ############################# Read input files #################################
 error_messages <- list()
+warning_messages <- list()
+
+log_file <- "requirements/input_formatting_verification/input_formatting_verification.log"
 
 # Read relabund_tab (in .tsv or .csv format)
 if (file.exists("data/input_files/relabund_tab.tsv")) {
@@ -25,7 +30,7 @@ if (file.exists("data/input_files/relabund_tab.tsv")) {
   # Convert the list to a character vector
   error_messages <- unlist(error_messages)
   # Write the errors to the file
-  writeLines(error_messages, "scripts/input_formatting_verification/input_formatting_verification.log")
+  writeLines(error_messages, log_file)
 }
 
 # Read metadata (in .tsv or .csv format)
@@ -40,7 +45,7 @@ if (file.exists("data/input_files/metadata.tsv")) {
   # Convert the list to a character vector
   error_messages <- unlist(error_messages)
   # Write the errors to the file
-  writeLines(error_messages, "scripts/input_formatting_verification/input_formatting_verification.log")
+  writeLines(error_messages, log_file)
 }
 
 # Read the taxonomy file (in .tsv or .csv format)
@@ -55,7 +60,7 @@ if (file.exists("data/input_files/taxonomy.tsv")) {
   # Convert the list to a character vector
   error_messages <- unlist(error_messages)
   # Write the errors to the file
-  writeLines(error_messages, "scripts/input_formatting_verification/input_formatting_verification.log")
+  writeLines(error_messages, log_file)
 }
 
 # Read the FASTA file
@@ -68,7 +73,7 @@ if (file.exists("data/input_files/sequences.fa")) {
   # Convert the list to a character vector
   error_messages <- unlist(error_messages)
   # Write the errors to the file
-  writeLines(error_messages, "scripts/input_formatting_verification/input_formatting_verification.log")
+  writeLines(error_messages, log_file)
 }
 
 ################################################################################
@@ -126,68 +131,109 @@ if (any(abs(rowSums(relabund_tab) - 1) > tolerance)) {
   error_messages <- c(error_messages, "Error: The sum of each row in the relabund_tab is not 1.")
 }
 
-# Write error messages to input_formatting_verification.log
-if (length(error_messages) > 0) {
-  # Convert the list to a character vector
-  error_messages <- unlist(error_messages)
-  # Write the errors to the file
-  writeLines(error_messages, "scripts/input_formatting_verification/input_formatting_verification.log")
-} else {
-  # Write success message to the file
-  writeLines("The input files are formatted correctly.", "scripts/input_formatting_verification/input_formatting_verification.log")
-}
-
 ################################################################################
 ########################## Verify variables formatting #########################
+
+# Check whether are key variables are not empty
 
 library(config)
 library(ini)
 
 # Read parameters from variables.ini
-cat("Reading variables.\n")
 variables <- read.ini("scripts/variables.ini")
 
-target_group_name=
-target=Pig
-specificity_exception=
-kmer_size=
-kmer_sensitivity_cutoff=90
-kmer_specificity_cutoff=90
-marker_sensitivity_cutoff=90
-marker_specificity_cutoff=95
+# Check if target is NULL and print an error message if necessary
+target_raw <- variables$settings$target
 
+if (is.null(target_raw)) {
+  error_messages <- c(error_messages, "Error: target value is missing in the variables.ini file.")
+} else {
+  target_list <- strsplit(target_raw, ",")
+  target <- trimws(unlist(target_list))
+  
+  # Check if any targets are not found in metadata and print an error if necessary
+  targets_not_in_metadata <- character()
+  for (t in target) {
+    print(t)
+    if (!(t %in% metadata$Source)) {
+      targets_not_in_metadata <- c(targets_not_in_metadata, t)
+    }
+    
+    # Print an error if any of the defined target sources was not found in metadata
+    if (length(targets_not_in_metadata) > 0) {
+      error_messages <- c(error_messages, paste("Error: One or more defined targets (", paste(targets_not_in_metadata, collapse = ", "), ") in the variables.ini file is not present in the `Source` column of metadata.", sep = ""))
+    }
+  }
+}
 
-kmer_sensitivity_cutoff <- as.numeric(variables$settings$kmer_sensitivity_cutoff)
-kmer_specificity_cutoff <- as.numeric(variables$settings$kmer_specificity_cutoff)
-target_list <- strsplit(variables$settings$target, ",")
-target <- trimws(unlist(target_list))
-target_combined <- paste(target, collapse = " ")
+# If multiple targets are defined and no target_group_name is set, print a warning
 target_group_name <- variables$settings$target_group_name
 
-# Set target_group_ID
-if (is.null(target_group_name)  || !nzchar(target_group_name)) {
-  target_group_ID <- gsub(" ", "-", fixed=TRUE, target_combined)
-} else {
-  target_group_ID <- gsub(" ", "-", fixed=TRUE, target_group_name)
+if (length(target) > 1 & is.null(target_group_name)) {
+  warning_messages <- c(warning_messages, paste("Warning: setting target_group_name in the variables.ini file is recommended when more than one target source is defined."))
 }
 
-# Extract specificity_exception_raw, defaulting to an empty string if it does not exist or is NULL
-specificity_exception_raw <- if (!is.null(variables$settings$specificity_exception)) {
-  variables$settings$specificity_exception
-} else {
-  # Default to an empty string if not available
-  ""
+# Check whether kmer_size is set
+kmer_size <- as.numeric(variables$settings$kmer_size)
+
+if (length(kmer_size) == 0) {
+  error_messages <- c(error_messages, "Error: kmer_size value is missing in the variables.ini file.")
 }
 
-# Check if the string specificity_exceptionis not empty
-if (nchar(specificity_exception_raw) > 0) {
-  # Split by comma if there are any commas
-  specificity_exception <- unlist(strsplit(specificity_exception_raw, ",\\s*"))
-} else {
-  # If the string is empty, set an empty character vector
-  specificity_exception <- character(0)
+# Check whether sensitivity and specificity criteria are set
+kmer_sensitivity_cutoff <- as.numeric(variables$settings$kmer_sensitivity_cutoff)
+kmer_specificity_cutoff <- as.numeric(variables$settings$kmer_specificity_cutoff)
+marker_sensitivity_cutoff <- as.numeric(variables$settings$marker_sensitivity_cutoff)
+marker_specificity_cutoff <- as.numeric(variables$settings$marker_specificity_cutoff)
+
+if (length(kmer_sensitivity_cutoff) == 0) {
+  error_messages <- c(error_messages, "Error: kmer_sensitivity_cutoff value is missing in the variables.ini file.")
 }
 
-detach("package:config", unload = TRUE)
-detach("package:ini", unload = TRUE)
+if (length(kmer_specificity_cutoff) == 0) {
+  error_messages <- c(error_messages, "Error: kmer_specificity_cutoff value is missing in the variables.ini file.")
+}
+
+if (length(marker_sensitivity_cutoff) == 0) {
+  error_messages <- c(error_messages, "Error: marker_sensitivity_cutoff value is missing in the variables.ini file.")
+}
+
+if (length(marker_specificity_cutoff) == 0) {
+  error_messages <- c(error_messages, "Error: marker_specificity_cutoff value is missing in the variables.ini file.")
+}
+
+
+# Check whether mismatch or primer-binding stability variables are set
+max_mismatch <- as.numeric(variables$settings$max_mismatch)
+max_primer_delta <- as.numeric(variables$settings$max_primer_delta)
+
+if (length(max_mismatch) == 0 & length(max_primer_delta) == 0) {
+  error_messages <- c(error_messages, "Error: setting max_mismatch in the variables.ini file is recommended. Alternatively you can set max_primer_delta.")
+}
+
+
+# Write error messages to input_formatting_verification.log
+success_message <- "The input files are formatted correctly."
+
+if (length(error_messages) > 0) {
+  # Convert the list to a character vector
+  error_messages <- unlist(error_messages)
+  warning_messages <- unlist(warning_messages)
+  # Write the errors and warnings to the log file
+  writeLines(c(error_messages, warning_messages), log_file)
+} else {
+  # Convert the list to a character vector
+  warning_messages <- unlist(warning_messages)
+  # Write the warnings and a success message to the log file
+  if (length(warning_messages) > 0) {
+    writeLines(c(warning_messages, success_message), log_file)
+  } else {
+    writeLines(success_message, log_file)
+  }
+  
+}
+
+
+
+
 

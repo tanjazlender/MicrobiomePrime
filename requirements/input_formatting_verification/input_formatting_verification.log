@@ -1,1 +1,2 @@
-Error: The number of column names in relabund_tab does not match the number of sequence IDs in the FASTA file.
+Warning: setting target_group_name in the variables.ini file is recommended when more than one target source is defined.
+The input files are formatted correctly.
