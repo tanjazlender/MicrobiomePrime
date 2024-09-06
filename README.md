@@ -164,7 +164,15 @@ The sequence IDs in this file should match those in the relative abundances tabl
 You can change variables and settings in the variables.ini and settings.ini files found in `scripts` folder.
 
 ### Variables
-To adjust the MicrobiomePrime analysis to your specific needs, you can adjust various variables and settings in the `variables.ini` and `settings.ini` files located in the `scripts` folder. Key variables you should define include `target`, `kmer_size`, `kmer_sensitivity_cutoff`, `kmer_specificity_cutoff`, `marker_sensitivity_cutoff`, and `marker_specificity_cutoff`.
+To adjust the MicrobiomePrime analysis to your specific needs, you can adjust various variables and settings in the `variables.ini` and `settings.ini` files located in the `scripts` folder. Key variables you should define are: 
+
+- `target`
+- `kmer_size`
+- `kmer_sensitivity_cutoff`
+- `kmer_specificity_cutoff`
+- `marker_sensitivity_cutoff`
+- `marker_specificity_cutoff`
+- `max_mismatch` and/or `max_primer_delta`
 
 
 <details>
