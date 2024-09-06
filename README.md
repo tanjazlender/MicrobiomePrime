@@ -100,7 +100,7 @@ The sum of each row should be 1.
 
 **3. FASTA file**
 
-This file contains the DNA sequences detected in the samples. Each sequence is associated with a unique identifier or sequence ID (e.g. OTU001, OTU002, OTU003,...).
+This file contains the DNA sequences detected in the samples in a FASTA format. Each sequence is associated with a unique identifier or sequence ID (e.g. OTU001, OTU002, OTU003,...).
 
 *File name: sequences.fa*
 <details>
