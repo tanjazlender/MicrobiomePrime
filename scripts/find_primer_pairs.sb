@@ -45,7 +45,7 @@ stdbuf -oL -eL python -u subscripts/08.run_tntblast.py | tee ${current_log_path}
 stdbuf -oL -eL python -u subscripts/09.rearrange_tntblast_output.py | tee ${current_log_path}/09.rearrange_tntblast_output.log > /dev/null
 
 # Calculate the sensitivity and specificity of primer pairs (PPs)
-stdbuf -oL -eL Rscript -e "source('subscripts/10.calculate_sensitivity_specificity.R')" | tee ${current_log_path}/10.calculate_sensitivity_specificity.log > /dev/null
+stdbuf -oL -eL python -u subscripts/10.calculate_sensitivity_specificity.py | tee ${current_log_path}/10.calculate_sensitivity_specificity.log > /dev/null
 
 # Generate the results table
 stdbuf -oL -eL Rscript -e "source('subscripts/11.join_all_results.R')" | tee ${current_log_path}/11.join_all_results.log > /dev/null
