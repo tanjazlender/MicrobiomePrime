@@ -1,4 +1,4 @@
-# A SCRIPT TO VERIFY WHETHER THE INPUTS ARE CORRECTLY FORMATTED
+# A SCRIPT TO VERIFY WHETHER THE INPUTS AND VARIABLES ARE CORRECTLY FORMATTED
 
 # THE INPUT FILES MUST MEET THE FOLLOWING REQUIREMENTS:
 # All tables (relabund_tab, metadata, taxonomy) must be in .tsv or .csv format
@@ -136,4 +136,58 @@ if (length(error_messages) > 0) {
   # Write success message to the file
   writeLines("The input files are formatted correctly.", "scripts/input_formatting_verification/input_formatting_verification.log")
 }
+
+################################################################################
+########################## Verify variables formatting #########################
+
+library(config)
+library(ini)
+
+# Read parameters from variables.ini
+cat("Reading variables.\n")
+variables <- read.ini("scripts/variables.ini")
+
+target_group_name=
+target=Pig
+specificity_exception=
+kmer_size=
+kmer_sensitivity_cutoff=90
+kmer_specificity_cutoff=90
+marker_sensitivity_cutoff=90
+marker_specificity_cutoff=95
+
+
+kmer_sensitivity_cutoff <- as.numeric(variables$settings$kmer_sensitivity_cutoff)
+kmer_specificity_cutoff <- as.numeric(variables$settings$kmer_specificity_cutoff)
+target_list <- strsplit(variables$settings$target, ",")
+target <- trimws(unlist(target_list))
+target_combined <- paste(target, collapse = " ")
+target_group_name <- variables$settings$target_group_name
+
+# Set target_group_ID
+if (is.null(target_group_name)  || !nzchar(target_group_name)) {
+  target_group_ID <- gsub(" ", "-", fixed=TRUE, target_combined)
+} else {
+  target_group_ID <- gsub(" ", "-", fixed=TRUE, target_group_name)
+}
+
+# Extract specificity_exception_raw, defaulting to an empty string if it does not exist or is NULL
+specificity_exception_raw <- if (!is.null(variables$settings$specificity_exception)) {
+  variables$settings$specificity_exception
+} else {
+  # Default to an empty string if not available
+  ""
+}
+
+# Check if the string specificity_exceptionis not empty
+if (nchar(specificity_exception_raw) > 0) {
+  # Split by comma if there are any commas
+  specificity_exception <- unlist(strsplit(specificity_exception_raw, ",\\s*"))
+} else {
+  # If the string is empty, set an empty character vector
+  specificity_exception <- character(0)
+}
+
+detach("package:config", unload = TRUE)
+detach("package:ini", unload = TRUE)
 

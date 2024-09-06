@@ -1,1 +1,1 @@
-The input files are formatted correctly.
+Error: The number of column names in relabund_tab does not match the number of sequence IDs in the FASTA file.
