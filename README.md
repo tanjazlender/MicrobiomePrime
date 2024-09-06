@@ -202,9 +202,9 @@ Table 5: MicrobiomePrime settings.
   
 Setting | Explanation | Example 
 --- | --- | --- 
-tntblast_path | The path of ThermonucleotideBLAST on your computer. | tntblast_path=/usr/bin/thermonucleotideBLAST/tntblast 
-cpus | Number of CPUs allocated for running the program. | cpus=250 
-memory | Amount of RAM (in GB) available for this analysis. Ensure that you allocate sufficient memory based on your input data requirements. | memory=500 
+`tntblast_path` | The path of ThermonucleotideBLAST on your computer. Leave empty if the executable is accessible via system's `PATH`.  | `tntblast_path=/usr/bin/thermonucleotideBLAST/tntblast` 
+`cpus` | Number of CPUs allocated for running the program. | `cpus=250`
+`memory` | Amount of RAM (in GB) available for this analysis. Ensure that you allocate sufficient memory based on your input data requirements. | `memory=500` 
 
 </details>
 
