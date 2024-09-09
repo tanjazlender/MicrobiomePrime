@@ -299,7 +299,7 @@ Description of column names in the output tables detecting information about det
 </details>
 
 ## Definitions
-
+<small>
 **K-mer** - A short nucleotide sequence, typically 18-24 bases long (the length of an optimal primer pair).
 
 **Marker** - any genetic sequence or a group of sequences that are amplified by a specific primer pair and are highly associated with a particular microbiota source.
@@ -321,6 +321,7 @@ Description of column names in the output tables detecting information about det
 **Target samples** - samples from target sources.
 
 **Target source(s)** - the environment(s) or host(s) of interest for which we aim to develop highly specific and sensitive primer pairs.
+<\small>
 
 ## License and third-party software
 MicrobiomePrime is distributed under a ??? licence. Additionally, it redistributes the following third party software:
