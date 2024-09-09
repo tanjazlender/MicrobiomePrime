@@ -61,7 +61,7 @@ The specific structure and format of each file are detailed below.
 
 **1. Metadata**
 
-*File name: metadata.csv or metadata.tsv*
+File name: `metadata.csv` or `metadata.tsv`
 
 This is a file that contains the information about the samples being analysed. To this analysis the key metadata information is the source of microbiota.
 The metadata file should contain columns: `Sample` and `Source`.
@@ -80,11 +80,11 @@ Sample4 | Human feces
 
 **2. Relative abundance table**
 
+File name: `relabund_tab.csv` or `relabund_tab.tsv`
+
 This table provides the relative abundances of various microbial sequences (identified as OTUs, ASVs, or ZOTUs) across different samples. Each row corresponds to a specific sample, and each column represents a unique sequence ID. 
 
 The sum of each row should be 1.
-
-*File name: relabund_tab.csv or relabund_tab.tsv*
 
 <details>
   <summary>Click here to see an example of a table with relative abundances.</summary>
@@ -100,9 +100,10 @@ The sum of each row should be 1.
 
 **3. FASTA file**
 
+File name: `sequences.fa`
+
 This file contains the DNA sequences detected in the samples in a FASTA format. Each sequence is associated with a unique identifier or sequence ID (e.g. OTU001, OTU002, OTU003,...).
 
-*File name: sequences.fa*
 <details>
   <summary>Click here to see a FASTA file example.</summary>
 
@@ -136,9 +137,10 @@ TTTTCGGATCGTAAAGCTCTGTTGTAAGAGAAGAACGTGTGTG
 The sequence IDs in this file should match the sequence IDs in the relative abundance and taxonomy tables.
 
 **4. Taxonomy**
-This file contains the taxonomic classification of the sequences identified in the samples. Each sequence ID is assigned to different taxonomic ranks, such as domain, phylum, class, order, family, and genus.
 
-*File name: taxonomy.csv or taxonomy.tsv*
+File name: `taxonomy.csv` or `taxonomy.tsv`
+
+This file contains the taxonomic classification of the sequences identified in the samples. Each sequence ID is assigned to different taxonomic ranks, such as domain, phylum, class, order, family, and genus.
 
 <details>
   <summary>Click here to see a taxonomy file example.</summary>
