@@ -326,6 +326,7 @@ Description of column names in the output tables detecting information about det
 ## License and third-party software
 MicrobiomePrime is distributed under a ??? licence. Additionally, it redistributes the following third party software:
 - [ThermonucleotideBLAST](https://public.lanl.gov/jgans/tntblast/tntblast_doc.html)
+- [OpenMPI](https://www.open-mpi.org/)
 
 The licenses for all dependencies used in this pipeline are detailed in the NOTICE file.
 
