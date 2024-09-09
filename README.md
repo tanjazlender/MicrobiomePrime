@@ -321,7 +321,8 @@ Description of column names in the output tables detecting information about det
 **Target samples** - samples from target sources.
 
 **Target source(s)** - the environment(s) or host(s) of interest for which we aim to develop highly specific and sensitive primer pairs.
-<\small>
+
+</small>
 
 ## License and third-party software
 MicrobiomePrime is distributed under a ??? licence. Additionally, it redistributes the following third party software:
