@@ -43,7 +43,9 @@ primer_clamp = config.get('settings', 'primer_clamp')
 max_mismatch = config.get('settings', 'max_mismatch')
 
 config.read('scripts/settings.ini')
-tntblast_path = config.get('settings', 'tntblast_path')
+tntblast_path_folder = config.get('settings', 'tntblast_path')
+tntblast_executable = config.get('settings', 'tntblast_executable')
+tntblast_path = f"{tntblast_path_folder}{tntblast_executable}"
 cpus = config.get('settings', 'cpus')
 
 # Ensure the TNTBLAST executable exists
@@ -118,7 +120,6 @@ print(f"Found {len(split_files)} primer files.")
 successfully_written = False
 
 # Run ThermonucleotideBLAST on the split primer pair files
-tntblast_executable = 'tntblast'
 
 for input_file in split_files:
     number = re.search(r'\d+', input_file.stem.split('_primers')[-1]).group()
@@ -130,15 +131,16 @@ for input_file in split_files:
     # Construct the command
     if mpirun_exists:
         cmd = [
-            'mpirun', '-np', cpus,
-            str(tntblast_path) + tntblast_executable,
+            'mpirun',
+            str(tntblast_path),
             '-i', str(input_file),
             '-o', str(output_file),
             '-D', singleline_fasta
         ]
     else:
+        print("MPIrun is recommended for parallel processing.")
         cmd = [
-            str(tntblast_path) + tntblast_executable,
+            str(tntblast_path),
             '-i', str(input_file),
             '-o', str(output_file),
             '-D', singleline_fasta

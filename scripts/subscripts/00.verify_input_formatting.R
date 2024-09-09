@@ -7,6 +7,9 @@
 # Row names in relabund_tab must be the same as sample names (column "Sample") in metadata
 # The row sums of relabund_tab must be 1
 
+# Set the working directory to the project directory
+setwd("../")
+
 library(dplyr)
 
 ################################################################################
@@ -14,7 +17,23 @@ library(dplyr)
 error_messages <- list()
 warning_messages <- list()
 
-log_file <- "requirements/input_formatting_verification/input_formatting_verification.log"
+log_file <- "scripts/current_logs/00.verify_input_formatting.log"
+
+# Check if the log directory exists; if not, create it
+log_dir <- dirname(log_file)
+if (!dir.exists(log_dir)) {
+  dir.create(log_dir, recursive = TRUE)
+}
+
+# Delete the log file if it exists
+if (file.exists(log_file)) {
+  file.remove(log_file)
+}
+
+# Open a connection to the log file
+con <- file(log_file, "w")
+on.exit(close(con), add = TRUE)  # Ensure the connection is closed on exit
+
 
 # Read relabund_tab (in .tsv or .csv format)
 if (file.exists("data/input_files/relabund_tab.tsv")) {

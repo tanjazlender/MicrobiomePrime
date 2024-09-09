@@ -1,9 +1,0 @@
-Setting file paths.
-Reading the input file
-Checking for and removing any existing files in the output directory.
-Splitting primer pairs (3000 lines/file).
-Total lines in input file: 29282
-
-Primer pairs were split into 10 files.
-
-DONE: The script has completed successfully.

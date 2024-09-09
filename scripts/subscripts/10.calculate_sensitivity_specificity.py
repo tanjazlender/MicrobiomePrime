@@ -3,10 +3,11 @@ import gc
 import sys
 import pandas as pd
 import psutil
-from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import ProcessPoolExecutor, as_completed
 
 # Set up the environment
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+print(project_root)
 sys.path.insert(0, project_root)
 
 # Ensure the current working directory is the project root
@@ -94,7 +95,7 @@ def process_file(filename):
         
         # Skip to next iteration if tntblast_results is empty
         if check_if_empty(tntblast_results, filename):
-            return  # Exit function if no data to process
+            return 1  # Exit function if no data to process
     
         # Check whether given primer pairs amplify target and/or nontarget samples
         pp_presence = analysis.get_pp_presence(relabund_tab_long_metadata, tntblast_results, target)
@@ -107,7 +108,7 @@ def process_file(filename):
         
         # Skip to next iteration if primers_info is empty
         if check_if_empty(primers_info, filename):
-            return  # Exit function if no data to process
+            return 1  # Exit function if no data to process
         
         ########### Calculate sensitivity, specificity, and other metrics ###########
         # Filter tntblast_results
@@ -119,7 +120,7 @@ def process_file(filename):
         
         # Skip to next iteration if target_abundance is empty
         if check_if_empty(target_abundance, filename):
-            return  # Exit function if no data to process
+            return 1  # Exit function if no data to process
         
         nontarget_abundance = analysis.get_abundance_df(
             tntblast_results_filt, seqIDs_samples_nontarget, relabund_tab_long_metadata, taxonomy, nsamples_per_source, sample_type='nontarget')
@@ -132,7 +133,7 @@ def process_file(filename):
         
         # Skip to next iteration if sensitivity_specificity is empty
         if check_if_empty(sensitivity_specificity, filename):
-            return  # Exit function if no data to process
+            return 1  # Exit function if no data to process
     
         sensitivity_detailed = analysis.get_sensitivity_detailed(target_abundance, sensitivity_specificity)
     
@@ -159,15 +160,14 @@ def process_file(filename):
     
         ############################# Write output tables ########################## 
         # Define output file names
-        output_name_prefix_joined = f"{target_group_ID}_msens{marker_sensitivity_cutoff}_mspec{marker_specificity_cutoff}"
-        output_name_prefix_seqs = f"{target_group_ID}_msens{marker_sensitivity_cutoff}_mspec{marker_specificity_cutoff}"
+        output_name_prefix = f"{target_group_ID}_msens{marker_sensitivity_cutoff}_mspec{marker_specificity_cutoff}"
     
         # Write the joined table to a TSV file
-        joined_table_path = os.path.join(output_directory_joined, f"{output_name_prefix_joined}_markers{file_number}.tsv")
+        joined_table_path = os.path.join(output_directory_joined, f"{output_name_prefix}_markers{file_number}.tsv")
         joined.to_csv(joined_table_path, sep='\t', index=False, quoting=False, encoding='utf-8')
     
         # Write the pp_seqIDs to a TSV file
-        seqID_table_path = os.path.join(output_directory_seqs, f"{output_name_prefix_seqs}_markers{file_number}.tsv")
+        seqID_table_path = os.path.join(output_directory_seqs, f"{output_name_prefix}_seqIDs{file_number}.tsv")
         pp_seqIDs.to_csv(seqID_table_path, sep='\t', index=False, quoting=False)
     
         # Memory usage after processing
@@ -176,22 +176,55 @@ def process_file(filename):
         print(f"Finished analysing file {filename}."
               f" Memory after: {mem_info_after.rss / (1024 * 1024):.2f} MB"
               f" Virtual memory: {mem_info_after.vms / (1024 * 1024):.2f} MB")
+              
+        return 1 # Indicate success
                      
     except Exception as e:
         print(f"An unexpected error accured when processing file {filename}: {str(e)}")
+        errors.append(f"Error processing file {filename}")
         # Re-raise the exception to stop further processing
         sys.exit(1)
 
 #################################################################################
 ############################## Parallel Execution ##############################
 
+errors = []  # List to store errors
+
 # Estimate the number of workers (processes) based on available memory
 nworkers = estimate_nworkers(relabund_tab, complexity_factor=1)
 
 if __name__ == '__main__':
-    file_list = sorted(os.listdir(input_directory), key=extract_file_number)
+    file_list = sorted(os.listdir(input_directory), key=dp.extract_file_number)
     
     # Set the number of workers, or let it default to the number of CPUs
     with ProcessPoolExecutor(nworkers) as executor:
         # Submit all tasks for parallel execution
-        executor.map(process_file, file_list)
+        #executor.map(process_file, file_list)
+        futures = [executor.submit(process_file, filename) for filename in file_list]
+        
+        # Collect results as they complete
+        counter = 0
+        for future in as_completed(futures):
+            try:
+                result = future.result()
+                if result == 1:
+                    counter += 1
+            except Exception as e:
+                # Handle any exceptions raised during future.result()
+                print(f"Exception raised: {e}")
+                errors.append(f"Exception raised during processing: {str(e)}")
+                # sys.exit(1) will be triggered in process_file if needed
+
+num_files_to_analyze = len(file_list)        
+
+if errors:
+    print("Errors occurred during processing:")
+    for error in errors:
+        print(error)
+else:
+    # Count the number of files in the output folder
+    if num_files_to_analyze == counter:
+        print("DONE: The script has completed successfully.")
+    else:
+        print(f"Error: analysis terminated unexpectedly. Consider lowering the 'complexity_factor' in the 'scripts/10.calculate_sensitivity_specificity.py' script to reduce RAM usage and prevent memory overload. Files to analyze: {num_files_to_analyze}, files analyzed: {counter}")
+    

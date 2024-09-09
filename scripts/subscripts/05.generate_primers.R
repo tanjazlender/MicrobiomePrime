@@ -7,12 +7,10 @@ setwd("../")
 
 ################################################################################
 ############################### Read variables #################################
-library(config)
-library(ini)
 
 # Read parameters from variables.ini
 cat("Reading variables.\n")
-variables <- read.ini("scripts/variables.ini")
+variables <- ini::read.ini("scripts/variables.ini")
 
 kmer_sensitivity_cutoff <- as.numeric(variables$settings$kmer_sensitivity_cutoff)
 kmer_specificity_cutoff <- as.numeric(variables$settings$kmer_specificity_cutoff)
@@ -44,9 +42,6 @@ if (nchar(specificity_exception_raw) > 0) {
   # If the string is empty, set an empty character vector
   specificity_exception <- character(0)
 }
-
-detach("package:config", unload = TRUE)
-detach("package:ini", unload = TRUE)
 
 ################################################################################
 ############################# Read input files #################################

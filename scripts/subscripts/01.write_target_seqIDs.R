@@ -1,8 +1,7 @@
 # This script creates a list of Sequence IDs found in target samples.
 # This list will be used in another script to extract FASTA sequences.
 
-# Set the working directory to the parent folder (useful if running the script
-# from its originating directory).
+# Set the working directory to the project directory
 setwd("../")
 
 library(dplyr)
@@ -38,12 +37,10 @@ if (file.exists("data/input_files/metadata.tsv")) {
 
 ################################################################################
 ############################### Read variables #################################
-library(config)
-library(ini)
 
 # Read parameters from variables.ini
 cat("Reading variables.\n")
-variables <- read.ini("scripts/variables.ini")
+variables <- ini::read.ini("scripts/variables.ini")
 target_list <- strsplit(variables$settings$target, ",")
 target <- trimws(unlist(target_list))
 target_combined <- paste(target, collapse = " ")
@@ -66,9 +63,6 @@ if (length(missing_targets) > 0) {
 } else {
   cat("All defined targets are found in metadata.\n")
 }
-
-detach("package:config", unload = TRUE)
-detach("package:ini", unload = TRUE)
 
 ################################################################################
 ######################## Write sequence ID lists ###############################

@@ -13,12 +13,9 @@ library(stringr)
 ######################## Load variables and parameters #########################
 cat("Reading variables.\n")
 
-library(config)
-library(ini)
-
 # Read parameters from variables.ini
 cat("Reading variables.\n")
-variables <- read.ini("scripts/variables.ini")
+variables <- ini::read.ini("scripts/variables.ini")
 
 kmer_sensitivity_cutoff <- as.numeric(variables$settings$kmer_sensitivity_cutoff)
 kmer_specificity_cutoff <- as.numeric(variables$settings$kmer_specificity_cutoff)
@@ -52,9 +49,6 @@ if (nchar(specificity_exception_raw) > 0) {
   # If the string is empty, set an empty character vector
   specificity_exception <- character(0)
 }
-
-detach("package:config", unload = TRUE)
-detach("package:ini", unload = TRUE)
 
 ################################################################################
 ################################ Join results ##################################
@@ -122,17 +116,6 @@ for (filename in file_list){
   
   # Read results
   results_table <- read.table(filename, header = TRUE, sep = "\t")
-  
-  detected_sequences <- read.table(paste0("out/", target_group_ID, 
-                                          "/sens", kmer_sensitivity_cutoff, 
-                                          "_spec", kmer_specificity_cutoff, 
-                                          "/detected_sequences/",
-                                          target_group_ID, 
-                                          "_msens", marker_sensitivity_cutoff, 
-                                          "_mspec", marker_specificity_cutoff, 
-                                          "_seqIDs", file_number, ".tsv"), 
-                                   header = TRUE, 
-                                   sep = "\t")
   
   results_table$TmF_target <- as.character(results_table$TmF_target)
   results_table$TmR_target <- as.character(results_table$TmR_target)
