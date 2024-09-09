@@ -1,0 +1,13 @@
+Creating directories.
+Created base directory: out/Pig/sens90_spec90
+Created directory: out/Pig/sens90_spec90/marker_tables
+Created directory: out/Pig/sens90_spec90/tntblast
+Created directory: out/Pig/sens90_spec90/final_results
+Created directory: out/Pig/sens90_spec90/tntblast_tables
+Created directory: out/Pig/sens90_spec90/detected_sequences
+Created directory: out/Pig/sens90_spec90/primers/split_primer_pairs
+Created directory: out/Pig/sens90_spec90/primers/original
+Created directory: out/Pig/sens90_spec90/log_files
+Created directory: out/Pig/sens90_spec90/variables
+
+DONE: The script has completed successfully.

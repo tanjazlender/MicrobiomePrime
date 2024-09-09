@@ -1,0 +1,18 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Reading input files.
+Reading variables.
+Verifying if all specified targets are present in the metadata file.
+All defined targets are found in metadata.
+Writing sequence IDs.
+
+DONE: The script has completed successfully.
