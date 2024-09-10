@@ -232,7 +232,7 @@ if (length(max_mismatch) == 0 & length(max_primer_delta) == 0) {
 
 
 # Write error messages to input_formatting_verification.log
-success_message <- "The input files are formatted correctly."
+success_message <- "The input files are formatted correctly.\nDONE: The script has completed successfully."
 
 if (length(error_messages) > 0) {
   # Convert the list to a character vector
