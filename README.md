@@ -291,7 +291,7 @@ MicrobiomePrime generates a primary results table detailing the performance of p
 <details>
   <summary>Click to see MicrobiomePrime outputs.</summary>
 
-####1. Primary results table
+#### 1. Primary results table
 
 Description of column names in the main results table detailing the performance of primer pairs. 
 | **Column name**                      | **Definition**                                                                                                    | **Example**                                                                                     |
