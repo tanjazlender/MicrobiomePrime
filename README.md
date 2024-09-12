@@ -291,7 +291,8 @@ MicrobiomePrime generates a primary results table detailing the performance of p
 <details>
   <summary>Click to see MicrobiomePrime outputs.</summary>
 
-Description of column names in the main results table detailing the performance of primer pairs. The main output table can be found in folder path: ‘MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/final_table/’.
+**1. Primary results table**
+Description of column names in the main results table detailing the performance of primer pairs. The main output table can be found in folder path: `MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/final_table/`.
 | **Column name**                      | **Definition**                                                                                                    | **Example**                                                                                     |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
 | **PP_ID**                            | The identifier (name) of a primer pair.                                                                            | Anatids101Fw:Anatids117Rv                                                                       |
@@ -316,8 +317,8 @@ Description of column names in the main results table detailing the performance 
 | **Percent_abundance_exceptions_detailed** | The average relative abundance of exception sequences (classified neither as target nor non-target) amplified by the primer pair for each source [source (% abundance, SD)]. | Bird unknown (2.5783) |
 
 
-
-Description of column names in the output tables detecting information about detected sequence IDs. The tables can be found in folder path: ‘MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/detected_sequences/’.
+**2. Detected sequences tables**
+Description of column names in the output tables detecting information about detected sequence IDs. The tables can be found in folder path: `MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/detected_sequences/`.
 | **Column name**          | **Definition**                                                                                      | **Example**                                                                                      |
 |--------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
 | **PP_ID**                | The identifier (name) of a primer pair.                                                             | Anatids101Fw:Anatids117Rv                                                                        |
