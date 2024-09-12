@@ -70,7 +70,7 @@ For the analysis, you will need the following four files:
     Sample3 | Pig feces
     Sample4 | Human feces
     
-    </details>
+</details>
 
 
 <details>
