@@ -169,17 +169,17 @@ Ensure that the input files are formatted according to our specifications. Caref
 To adjust the MicrobiomePrime analysis to your specific needs, you can adjust variables and settings in the `variables.ini` and `settings.ini` files located in the `scripts` folder.
 
 #### Variables
-  Key variables that need to be defined are: 
+Key variables that need to be defined are: 
 
-  - `target`
-  - `kmer_size`
-  - `kmer_sensitivity_cutoff`
-  - `kmer_specificity_cutoff`
-  - `marker_sensitivity_cutoff`
-  - `marker_specificity_cutoff`
-  - `max_mismatch` and/or `max_primer_delta`
+- `target`
+- `kmer_size`
+- `kmer_sensitivity_cutoff`
+- `kmer_specificity_cutoff`
+- `marker_sensitivity_cutoff`
+- `marker_specificity_cutoff`
+- `max_mismatch` and/or `max_primer_delta`
 
-  The rest of the variables can stay undefined.
+The rest of the variables can stay undefined.
 
 
 <details>
@@ -211,9 +211,9 @@ To adjust the MicrobiomePrime analysis to your specific needs, you can adjust va
 
 #### Settings
 
-In the settings, define `tntblast_path` unless it is accessible via system's `PATH`.
-
-Define the number of CPUs and the amount of RAM only when running the code via Slurm.
+In the settings file:
+- Define `tntblast_path` unless it is accessible via system's `PATH`.
+- Define the number of CPUs and the amount of RAM only when running the code via Slurm.
 
 <details>
   <summary>See all MicrobiomePrime settings and their descriptions.</summary>
