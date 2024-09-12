@@ -272,8 +272,6 @@ In the final section, we conduct an in silico PCR analysis using the primer pair
 Source sensitivity measures how effectively the primer pair detects samples from the target source. Specificity, on the other hand, evaluates whether the primers also recognize sequences from nontarget microbiotas, ensuring they are not falsely detected in unrelated samples.
 Although 100% sensitivity and 100% specificity would be ideal, it is often challenging to achieve in practice.
 
->**Note:** The primer pairs should always be validated in the laboratory with both target and non-target samples. Test the sensitivity and specificity of the primer pairs using methods such as conventional PCR, real-time PCR, or digital PCR.
-
 ## Progress and error monitoring
 
 
@@ -333,6 +331,8 @@ Description of column names in the output tables containing the information abou
 The detected sequences tables can be found in path: `MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/detected_sequences/`.
 
 </details>
+
+>**Note:** The primer pairs should always be validated in the laboratory with both target and non-target samples. Test the sensitivity and specificity of the primer pairs using methods such as conventional PCR, real-time PCR, or digital PCR.
 
 ## Definitions
 
