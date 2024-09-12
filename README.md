@@ -62,7 +62,8 @@ The specific structure and format of each file are detailed below.
 
 <details>
 <summary>
-  **1. Metadata**</summary>
+  `1. Metadata`
+</summary>
 
 File name: `metadata.csv` or `metadata.tsv`
 
