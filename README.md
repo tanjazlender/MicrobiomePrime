@@ -50,15 +50,8 @@ Suitable software options data preprocessing include [Usearch](https://www.drive
 In the final step of data preprocessing, calculate the relative abundances of each sequence within each sample. Ensure that the preprocessed file outputs adhere to the required format specified in the "Inputs" section.
 
 ## Inputs
-Make sure that the MicrobiomePrime input files are formatted to match our example. Do not forget to check file names, row names, column names and table formatting.
 
-For the analysis itself, you will need the following four files:
-1. Metadata file
-2. Relative abundance table
-3. FASTA file
-4. Taxonomy file
-
-The specific structure and format of each file are detailed below.
+For the analysis, you will need the following four files:
 
 <details>
 <summary>1. Metadata file</summary>
@@ -162,6 +155,8 @@ Ensure that the column names in your file match our format. The first column sho
 The sequence IDs in this file should match those in the relative abundances table and FASTA file.
 
 </details>
+
+Ensure that the MicrobiomePrime input files are formatted according to our specifications. Carefully verify the file names, row names, column names, and table formatting.
 
 ## Variables and settings
 
