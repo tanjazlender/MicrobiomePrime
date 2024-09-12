@@ -214,7 +214,7 @@ The rest of the variables can stay undefined.
 In the settings file:
 
 - Define `tntblast_path` unless it is accessible via system's `PATH`.
-- Define the number of CPUs and the amount of RAM only when running the code via Slurm.
+- Define `cpus` and `memory` only when running the code via Slurm.
 
 <details>
   <summary>See all MicrobiomePrime settings and their descriptions.</summary>
