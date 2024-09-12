@@ -248,7 +248,7 @@ cd scripts/
      ```
 
 ## Code overview
-T
+
 The code consists of three main parts:
 1. Generating K-mers
 2. Creating primer pairs
@@ -332,7 +332,7 @@ Description of column names in the output tables detecting information about det
 
 ## Definitions
 
-- **K-mer** - A short nucleotide sequence, typically 18-24 bases long (the length of an optimal primer pair).
+- **K-mer** - A short nucleotide sequence, typically between 18-24 bases long (the length of an optimal primer pair).
 - **Marker** - any genetic sequence or a group of sequences that are amplified by a specific primer pair and are highly associated with a particular microbiota source.
 - **Microbiota source** - the environment from which a community of microorganisms originates, such as pig gut, human skin or soil.
 - **Non-target samples** - samples from non-target sources.
