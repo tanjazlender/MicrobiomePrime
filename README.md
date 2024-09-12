@@ -135,11 +135,14 @@ CCTTCGGGTCGTAAAGCTCTGTCCTCAAGGAAGATAATGACGGTACTTGAGGAGGAA
 TAGGGAATCTTCGGCAATGGGGGCAACCCTGACCGAGCAACGCCGCGTGAGTGAAGAAGG
 TTTTCGGATCGTAAAGCTCTGTTGTAAGAGAAGAACGTGTGTG
 ```
+
+The sequence IDs in the FASTA file should match the sequence IDs in the relative abundance and taxonomy tables.
+
 </details>
 
-The sequence IDs in this file should match the sequence IDs in the relative abundance and taxonomy tables.
 
-**4. Taxonomy**
+<details>
+<summary>4. Taxonomy file</summary>
 
 File name: `taxonomy.csv` or `taxonomy.tsv`
 
@@ -158,10 +161,10 @@ otu5 | Bacteria	| Fusobacteria	| Fusobacteriia	| Fusobacteriales	| Fusobacteriac
 otu6 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Enterococcaceae	| Enterococcus
 otu7 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	|	| 
 
-</details>
-
 Ensure that the column names in your file match our format. The first column should be named "SeqID".
 The sequence IDs in this file should match those in the relative abundances table and FASTA file.
+
+</details>
 
 ## Variables and settings
 
