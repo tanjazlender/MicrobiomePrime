@@ -166,7 +166,7 @@ The sequence IDs in this file should match those in the relative abundances tabl
 
 You can change variables and settings in the variables.ini and settings.ini files found in `scripts` folder.
 
-### Variables
+#### Variables
 To adjust the MicrobiomePrime analysis to your specific needs, you can adjust various variables and settings in the `variables.ini` and `settings.ini` files located in the `scripts` folder. Key variables that need to be defined are: 
 
 - `target`
@@ -205,7 +205,7 @@ To adjust the MicrobiomePrime analysis to your specific needs, you can adjust va
 
 
 
-### Settings
+#### Settings
 Table 5: MicrobiomePrime settings.
 
 <details>
