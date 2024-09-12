@@ -166,7 +166,7 @@ Ensure that the input files are formatted according to our specifications. Caref
 
 ## Variables and settings
 
-To adjust the MicrobiomePrime analysis to your specific needs, you can adjust various variables and settings in the `variables.ini` and `settings.ini` files located in the `scripts` folder.
+To adjust the MicrobiomePrime analysis to your specific needs, you can adjust variables and settings in the `variables.ini` and `settings.ini` files located in the `scripts` folder.
 
 #### Variables
 Key variables that need to be defined are: 
@@ -179,7 +179,7 @@ Key variables that need to be defined are:
 - `marker_specificity_cutoff`
 - `max_mismatch` and/or `max_primer_delta`
 
-The rest of the variables can stay undefined.
+  The rest of the variables can stay undefined.
 
 
 <details>
