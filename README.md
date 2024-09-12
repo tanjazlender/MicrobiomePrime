@@ -60,9 +60,7 @@ File name: `metadata.csv` or `metadata.tsv`
 
 This file contains the information about the samples being analysed. 
 
-The key metadata information is the source of microbiota.
-
-The metadata file should contain columns `Sample` and `Source`.
+The metadata file should include columns labeled `Sample`, which represents the names of the samples, and `Source`, which indicates the source of the microbiota for each sample. 
 
 Example metadata table:
 Sample | Source 
