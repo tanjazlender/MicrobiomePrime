@@ -61,15 +61,14 @@ For the analysis itself, you will need the following four files:
 The specific structure and format of each file are detailed below.
 
 <details>
-<summary>
-  `1. Metadata`
-</summary>
+<summary>1. Metadata file</summary>
 
 File name: `metadata.csv` or `metadata.tsv`
 
-This is a file that contains the information about the samples being analysed. To this analysis the key metadata information is the source of microbiota.
+This file contains the information about the samples being analysed. The key metadata information is the source of microbiota.
 The metadata file should contain columns: `Sample` and `Source`.
 
+Example metadata table:
 Sample | Source 
 --- | --- 
 Sample1 | Human feces 
@@ -79,7 +78,9 @@ Sample4 | Human feces
 
 </details>
 
-**2. Relative abundance table**
+
+<details>
+<summary>2. Relative abundance table</summary>
 
 File name: `relabund_tab.csv` or `relabund_tab.tsv`
 
@@ -87,8 +88,7 @@ This table provides the relative abundances of various microbial sequences (iden
 
 The sum of each row should be 1.
 
-<details>
-  <summary>Click here to see an example of a table with relative abundances.</summary>
+Example table with relative abundances:
 
 |        | Otu1   | Otu2   | Otu3   | Otu4   | Otu5   | Otu6   | Otu7   |
 |--------|--------|--------|--------|--------|--------|--------|--------|
@@ -99,14 +99,16 @@ The sum of each row should be 1.
 
 </details>
 
-**3. FASTA file**
+
+
+<details>
+<summary>3. FASTA file</summary>
 
 File name: `sequences.fa`
 
 This file contains the DNA sequences detected in the samples in a FASTA format. Each sequence is associated with a unique identifier or sequence ID (e.g. OTU001, OTU002, OTU003,...).
 
-<details>
-  <summary>Click here to see a FASTA file example.</summary>
+Example metadata file:
 
 ```plaintext
 >Otu1
