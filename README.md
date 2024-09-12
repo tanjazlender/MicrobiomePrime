@@ -260,22 +260,19 @@ In the first part, amplicon sequences are split into K-mers that are length of a
 
 #### Section 2: Creating primer pairs
 Primers are essentially K-mers produced in Section 1. 
-When designing primer pairs, we use two key thresholds:
+When designing primer pairs, we use two key cutoffs:
 - kmer_sensitivity_cutoff
 - kmer_specificity_cutoff
   
-For a primer pair to be considered valid, both primers must meet or exceed the kmer_sensitivity_threshold. Additionally, at least one of the primers must meet or exceed the kmer_specificity_threshold.
+For a primer pair to be considered valid, both primers must meet or exceed the kmer_sensitivity_cutoff. Additionally, at least one of the primers must meet or exceed the kmer_specificity_cutoff.
 
-Here are some important factors to consider when setting thresholds for primer pairs:
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+>Note: The `kmer_sensitivity_cutoff` and `marker_sensitivity_cutoff` are related but serve different purposes. The `kmer_sensitivity_cutoff` is used prior to creating primer pairs, determining the minimum proportion of target samples that must contain the K-mer for it to be considered a valid primer. The `marker_sensitivity_cutoff` applies to the final marker and reflects the sensitivity of the entire marker amplification, which is influenced by the performance of both (forward and reverse) primers.
+>Similarly, the `kmer_specificity_cutoff` and `marker_sensitivity_cutoff` are related but serve different purposes. The `kmer_specificity_cutoff` is used prior to creating primer pairs and determines the minimum proporion of non-target samples that do not contain the K-mer for it to be considered a valid primer. The `marker_specificity_cutoff` applies to the final marker and reflects the specificity of the entire marker amplification, which is influenced by the performance of both (forward and reverse) primers.
 
 #### Section 3: Assessing the sensitivity and specificity of primer pairs in an *in silico* PCR analysis
 In the final section, we conduct an in silico PCR analysis using the primer pairs generated in Section 2. The main two parameters we calculate here are source sensitivity and specificity.
 Source sensitivity measures how effectively the primer pair detects samples from the target source. Specificity, on the other hand, evaluates whether the primers also recognize sequences from nontarget microbiotas, ensuring they are not falsely detected in unrelated samples.
 Although 100% sensitivity and 100% specificity would be ideal, it is often challenging to achieve in practice.
-
-Write about marker_sensitivity_threshold and marker_specificity_threshold
 
 >**Note:** The primer pairs should always be validated in the laboratory with both target and non-target samples. Test the sensitivity and specificity of the primer pairs using methods such as conventional PCR, real-time PCR, or digital PCR.
 ## Progress and error monitoring
