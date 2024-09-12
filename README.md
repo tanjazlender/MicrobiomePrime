@@ -79,7 +79,6 @@ Sample4 | Human feces
 File name: `relabund_tab.csv` or `relabund_tab.tsv`
 
 This table provides the relative abundances of various microbial sequences (identified as OTUs, ASVs, or ZOTUs or any other sequence ID) across different samples. 
-
 Each row corresponds to a specific sample, and each column represents a unique sequence ID. 
 
 The sum of each row should be 1.
@@ -145,8 +144,9 @@ The sequence IDs in the FASTA file should match the sequence IDs in the relative
 File name: `taxonomy.csv` or `taxonomy.tsv`
 
 This file contains the taxonomic classification of the sequences identified in the samples. 
-
 Each sequence ID is assigned to different taxonomic ranks, such as domain, phylum, class, order, family, and genus.
+
+The table should contain the following column names: `SeqID`, `Domain`, `Phylum`, `Class`, `Order`, `Family` and `Genus`. If a sequence cannot be identified at a particular taxonomic level, leave the corresponding cell empty. 
 
 SeqID | Domain | Phylum | Class | Order | Family | Genus  
 --- | --- | --- | --- | --- | --- | ---
