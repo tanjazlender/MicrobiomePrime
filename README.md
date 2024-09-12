@@ -7,8 +7,8 @@ You can find more about MicrobiomePrime at: (link available soon)
 - Data preprocessing
 - Inputs
 - Variables and settings
-- Running the code
 - Code overview
+- Running the code
 - Progress and error monitoring
 - Outputs
 - Definitions
@@ -229,6 +229,48 @@ Setting | Explanation | Example
 
 </details>
 
+
+## Code overview
+
+The code consists of four main sections:
+
+Section 1: Preparing the data
+
+In this section, the data is prepared for K-mer generation.
+
+It consists of the following subscripts found in the `scripts/subscripts` folder:
+- 00.verify_input_formatting.R: verifies whether the input is formatted correctly.
+- 01.write_target_seqIDs.R: creates a list of sequence IDs found in target samples.
+- 02.extract_fasta_files.py: extract FASTA sequences based on the list of sequence IDs found in target samples.
+- 03.organize_directories.py: creates and organizes directories for storing analysis outputs.
+
+<details>
+<summary> Section 2: Generating K-mers</summary>
+
+In the second section, amplicon sequences are split into K-mers that are length of a primer. The sequences are split in a one bp window slide approach as shown on the picture below.
+<p align="center">
+  <img src="https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/0300193e-dc1b-44b1-bc9f-6231b781fafb" alt="splitting kmers_small">
+</p>
+
+The first part encompasses the following scripts found in the `scripts/subscripts/` path.
+
+
+
+</details>
+
+#### Section 2: Creating primer pairs
+Primers are essentially K-mers produced in Section 1. 
+When designing primer pairs, we use two key cutoffs:
+- kmer_sensitivity_cutoff
+- kmer_specificity_cutoff
+  
+For a primer pair to be considered valid, both primers must meet or exceed the kmer_sensitivity_cutoff. Additionally, at least one of the primers must meet or exceed the kmer_specificity_cutoff.
+
+#### Section 3: Assessing the sensitivity and specificity of primer pairs in an *in silico* PCR analysis
+In the final section, we conduct an in silico PCR analysis using the primer pairs generated in Section 2. The main two parameters we calculate here are source sensitivity and specificity.
+Source sensitivity measures how effectively the primer pair detects samples from the target source. Specificity, on the other hand, evaluates whether the primers also recognize sequences from nontarget microbiotas, ensuring they are not falsely detected in unrelated samples.
+Although 100% sensitivity and 100% specificity would be ideal, it is often challenging to achieve in practice.
+
 ## Running the code
 **1. Navigate to the `scripts` directory:**
 ```
@@ -245,32 +287,6 @@ cd scripts/
      ```bash
      bash find_primer_pairs.sh
      ```
-
-## Code overview
-
-The code consists of three main parts:
-1. Generating K-mers
-2. Creating primer pairs
-3. Assessing the sensitivity and specificity of primer pairs in an *in silico* PCR analysis
-
-#### Section 1: Generating K-mers
-In the first part, amplicon sequences are split into K-mers that are length of a primer. The sequences are split in a one bp window slide approach as shown on the picture below.
-<p align="center">
-  <img src="https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/0300193e-dc1b-44b1-bc9f-6231b781fafb" alt="splitting kmers_small">
-</p>
-
-#### Section 2: Creating primer pairs
-Primers are essentially K-mers produced in Section 1. 
-When designing primer pairs, we use two key cutoffs:
-- kmer_sensitivity_cutoff
-- kmer_specificity_cutoff
-  
-For a primer pair to be considered valid, both primers must meet or exceed the kmer_sensitivity_cutoff. Additionally, at least one of the primers must meet or exceed the kmer_specificity_cutoff.
-
-#### Section 3: Assessing the sensitivity and specificity of primer pairs in an *in silico* PCR analysis
-In the final section, we conduct an in silico PCR analysis using the primer pairs generated in Section 2. The main two parameters we calculate here are source sensitivity and specificity.
-Source sensitivity measures how effectively the primer pair detects samples from the target source. Specificity, on the other hand, evaluates whether the primers also recognize sequences from nontarget microbiotas, ensuring they are not falsely detected in unrelated samples.
-Although 100% sensitivity and 100% specificity would be ideal, it is often challenging to achieve in practice.
 
 ## Progress and error monitoring
 
