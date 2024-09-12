@@ -237,9 +237,8 @@ The code consists of four main sections:
 <details>
 <summary> Section 1: Preparing the data</summary>
 
-In this section, the data is prepared for K-mer generation.
+This section prepares the data for K-mer generation using the following subscripts from the `scripts/subscripts` folder:
 
-It consists of the following subscripts found in the `scripts/subscripts` folder:
 - 00.verify_input_formatting.R: verifies whether the input is formatted correctly.
 - 01.write_target_seqIDs.R: creates a list of sequence IDs found in target samples.
 - 02.extract_fasta_files.py: extract FASTA sequences based on the list of sequence IDs found in target samples.
@@ -256,22 +255,56 @@ In the second section, amplicon sequences are split into K-mers that are length 
   <img src="https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/0300193e-dc1b-44b1-bc9f-6231b781fafb" alt="splitting kmers_small">
 </p>
 
-This section encompasses the following scripts found in the `scripts/subscripts` folder.
+A K-mer is considered invalid and is excluded from the analysis if it contains:
+- homopolymeric runs (four or more identical nucleotides in a row),
+- simple repeats (repeated sequences of four or more nucleotides) or
+- inverse repeats (self-complementary sequence motifs of four or more nucleotides).
+
+This is because in the following steps of the analysis, valid K-mers will be used as primers. And primers with the patterns described above are typically inefficient, leading to reduced amplification performance.
+
+This section encompasses a single script found in the `scripts/subscripts` folder:
+- 04.extract_valid_kmers.py: this script extracts K-mers according to the criteria described above.
 
 </details>
 
-#### Section 2: Creating primer pairs
-Primers are essentially K-mers produced in Section 1. 
+
+
+<details>
+<summary> Section 3: Generating primer pairs</summary>
+
+Primers are essentially K-mers produced in Section 2. 
 When designing primer pairs, we use two key cutoffs:
 - kmer_sensitivity_cutoff
 - kmer_specificity_cutoff
   
 For a primer pair to be considered valid, both primers must meet or exceed the kmer_sensitivity_cutoff. Additionally, at least one of the primers must meet or exceed the kmer_specificity_cutoff.
 
-#### Section 3: Assessing the sensitivity and specificity of primer pairs in an *in silico* PCR analysis
-In the final section, we conduct an in silico PCR analysis using the primer pairs generated in Section 2. The main two parameters we calculate here are source sensitivity and specificity.
-Source sensitivity measures how effectively the primer pair detects samples from the target source. Specificity, on the other hand, evaluates whether the primers also recognize sequences from nontarget microbiotas, ensuring they are not falsely detected in unrelated samples.
-Although 100% sensitivity and 100% specificity would be ideal, it is often challenging to achieve in practice.
+This section includes the following scripts found in the `scripts/subscripts` folder:
+- 05.generate_primers.R: this script generates primers by filtering K-mers based on their sensitivity and specificity.
+- 06.generate_PPs.py: this script combines the primers from the previous script into primer pairs.
+
+</details>
+
+
+
+
+<details>
+<summary> Section 4: Assessing the sensitivity and specificity of primer pairs in an *in silico* PCR analysis</summary>
+
+In the final section, we conduct an in silico PCR analysis using the primer pairs generated in Section 3. Based on the results, performance metrics including marker sensitivity and marker specificity are calculated.
+
+> Note: Although 100% sensitivity and 100% specificity would be ideal, it is often challenging to achieve in practice.
+
+This section includes the following scripts found in the `scripts/subscripts` folder:
+- 07.split_PP_lists.py: this script divides the lists of primer pairs into smaller sets to facilitate easier analysis and to produce more manageable intermediate output files.
+- 08.run_tntblast.py: this script uses the ThermonucleotideBLAST program to perform in silico PCR with the generated primer pairs.
+- 09.rearrange_tntblast_output.py: rearranges the ThermonucleotideBLAST output into a table format.
+- 10.calculate_sensitivity_specificity.py: calculates marker sensitivity, specificity and other performance criteria.
+- 11.join_all_results.R: joins all performance criteria and primer information into a single file.
+
+</details>
+
+
 
 ## Running the code
 **1. Navigate to the `scripts` directory:**
