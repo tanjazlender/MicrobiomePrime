@@ -343,7 +343,7 @@ Description of column names in the output tables detecting information about det
 
 >**Target samples** - samples from target sources.
 
-<p style="font-size:11px;">**Target source(s)** - the environment(s) or host(s) of interest for which we aim to develop highly specific and sensitive primer pairs. </p>
+>**Target source(s)** - the environment(s) or host(s) of interest for which we aim to develop highly specific and sensitive primer pairs.
 
 
 ## License and third-party software
