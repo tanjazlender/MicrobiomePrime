@@ -53,7 +53,7 @@ In the final step of data preprocessing, calculate the relative abundances of ea
 Make sure that the MicrobiomePrime input files are formatted to match our example. Do not forget to check file names, row names, column names and table formatting.
 
 For the analysis itself, you will need the following four files:
-1. <summary>Metadata file</summary>
+1.  <summary> Metadata file </summary>
 File name: `metadata.csv` or `metadata.tsv`
 
 This is a file that contains the information about the samples being analysed. To this analysis the key metadata information is the source of microbiota.
