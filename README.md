@@ -292,7 +292,8 @@ MicrobiomePrime generates a primary results table detailing the performance of p
   <summary>Click to see MicrobiomePrime outputs.</summary>
 
 **1. Primary results table**
-Description of column names in the main results table detailing the performance of primer pairs. The main output table can be found in folder path: `MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/final_table/`.
+
+Description of column names in the main results table detailing the performance of primer pairs. 
 | **Column name**                      | **Definition**                                                                                                    | **Example**                                                                                     |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
 | **PP_ID**                            | The identifier (name) of a primer pair.                                                                            | Anatids101Fw:Anatids117Rv                                                                       |
@@ -316,9 +317,11 @@ Description of column names in the main results table detailing the performance 
 | **N_detected_exception_samples**     | Number of detected samples that are neither classified as target nor non-target [source (number of detected samples from source/number of all samples from source)]. | Bird unknown (1/7)                                                                             |
 | **Percent_abundance_exceptions_detailed** | The average relative abundance of exception sequences (classified neither as target nor non-target) amplified by the primer pair for each source [source (% abundance, SD)]. | Bird unknown (2.5783) |
 
+The primary results table can be found in path: `MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/final_table/`.
 
 **2. Detected sequences tables**
-Description of column names in the output tables detecting information about detected sequence IDs. The tables can be found in folder path: `MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/detected_sequences/`.
+
+Description of column names in the output tables detecting information about detected sequence IDs. 
 | **Column name**          | **Definition**                                                                                      | **Example**                                                                                      |
 |--------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
 | **PP_ID**                | The identifier (name) of a primer pair.                                                             | Anatids101Fw:Anatids117Rv                                                                        |
@@ -328,6 +331,8 @@ Description of column names in the output tables detecting information about det
 | **N_seqIDs_target**      | The number of sequence IDs from non-target sequences that were amplified by the primer pair.        | 8                                                                                                |
 | **N_seqIDs_nontarget**   | The number of sequence IDs from non-target sequences that were amplified by the primer pair.        | 3                                                                                                |
 | **File_number**          | The specific number assigned to each file in the analysis. This number helps locate intermediate results generated during the analysis. | 6 |
+
+The detected sequences tables can be found in path: `MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/detected_sequences/`.
 
 </details>
 
