@@ -181,10 +181,6 @@ Key variables that need to be defined are:
 
 The rest of the variables can stay undefined.
 
->Note: The `kmer_sensitivity_cutoff` and `marker_sensitivity_cutoff` are related but serve different purposes. The `kmer_sensitivity_cutoff` is used prior to creating primer pairs, determining the minimum proportion of target samples that must contain the K-mer for it to be considered a valid primer. The `marker_sensitivity_cutoff` applies to the final marker and reflects the sensitivity of the entire marker amplification, which is influenced by the performance of both (forward and reverse) primers.
-
->Similarly, the `kmer_specificity_cutoff` and `marker_sensitivity_cutoff` are related but serve different purposes. The `kmer_specificity_cutoff` is used prior to creating primer pairs and determines the minimum proporion of non-target samples that do not contain the K-mer for it to be considered a valid primer. The `marker_specificity_cutoff` applies to the final marker and reflects the specificity of the entire marker amplification, which is influenced by the performance of both (forward and reverse) primers.
-
 <details>
   <summary>See all MicrobiomePrime variables and their descriptions</summary>
 
@@ -210,7 +206,9 @@ The rest of the variables can stay undefined.
 *The examples in this table do not correspond with the example dataset, where there is only one target source - Pig feces.
 </details>
 
+>Note: The `kmer_sensitivity_cutoff` and `marker_sensitivity_cutoff` are related but serve different purposes. The `kmer_sensitivity_cutoff` is used prior to creating primer pairs, determining the minimum proportion of target samples that must contain the K-mer for it to be considered a valid primer. The `marker_sensitivity_cutoff` applies to the final marker and reflects the sensitivity of the entire marker amplification, which is influenced by the performance of both (forward and reverse) primers.
 
+>Similarly, the `kmer_specificity_cutoff` and `marker_sensitivity_cutoff` are related but serve different purposes. The `kmer_specificity_cutoff` is used prior to creating primer pairs and determines the minimum proporion of non-target samples that do not contain the K-mer for it to be considered a valid primer. The `marker_specificity_cutoff` applies to the final marker and reflects the specificity of the entire marker amplification, which is influenced by the performance of both (forward and reverse) primers.
 
 #### Settings
 
