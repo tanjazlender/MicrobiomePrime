@@ -225,16 +225,18 @@ Setting | Explanation | Example
 cd scripts/
 ```
 2. Run the script:
-a) To run the script using Slurm, execute the following command:
-```
-bash submit_slurm_job.sh
-```
 
-b) To run the script directly in a Linux environment without Slurm, use:
-```
-bash find_primer_pairs.sh
-```
+   - **To run the script using Slurm**, execute the following command::  
+     To submit the script as a Slurm job, execute the following command:
+     ```bash
+     bash submit_slurm_job.sh
+     ```
 
+   - **To run the script directly in a Linux environment** without Slurm, use:  
+     To run the script directly in a standard Linux environment, execute:
+     ```bash
+     bash find_primer_pairs.sh
+     ```
 
 ## Code overview
 T
