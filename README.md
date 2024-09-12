@@ -3,7 +3,7 @@ MicrobiomePrime is a tool for identifying primer pairs with high specificity and
 You can find more about MicrobiomePrime at: (link available soon)
 
 ## Contents
-- Installation
+- Installation and requirements
 - Data preprocessing
 - Inputs
 - Variables and settings
@@ -13,10 +13,8 @@ You can find more about MicrobiomePrime at: (link available soon)
 - Outputs
 - Definitions
 
-## Installation
+## Installation and requirements
 MicrobiomePrime is intended to be run in a x86-64 Linux OS (tested on Ubuntu). 
-
->Note: Due to the complexity and high computational demands of sequencing data, using a High Performance Computing (HPC) system may be necessary to ensure efficient processing and analysis of large datasets.
 
 **1. Create a conda environment**
 
@@ -33,6 +31,8 @@ Once the environment named MicrobiomePrime is created, activate it using:
 ```
 conda activate MicrobiomePrime
 ```
+
+>Note: Due to the complexity and high computational demands of sequencing data, using a High Performance Computing (HPC) system may be necessary to ensure efficient processing and analysis of large datasets.
 
 **3. Install ThermonucleotideBLAST**
 
