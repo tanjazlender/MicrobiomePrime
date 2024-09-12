@@ -156,7 +156,7 @@ The sequence IDs in this file should match those in the relative abundances tabl
 
 </details>
 
-Ensure that the MicrobiomePrime input files are formatted according to our specifications. Carefully verify the file names, row names, column names, and table formatting.
+Ensure that the input files are formatted according to our specifications. Carefully verify the file names, row names, column names, and table formatting.
 
 ## Variables and settings
 
