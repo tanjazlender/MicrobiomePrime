@@ -54,7 +54,7 @@ In the final step of data preprocessing, calculate the relative abundances of ea
 For the analysis, you will need the following four files:
 
 <details>
-<summary>1. Metadata file</summary>
+<summary> Metadata file</summary>
 
 File name: `metadata.csv` or `metadata.tsv`
 
@@ -73,7 +73,7 @@ Sample4 | Human feces
 
 
 <details>
-<summary>2. Relative abundance table</summary>
+<summary> Relative abundance table</summary>
 
 File name: `relabund_tab.csv` or `relabund_tab.tsv`
 
@@ -95,7 +95,7 @@ Example table with relative abundances:
 
 
 <details>
-<summary>3. FASTA file</summary>
+<summary> FASTA file</summary>
 
 File name: `sequences.fa`
 
@@ -135,7 +135,7 @@ The sequence IDs in the FASTA file should match the sequence IDs in the relative
 
 
 <details>
-<summary>4. Taxonomy file</summary>
+<summary> Taxonomy file</summary>
 
 File name: `taxonomy.csv` or `taxonomy.tsv`
 
