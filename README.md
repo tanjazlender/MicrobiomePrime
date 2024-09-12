@@ -291,7 +291,9 @@ MicrobiomePrime generates a primary results table detailing the performance of p
 <details>
   <summary>Primary results table</summary>
 
-Description of column names in the main results table detailing the performance of primer pairs. 
+The primary results table provides detailed metrics on primer pair performance, including specificity, sensitivity, and abundance measures. 
+
+Description of column names in the main results table detailing the performance of primer pairs:
 | **Column name**                      | **Definition**                                                                                                    | **Example**                                                                                     |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
 | **PP_ID**                            | The identifier (name) of a primer pair.                                                                            | Anatids101Fw:Anatids117Rv                                                                       |
@@ -321,6 +323,8 @@ The primary results table can be found in path: `MicrobiomePrime/out/{Source}/se
 
 <details>
   <summary>Detected sequences tables</summary>
+
+The output tables provide detailed information about detected sequences for each primer pair. 
 
 Description of column names in the output tables containing the information about detected sequences. 
 | **Column name**          | **Definition**                                                                                      | **Example**                                                                                      |
