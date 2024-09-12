@@ -61,15 +61,15 @@ For the analysis, you will need the following four files:
     This file contains the information about the samples being analysed. 
     
     The metadata file should include columns labeled `Sample`, which represents the names of the samples, and `Source`, which indicates the source of the microbiota for each sample. 
-    
-    Example metadata table:
-    Sample | Source 
-    --- | --- 
-    Sample1 | Human feces 
-    Sample2 | Cattle feces
-    Sample3 | Pig feces
-    Sample4 | Human feces
-    
+
+Example metadata table:
+Sample | Source 
+--- | --- 
+Sample1 | Human feces 
+Sample2 | Cattle feces
+Sample3 | Pig feces
+Sample4 | Human feces
+
 </details>
 
 
