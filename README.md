@@ -53,36 +53,20 @@ In the final step of data preprocessing, calculate the relative abundances of ea
 Make sure that the MicrobiomePrime input files are formatted to match our example. Do not forget to check file names, row names, column names and table formatting.
 
 For the analysis itself, you will need the following four files:
-1.  <summary> Metadata file </summary>
-File name: `metadata.csv` or `metadata.tsv`
-
-This is a file that contains the information about the samples being analysed. To this analysis the key metadata information is the source of microbiota.
-The metadata file should contain columns: `Sample` and `Source`.
-
-Sample | Source 
---- | --- 
-Sample1 | Human feces 
-Sample2 | Cattle feces
-Sample3 | Pig feces
-Sample4 | Human feces
-
-</details>
-
+1. Metadata file
 2. Relative abundance table
 3. FASTA file
 4. Taxonomy file
 
 The specific structure and format of each file are detailed below.
 
-**1. Metadata**
+<details>
+<summary>**1. Metadata**</summary>
 
 File name: `metadata.csv` or `metadata.tsv`
 
 This is a file that contains the information about the samples being analysed. To this analysis the key metadata information is the source of microbiota.
 The metadata file should contain columns: `Sample` and `Source`.
-
-<details>
-  <summary>Click here to see an example metadata file.</summary>
 
 Sample | Source 
 --- | --- 
