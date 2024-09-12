@@ -321,7 +321,7 @@ The primary results table can be found in path: `MicrobiomePrime/out/{Source}/se
 
 **2. Detected sequences tables**
 
-Description of column names in the output tables detecting information about detected sequence IDs. 
+Description of column names in the output tables containing the information about detected sequences. 
 | **Column name**          | **Definition**                                                                                      | **Example**                                                                                      |
 |--------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
 | **PP_ID**                | The identifier (name) of a primer pair.                                                             | Anatids101Fw:Anatids117Rv                                                                        |
