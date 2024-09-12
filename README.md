@@ -148,9 +148,6 @@ File name: `taxonomy.csv` or `taxonomy.tsv`
 
 This file contains the taxonomic classification of the sequences identified in the samples. Each sequence ID is assigned to different taxonomic ranks, such as domain, phylum, class, order, family, and genus.
 
-<details>
-  <summary>Click here to see a taxonomy file example.</summary>
-
 SeqID | Domain | Phylum | Class | Order | Family | Genus  
 --- | --- | --- | --- | --- | --- | ---
 otu1 | Bacteria	| Firmicutes	| Clostridia	| Clostridiales	| Peptostreptococcaceae	| Romboutsia
