@@ -324,9 +324,7 @@ Description of column names in the output tables detecting information about det
 ## Definitions
 
 >**K-mer** - A short nucleotide sequence, typically 18-24 bases long (the length of an optimal primer pair).
-
 >**Marker** - any genetic sequence or a group of sequences that are amplified by a specific primer pair and are highly associated with a particular microbiota source.
-
 >**Microbiota source** - the environment from which a community of microorganisms originates, such as pig gut, human skin or soil.
 
 >**Non-target samples** - samples from non-target sources.
@@ -343,7 +341,7 @@ Description of column names in the output tables detecting information about det
 
 >**Target samples** - samples from target sources.
 
-<p style="font-size:small;">**Target source(s)** - the environment(s) or host(s) of interest for which we aim to develop highly specific and sensitive primer pairs.</p>
+>**Target source(s)** - the environment(s) or host(s) of interest for which we aim to develop highly specific and sensitive primer pairs.
 
 
 ## License and third-party software
