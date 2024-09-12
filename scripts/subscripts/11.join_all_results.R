@@ -117,14 +117,17 @@ for (filename in file_list){
   # Read results
   results_table <- read.table(filename, header = TRUE, sep = "\t")
   
+  # Convert to character to ensure compatibility when joining tables
   results_table$TmF_target <- as.character(results_table$TmF_target)
   results_table$TmR_target <- as.character(results_table$TmR_target)
   results_table$TmF_nontarget <- as.character(results_table$TmF_nontarget)
   results_table$TmR_nontarget <- as.character(results_table$TmR_nontarget)
   results_table$Amplicon_sizes_target <- as.character(results_table$Amplicon_sizes_target)
   results_table$Amplicon_sizes_nontarget <- as.character(results_table$Amplicon_sizes_nontarget)
-  results_table$File_number <- file_number
-  
+  results_table$Percent_abundance_target <- as.character(results_table$Percent_abundance_target)
+  results_table$Percent_abundance_nontarget <- as.character(results_table$Percent_abundance_nontarget)
+  results_table$Percent_abundance_target_detailed <- as.character(results_table$Percent_abundance_target_detailed)
+  results_table$Percent_abundance_nontarget_detailed <- as.character(results_table$Percent_abundance_nontarget_detailed)
   
   # Append filtered results to the final_results data frame
   final_results <- dplyr::bind_rows(final_results, results_table)
