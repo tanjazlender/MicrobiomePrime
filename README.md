@@ -158,7 +158,6 @@ otu5 | Bacteria	| Fusobacteria	| Fusobacteriia	| Fusobacteriales	| Fusobacteriac
 otu6 | Bacteria	| Firmicutes	| Bacilli	| Lactobacillales	| Enterococcaceae	| Enterococcus
 otu7 | Bacteria	| Bacteroidetes	| Bacteroidia	| Bacteroidales	|	| 
 
-Ensure that the column names in your file match our format. The first column should be named "SeqID".
 The sequence IDs in this file should match those in the relative abundances table and FASTA file.
 
 </details>
