@@ -166,11 +166,10 @@ Ensure that the input files are formatted according to our specifications. Caref
 
 ## Variables and settings
 
-
-You can change variables and settings in the variables.ini and settings.ini files found in `scripts` folder.
+To adjust the MicrobiomePrime analysis to your specific needs, you can adjust various variables and settings in the `variables.ini` and `settings.ini` files located in the `scripts` folder.
 
 #### Variables
-To adjust the MicrobiomePrime analysis to your specific needs, you can adjust various variables and settings in the `variables.ini` and `settings.ini` files located in the `scripts` folder. Key variables that need to be defined are: 
+Key variables that need to be defined are: 
 
 - `target`
 - `kmer_size`
@@ -180,9 +179,11 @@ To adjust the MicrobiomePrime analysis to your specific needs, you can adjust va
 - `marker_specificity_cutoff`
 - `max_mismatch` and/or `max_primer_delta`
 
+The rest of the variables can stay undefined.
+
 
 <details>
-  <summary>Click to see the details of MicrobiomePrime variables.</summary>
+  <summary>See all MicrobiomePrime variables and their descriptions</summary>
 
 | Variable                 | Explanation                                                                                               | Example                              | Default Value |
 |--------------------------|-----------------------------------------------------------------------------------------------------------|--------------------------------------|---------------|
@@ -209,11 +210,15 @@ To adjust the MicrobiomePrime analysis to your specific needs, you can adjust va
 
 
 #### Settings
-Table 5: MicrobiomePrime settings.
+
+In the settings, define `tntblast_path` unless it is accessible via system's `PATH`.
+
+Define the number of CPUs and the amount of RAM only when running the code via Slurm.
 
 <details>
-  <summary>Click to see MicrobiomePrime settings.</summary>
-  
+  <summary>See all MicrobiomePrime settings and their descriptions.</summary>
+
+MicrobiomePrime settings:
 Setting | Explanation | Example 
 --- | --- | --- 
 `tntblast_path` | The path of ThermonucleotideBLAST on your computer. Leave empty if the executable is accessible via system's `PATH`.  | `tntblast_path=/usr/bin/thermonucleotideBLAST/tntblast` 
