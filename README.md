@@ -7,6 +7,7 @@ You can find more about MicrobiomePrime at: (link available soon)
 - Data preprocessing
 - Inputs
 - Variables and settings
+- Running the code
 - Code overview
 - Progress and error monitoring
 - Outputs
@@ -217,6 +218,23 @@ Setting | Explanation | Example
 `memory` | Amount of RAM (in GB) available for this analysis. Ensure that you allocate sufficient memory based on your input data requirements. | `memory=500` 
 
 </details>
+
+## Running the code
+1. Navigate to the scripts directory:
+```
+cd scripts/
+```
+2. Run the script:
+a) To run the script using Slurm, execute the following command:
+```
+bash submit_slurm_job.sh
+```
+
+b) To run the script directly in a Linux environment without Slurm, use:
+```
+bash find_primer_pairs.sh
+```
+
 
 ## Code overview
 T
