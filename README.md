@@ -234,7 +234,8 @@ Setting | Explanation | Example
 
 The code consists of four main sections:
 
-Section 1: Preparing the data
+<details>
+<summary> Section 1: Preparing the data</summary>
 
 In this section, the data is prepared for K-mer generation.
 
@@ -244,6 +245,9 @@ It consists of the following subscripts found in the `scripts/subscripts` folder
 - 02.extract_fasta_files.py: extract FASTA sequences based on the list of sequence IDs found in target samples.
 - 03.organize_directories.py: creates and organizes directories for storing analysis outputs.
 
+</details>
+
+
 <details>
 <summary> Section 2: Generating K-mers</summary>
 
@@ -252,9 +256,7 @@ In the second section, amplicon sequences are split into K-mers that are length 
   <img src="https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/0300193e-dc1b-44b1-bc9f-6231b781fafb" alt="splitting kmers_small">
 </p>
 
-The first part encompasses the following scripts found in the `scripts/subscripts/` path.
-
-
+This section encompasses the following scripts found in the `scripts/subscripts` folder.
 
 </details>
 
