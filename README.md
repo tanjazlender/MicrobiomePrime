@@ -245,13 +245,13 @@ The code consists of three main parts:
 2. Creating primer pairs
 3. Assessing the sensitivity and specificity of primer pairs in an *in silico* PCR analysis
 
-### Section 1: Generating K-mers
+#### Section 1: Generating K-mers
 In the first part, amplicon sequences are split into K-mers that are length of a primer. The sequences are split in a one bp window slide approach as shown on the picture below.
 <p align="center">
   <img src="https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/0300193e-dc1b-44b1-bc9f-6231b781fafb" alt="splitting kmers_small">
 </p>
 
-### Section 2: Creating primer pairs
+#### Section 2: Creating primer pairs
 Primers are essentially K-mers produced in Section 1. 
 When designing primer pairs, we use two key thresholds:
 - kmer_sensitivity_cutoff
@@ -263,7 +263,7 @@ Here are some important factors to consider when setting thresholds for primer p
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-### Section 3: Assessing the sensitivity and specificity of primer pairs in an *in silico* PCR analysis
+#### Section 3: Assessing the sensitivity and specificity of primer pairs in an *in silico* PCR analysis
 In the final section, we conduct an in silico PCR analysis using the primer pairs generated in Section 2. The main two parameters we calculate here are source sensitivity and specificity.
 Source sensitivity measures how effectively the primer pair detects samples from the target source. Specificity, on the other hand, evaluates whether the primers also recognize sequences from nontarget microbiotas, ensuring they are not falsely detected in unrelated samples.
 Although 100% sensitivity and 100% specificity would be ideal, it is often challenging to achieve in practice.
