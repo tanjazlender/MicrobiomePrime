@@ -27,7 +27,7 @@ run_and_check() {
     fi
 }
 
-# Create a list of sequence IDs found in target samples
+# Verify input formatting
 run_and_check "Rscript subscripts/00.verify_input_formatting.R" "${current_log_path}/00.verify_input_formatting.log"
 
 # Create a list of sequence IDs found in target samples
@@ -36,11 +36,11 @@ run_and_check "Rscript subscripts/01.write_target_seqIDs.R" "${current_log_path}
 # Extract FASTA sequences based on the list of sequence IDs
 run_and_check "python -u subscripts/02.extract_fasta_files.py" "${current_log_path}/02.extract_fasta_files.log"
 
-# Extract valid kmers
-run_and_check "python -u subscripts/03.extract_valid_kmers.py" "${current_log_path}/03.extract_valid_kmers.log"
-
 # Organize directories
-run_and_check "python -u subscripts/04.organize_directories.py" "${current_log_path}/04.organize_directories.log"
+run_and_check "python -u subscripts/03.organize_directories.py" "${current_log_path}/04.organize_directories.log"
+
+# Extract valid kmers
+run_and_check "python -u subscripts/04.extract_valid_kmers.py" "${current_log_path}/03.extract_valid_kmers.log"
 
 # Generate primers
 run_and_check "Rscript subscripts/05.generate_primers.R" "${current_log_path}/05.generate_primers.log"
