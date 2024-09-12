@@ -319,7 +319,7 @@ Description of column names in the main results table detailing the performance 
 
 The primary results table can be found in path: `MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/final_table/`.
 
-**2. Detected sequences tables**
+#### 2. Detected sequences tables
 
 Description of column names in the output tables containing the information about detected sequences. 
 | **Column name**          | **Definition**                                                                                      | **Example**                                                                                      |
