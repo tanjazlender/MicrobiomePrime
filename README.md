@@ -220,7 +220,7 @@ Setting | Explanation | Example
 </details>
 
 ## Running the code
-1. Navigate to the scripts directory:
+1. Navigate to the `scripts` directory:
 ```
 cd scripts/
 ```
