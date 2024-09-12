@@ -229,11 +229,11 @@ Setting | Explanation | Example
 </details>
 
 ## Running the code
-1. Navigate to the `scripts` directory:
+**1. Navigate to the `scripts` directory:**
 ```
 cd scripts/
 ```
-2. Run the script:
+**2. Run the script:**
 
 - **To run the script using Slurm**, execute the following command::  
      To submit the script as a Slurm job, execute the following command:
