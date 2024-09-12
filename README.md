@@ -32,8 +32,6 @@ Once the environment named MicrobiomePrime is created, activate it using:
 conda activate MicrobiomePrime
 ```
 
->Note: Due to the complexity and high computational demands of sequencing data, using a High Performance Computing (HPC) system may be necessary to ensure efficient processing and analysis of large datasets.
-
 **3. Install ThermonucleotideBLAST**
 
 ThermonucleotideBLAST is a tool for *in silico* PCR that must be installed separately. Follow the installation instructions on the [official ThermonucleotideBLAST page](https://public.lanl.gov/jgans/tntblast/tntblast_doc.html).
@@ -41,6 +39,8 @@ ThermonucleotideBLAST is a tool for *in silico* PCR that must be installed separ
 **4. Install OpenMPI (Optional but highly recommended)**
 
 OpenMPI is used for parallelization to speed up the analysis. While ThermonucleotideBLAST can run without OpenMPI, it will take significantly longer. To install OpenMPI, follow the instructions on the [OpenMPI website](https://www.open-mpi.org/).
+
+>Note: Due to the complexity and high computational demands of sequencing data, using a High Performance Computing (HPC) system may be necessary to ensure efficient processing and analysis of large datasets.
 
 ## Data preprocessing
 Before using MicrobiomePrime, preprocess your raw amplicon sequences by removing primer sequences, quality filtering, detecting and removing chimeras, clustering or denoising sequences, and normalizing the data. Ensure each sequence is assigned a unique sequence ID (SeqID) with letters followed by numbers (e.g. OTU001, OTU002, OTU003).
