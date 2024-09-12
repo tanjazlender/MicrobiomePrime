@@ -241,7 +241,7 @@ cd scripts/
      bash submit_slurm_job.sh
      ```
 
-- To run the script **directly in a Linux environment** without Slurm, use:  
+- **(For small datasets only)** To run the script **directly in a Linux environment** without Slurm, use:  
      To run the script directly in a standard Linux environment, execute:
      ```bash
      bash find_primer_pairs.sh
