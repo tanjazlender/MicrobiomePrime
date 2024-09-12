@@ -277,8 +277,7 @@ Although 100% sensitivity and 100% specificity would be ideal, it is often chall
 
 Write about marker_sensitivity_threshold and marker_specificity_threshold
 
->**Note:** The primer pairs should always be validated in a laboratory on multiple target (where you want the primers to amplify) and non-target samples. If you are testing sensitivity and specificity of primer pairs, you can use e.g. end-point PCR, real-time PCR or digital PCR.
-
+>**Note:** The primer pairs should always be validated in the laboratory with both target and non-target samples. Test the sensitivity and specificity of the primer pairs using methods such as conventional PCR, real-time PCR, or digital PCR.
 ## Progress and error monitoring
 
 
