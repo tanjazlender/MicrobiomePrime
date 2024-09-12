@@ -236,13 +236,11 @@ cd scripts/
 **2. Run the script:**
 
 - To run the script **using Slurm**, execute the following command::  
-     To submit the script as a Slurm job, execute the following command:
      ```bash
      bash submit_slurm_job.sh
      ```
 
-- **(For small datasets only)** To run the script **directly in a Linux environment** without Slurm, use:  
-     To run the script directly in a standard Linux environment, execute:
+- **(For small datasets)** To run the script **directly in a Linux environment** without Slurm, use:  
      ```bash
      bash find_primer_pairs.sh
      ```
