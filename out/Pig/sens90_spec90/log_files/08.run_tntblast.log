@@ -3,7 +3,7 @@ Target group ID = Pig
 Setting file paths.
 Clearing existing files in the output directory.
 Reading optional PCR parameters.
-Found 10 primer files.
+Found 5 primer files.
 Running command: mpirun /home/storage/thermonucleotideBLAST/tntblast -i out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers4.txt -o out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results4.txt -D data/generated_files/sequences/fasta_files/sequences_singleline.fa -l 200 -e 50 --primer-clamp 2 --max-mismatch 2
 Query segmentation: adaptive
 Reading assays from out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers4.txt
@@ -88,56 +88,14 @@ Max primer heterodimer Tm = 13.9455
 Max primer homodimer Tm = 23.0234
 
 Finished processing out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers3.txt. Results saved to out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results3.txt.
-Running command: mpirun /home/storage/thermonucleotideBLAST/tntblast -i out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers6.txt -o out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results6.txt -D data/generated_files/sequences/fasta_files/sequences_singleline.fa -l 200 -e 50 --primer-clamp 2 --max-mismatch 2
+Running command: mpirun /home/storage/thermonucleotideBLAST/tntblast -i out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers5.txt -o out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results5.txt -D data/generated_files/sequences/fasta_files/sequences_singleline.fa -l 200 -e 50 --primer-clamp 2 --max-mismatch 2
 Query segmentation: adaptive
-Reading assays from out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers6.txt
+Reading assays from out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers5.txt
 Reading sequence database: data/generated_files/sequences/fasta_files/sequences_singleline.fa
 Found 169 database sequences
-Found 3000 query assays
+Found 2641 query assays
 Search parameters:
-	Output = out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results6.txt
-	[Na+] = 0.05 M
-	max gap = 999
-	max mismatch = 2
-	[primer Ct] = 9e-07 M
-	[probe Ct] = 2.5e-07 M
-	50 <= Primer Tm (C) <= 9999
-	-9999 <= Primer Delta G (Kcal/Mol) <= 0
-	0 <= Probe Tm (C) <= 9999
-	-9999 <= Probe Delta G (Kcal/Mol) <= 0
-	3' Primer clamp = 2
-	5' Probe clamp = 0
-	3' Probe clamp = 0
-	Max amplicon len = 200
-Assay format is PCR and/or PROBE
-Searching database:                1.78%          2.96%          4.14%          5.33%          6.51%          7.69%          8.88%          10.1%          11.2%          12.4%          13.6%          14.8%          16%            17.2%          18.3%          19.5%          20.7%          21.9%          23.1%          24.3%          25.4%          26.6%          27.8%          29%            30.2%          31.4%          32.5%          33.7%          34.9%          36.1%          37.3%          38.5%          39.6%          40.8%          42%            43.2%          44.4%          45.6%          46.7%          47.9%          49.1%          50.3%          51.5%          52.7%          53.8%          55%            56.2%          57.4%          58.6%          59.8%          60.9%          62.1%          63.3%          64.5%          65.7%          66.9%          68%            69.2%          70.4%          71.6%          72.8%          74%            75.1%          76.3%          77.5%          78.7%          79.9%          81.1%          82.2%          83.4%          84.6%          85.8%          87%            88.2%          89.3%          90.5%          91.12%         91.72%         92.31%         92.9%          93.49%         94.08%         94.67%         95.27%         95.86%         96.45%         97.04%         97.63%         98.22%         98.82% [qs]    99.41% [qs]    100% [qs]      search complete
-Collecting results:                10%            20%            30%            40%            50%            60%            70%            80%            90%            collection complete
-Found 60 (total) target sequence  matches
-Amplicon:
-	44 <= Amplicon length <= 200
-Forward primer:
-	50.2279 <= Tm (C) <= 66.5239
-	-24.2997 <= Delta G (Kcal/Mol) <= -14.4997
-	40.9091 <= %GC <= 59.0909
-	22 <= length <= 22
-Reverse primer:
-	50.0593 <= Tm (C) <= 66.5239
-	-24.2997 <= Delta G (Kcal/Mol) <= -14.3497
-	40.9091 <= %GC <= 59.0909
-	22 <= length <= 22
-Max primer hairpin Tm = 43.8384
-Max primer heterodimer Tm = 34.1842
-Max primer homodimer Tm = 23.0234
-
-Finished processing out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers6.txt. Results saved to out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results6.txt.
-Running command: mpirun /home/storage/thermonucleotideBLAST/tntblast -i out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers10.txt -o out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results10.txt -D data/generated_files/sequences/fasta_files/sequences_singleline.fa -l 200 -e 50 --primer-clamp 2 --max-mismatch 2
-Query segmentation: adaptive
-Reading assays from out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers10.txt
-Reading sequence database: data/generated_files/sequences/fasta_files/sequences_singleline.fa
-Found 169 database sequences
-Found 2282 query assays
-Search parameters:
-	Output = out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results10.txt
+	Output = out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results5.txt
 	[Na+] = 0.05 M
 	max gap = 999
 	max mismatch = 2
@@ -171,175 +129,7 @@ Max primer hairpin Tm = 44.9707
 Max primer heterodimer Tm = 30.8344
 Max primer homodimer Tm = 23.0234
 
-Finished processing out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers10.txt. Results saved to out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results10.txt.
-Running command: mpirun /home/storage/thermonucleotideBLAST/tntblast -i out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers8.txt -o out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results8.txt -D data/generated_files/sequences/fasta_files/sequences_singleline.fa -l 200 -e 50 --primer-clamp 2 --max-mismatch 2
-Query segmentation: adaptive
-Reading assays from out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers8.txt
-Reading sequence database: data/generated_files/sequences/fasta_files/sequences_singleline.fa
-Found 169 database sequences
-Found 3000 query assays
-Search parameters:
-	Output = out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results8.txt
-	[Na+] = 0.05 M
-	max gap = 999
-	max mismatch = 2
-	[primer Ct] = 9e-07 M
-	[probe Ct] = 2.5e-07 M
-	50 <= Primer Tm (C) <= 9999
-	-9999 <= Primer Delta G (Kcal/Mol) <= 0
-	0 <= Probe Tm (C) <= 9999
-	-9999 <= Probe Delta G (Kcal/Mol) <= 0
-	3' Primer clamp = 2
-	5' Probe clamp = 0
-	3' Probe clamp = 0
-	Max amplicon len = 200
-Assay format is PCR and/or PROBE
-Searching database:                1.78%          2.96%          4.14%          5.33%          6.51%          7.69%          8.88%          10.1%          11.2%          12.4%          13.6%          14.8%          16%            17.2%          18.3%          19.5%          20.7%          21.9%          23.1%          24.3%          25.4%          26.6%          27.8%          29%            30.2%          31.4%          32.5%          33.7%          34.9%          36.1%          37.3%          38.5%          39.6%          40.8%          42%            43.2%          44.4%          45.6%          46.7%          47.9%          49.1%          50.3%          51.5%          52.7%          53.8%          55%            56.2%          57.4%          58.6%          59.8%          60.9%          62.1%          63.3%          64.5%          65.7%          66.9%          68%            69.2%          70.4%          71.6%          72.8%          74%            75.1%          76.3%          77.5%          78.7%          79.9%          81.1%          82.2%          83.4%          84.6%          85.8%          87%            88.2%          89.3%          90.5%          91.12%         91.72%         92.31%         92.9%          93.49%         94.08%         94.67%         95.27%         95.86%         96.45%         97.04%         97.63%         98.22%         98.82% [qs]    99.41% [qs]    100% [qs]      search complete
-Collecting results:                10%            20%            30%            40%            50%            60%            70%            80%            90%            collection complete
-Found 43 (total) target sequence  matches
-Amplicon:
-	44 <= Amplicon length <= 200
-Forward primer:
-	50.2072 <= Tm (C) <= 63.9037
-	-22.8597 <= Delta G (Kcal/Mol) <= -14.5197
-	40.9091 <= %GC <= 59.0909
-	22 <= length <= 22
-Reverse primer:
-	50.0673 <= Tm (C) <= 66.5239
-	-24.2997 <= Delta G (Kcal/Mol) <= -14.1297
-	40.9091 <= %GC <= 59.0909
-	22 <= length <= 22
-Max primer hairpin Tm = 44.9707
-Max primer heterodimer Tm = 13.9455
-Max primer homodimer Tm = 23.0234
-
-Finished processing out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers8.txt. Results saved to out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results8.txt.
-Running command: mpirun /home/storage/thermonucleotideBLAST/tntblast -i out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers5.txt -o out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results5.txt -D data/generated_files/sequences/fasta_files/sequences_singleline.fa -l 200 -e 50 --primer-clamp 2 --max-mismatch 2
-Query segmentation: adaptive
-Reading assays from out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers5.txt
-Reading sequence database: data/generated_files/sequences/fasta_files/sequences_singleline.fa
-Found 169 database sequences
-Found 3000 query assays
-Search parameters:
-	Output = out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results5.txt
-	[Na+] = 0.05 M
-	max gap = 999
-	max mismatch = 2
-	[primer Ct] = 9e-07 M
-	[probe Ct] = 2.5e-07 M
-	50 <= Primer Tm (C) <= 9999
-	-9999 <= Primer Delta G (Kcal/Mol) <= 0
-	0 <= Probe Tm (C) <= 9999
-	-9999 <= Probe Delta G (Kcal/Mol) <= 0
-	3' Primer clamp = 2
-	5' Probe clamp = 0
-	3' Probe clamp = 0
-	Max amplicon len = 200
-Assay format is PCR and/or PROBE
-Searching database:                1.78%          2.96%          4.14%          5.33%          6.51%          7.69%          8.88%          10.1%          11.2%          12.4%          13.6%          14.8%          16%            17.2%          18.3%          19.5%          20.7%          21.9%          23.1%          24.3%          25.4%          26.6%          27.8%          29%            30.2%          31.4%          32.5%          33.7%          34.9%          36.1%          37.3%          38.5%          39.6%          40.8%          42%            43.2%          44.4%          45.6%          46.7%          47.9%          49.1%          50.3%          51.5%          52.7%          53.8%          55%            56.2%          57.4%          58.6%          59.8%          60.9%          62.1%          63.3%          64.5%          65.7%          66.9%          68%            69.2%          70.4%          71.6%          72.8%          74%            75.1%          76.3%          77.5%          78.7%          79.9%          81.1%          82.2%          83.4%          84.6%          85.8%          87%            88.2%          89.3%          90.5%          91.12%         91.72%         92.31%         92.9%          93.49%         94.08%         94.67%         95.27%         95.86%         96.45%         97.04%         97.63%         98.22%         98.82% [qs]    99.41% [qs]    100% [qs]      search complete
-Collecting results:                10%            20%            30%            40%            50%            60%            70%            80%            90%            collection complete
-Found 64 (total) target sequence  matches
-Amplicon:
-	44 <= Amplicon length <= 200
-Forward primer:
-	50.3254 <= Tm (C) <= 65.4853
-	-23.1497 <= Delta G (Kcal/Mol) <= -14.5797
-	40.9091 <= %GC <= 59.0909
-	22 <= length <= 22
-Reverse primer:
-	50.0593 <= Tm (C) <= 66.5239
-	-24.2997 <= Delta G (Kcal/Mol) <= -14.1297
-	40.9091 <= %GC <= 59.0909
-	22 <= length <= 22
-Max primer hairpin Tm = 44.9707
-Max primer heterodimer Tm = 30.8344
-Max primer homodimer Tm = 23.0234
-
 Finished processing out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers5.txt. Results saved to out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results5.txt.
-Running command: mpirun /home/storage/thermonucleotideBLAST/tntblast -i out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers7.txt -o out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results7.txt -D data/generated_files/sequences/fasta_files/sequences_singleline.fa -l 200 -e 50 --primer-clamp 2 --max-mismatch 2
-Query segmentation: adaptive
-Reading assays from out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers7.txt
-Reading sequence database: data/generated_files/sequences/fasta_files/sequences_singleline.fa
-Found 169 database sequences
-Found 3000 query assays
-Search parameters:
-	Output = out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results7.txt
-	[Na+] = 0.05 M
-	max gap = 999
-	max mismatch = 2
-	[primer Ct] = 9e-07 M
-	[probe Ct] = 2.5e-07 M
-	50 <= Primer Tm (C) <= 9999
-	-9999 <= Primer Delta G (Kcal/Mol) <= 0
-	0 <= Probe Tm (C) <= 9999
-	-9999 <= Probe Delta G (Kcal/Mol) <= 0
-	3' Primer clamp = 2
-	5' Probe clamp = 0
-	3' Probe clamp = 0
-	Max amplicon len = 200
-Assay format is PCR and/or PROBE
-Searching database:                1.78%          2.96%          4.14%          5.33%          6.51%          7.69%          8.88%          10.1%          11.2%          12.4%          13.6%          14.8%          16%            17.2%          18.3%          19.5%          20.7%          21.9%          23.1%          24.3%          25.4%          26.6%          27.8%          29%            30.2%          31.4%          32.5%          33.7%          34.9%          36.1%          37.3%          38.5%          39.6%          40.8%          42%            43.2%          44.4%          45.6%          46.7%          47.9%          49.1%          50.3%          51.5%          52.7%          53.8%          55%            56.2%          57.4%          58.6%          59.8%          60.9%          62.1%          63.3%          64.5%          65.7%          66.9%          68%            69.2%          70.4%          71.6%          72.8%          74%            75.1%          76.3%          77.5%          78.7%          79.9%          81.1%          82.2%          83.4%          84.6%          85.8%          87%            88.2%          89.3%          90.5%          91.12%         91.72%         92.31%         92.9%          93.49%         94.08%         94.67%         95.27%         95.86%         96.45%         97.04%         97.63%         98.22%         98.82% [qs]    99.41% [qs]    100% [qs]      search complete
-Collecting results:                10%            20%            30%            40%            50%            60%            70%            80%            90%            collection complete
-Found 58 (total) target sequence  matches
-Amplicon:
-	44 <= Amplicon length <= 200
-Forward primer:
-	50.1937 <= Tm (C) <= 64.8702
-	-23.2397 <= Delta G (Kcal/Mol) <= -14.3997
-	40.9091 <= %GC <= 59.0909
-	22 <= length <= 22
-Reverse primer:
-	50.0593 <= Tm (C) <= 66.5239
-	-24.2997 <= Delta G (Kcal/Mol) <= -14.1297
-	40.9091 <= %GC <= 59.0909
-	22 <= length <= 22
-Max primer hairpin Tm = 43.8384
-Max primer heterodimer Tm = 34.1842
-Max primer homodimer Tm = 23.0234
-
-Finished processing out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers7.txt. Results saved to out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results7.txt.
-Running command: mpirun /home/storage/thermonucleotideBLAST/tntblast -i out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers9.txt -o out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results9.txt -D data/generated_files/sequences/fasta_files/sequences_singleline.fa -l 200 -e 50 --primer-clamp 2 --max-mismatch 2
-Query segmentation: adaptive
-Reading assays from out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers9.txt
-Reading sequence database: data/generated_files/sequences/fasta_files/sequences_singleline.fa
-Found 169 database sequences
-Found 3000 query assays
-Search parameters:
-	Output = out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results9.txt
-	[Na+] = 0.05 M
-	max gap = 999
-	max mismatch = 2
-	[primer Ct] = 9e-07 M
-	[probe Ct] = 2.5e-07 M
-	50 <= Primer Tm (C) <= 9999
-	-9999 <= Primer Delta G (Kcal/Mol) <= 0
-	0 <= Probe Tm (C) <= 9999
-	-9999 <= Probe Delta G (Kcal/Mol) <= 0
-	3' Primer clamp = 2
-	5' Probe clamp = 0
-	3' Probe clamp = 0
-	Max amplicon len = 200
-Assay format is PCR and/or PROBE
-Searching database:                1.78%          2.96%          4.14%          5.33%          6.51%          7.69%          8.88%          10.1%          11.2%          12.4%          13.6%          14.8%          16%            17.2%          18.3%          19.5%          20.7%          21.9%          23.1%          24.3%          25.4%          26.6%          27.8%          29%            30.2%          31.4%          32.5%          33.7%          34.9%          36.1%          37.3%          38.5%          39.6%          40.8%          42%            43.2%          44.4%          45.6%          46.7%          47.9%          49.1%          50.3%          51.5%          52.7%          53.8%          55%            56.2%          57.4%          58.6%          59.8%          60.9%          62.1%          63.3%          64.5%          65.7%          66.9%          68%            69.2%          70.4%          71.6%          72.8%          74%            75.1%          76.3%          77.5%          78.7%          79.9%          81.1%          82.2%          83.4%          84.6%          85.8%          87%            88.2%          89.3%          90.5%          91.12%         91.72%         92.31%         92.9%          93.49%         94.08%         94.67%         95.27%         95.86%         96.45%         97.04%         97.63%         98.22%         98.82% [qs]    99.41% [qs]    100% [qs]      search complete
-Collecting results:                10%            20%            30%            40%            50%            60%            70%            80%            90%            collection complete
-Found 54 (total) target sequence  matches
-Amplicon:
-	44 <= Amplicon length <= 200
-Forward primer:
-	50.0883 <= Tm (C) <= 65.4853
-	-23.0397 <= Delta G (Kcal/Mol) <= -13.9997
-	40.9091 <= %GC <= 59.0909
-	22 <= length <= 22
-Reverse primer:
-	50.0593 <= Tm (C) <= 66.5239
-	-24.2997 <= Delta G (Kcal/Mol) <= -14.1297
-	40.9091 <= %GC <= 59.0909
-	22 <= length <= 22
-Max primer hairpin Tm = 43.8384
-Max primer heterodimer Tm = 30.8344
-Max primer homodimer Tm = 23.0234
-
-Finished processing out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers9.txt. Results saved to out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results9.txt.
 Running command: mpirun /home/storage/thermonucleotideBLAST/tntblast -i out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers1.txt -o out/Pig/sens90_spec90/tntblast/Pig_sens90_spec90_results1.txt -D data/generated_files/sequences/fasta_files/sequences_singleline.fa -l 200 -e 50 --primer-clamp 2 --max-mismatch 2
 Query segmentation: adaptive
 Reading assays from out/Pig/sens90_spec90/primers/split_primer_pairs/Pig_sens90_spec90_primers1.txt
