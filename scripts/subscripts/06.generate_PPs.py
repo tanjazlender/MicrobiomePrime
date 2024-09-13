@@ -66,6 +66,18 @@ def generate_combined_table(primers_fw, primers_rv, output_file):
                 pair = f"{id_fw}:{id_rv}"
                 output.write(f"{pair}\t{seq_fw}\t{seq_rv}\n")
 
+# Remove duplicates from the combined output file
+def remove_duplicates(file_path):
+    seen = set()
+    with open(file_path, "r") as file:
+        lines = file.readlines()
+    
+    with open(file_path, "w") as file:
+        for line in lines:
+            if line not in seen:
+                file.write(line)
+                seen.add(line)
+
 # Write primer pairs into files
 fw1_file_path = f"{primers_folder}/primers_sens{sensitivity}_spec{specificity}_fw.fa"
 fw2_file_path = f"{primers_folder}/primers_sens{sensitivity}_fw.fa"
@@ -79,6 +91,11 @@ primers_rv2 = read_fasta(rv2_file_path)
 
 generate_combined_table(primers_fw1, primers_rv1, combined_output_file_path)
 generate_combined_table(primers_fw2, primers_rv2, combined_output_file_path)
+
+# Remove duplicates from the combined output file
+print("Removing duplicate rows from the combined output file.")
+
+remove_duplicates(combined_output_file_path)
     
 if os.path.exists(combined_output_file_path) and os.path.getsize(combined_output_file_path) > 0:
         print(f"Primers for target source(s) {target_group_ID} were combined into primer pairs (fw1-rv1 and fw2-rv2) and written into file {combined_output_file_path}.")
