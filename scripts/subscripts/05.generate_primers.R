@@ -166,7 +166,7 @@ if (!is.null(sensitivity) && nrow(sensitivity) > 0) {
     mutate(ID = row_number())
   cat("K-mer sensitivity calculation completed.\n")
 } else {
-  stop("K-mer sensitivity calculation failed or resulted in an empty data frame.\n")
+  stop("The sensitivity of all K-mers is below the `kmer_sensitivity_cutoff`. Consider reducing the `kmer_sensitivity_cutoff` value in `variables.ini` file.\n")
 }
 
 ############################# K-mer specificity ################################
@@ -213,7 +213,7 @@ specificity <- nontarget_PA %>%
 if (!is.null(specificity) && nrow(specificity) > 0) {
   cat("K-mer specificity calculation completed.\n")
 } else {
-  stop("K-mer specificity calculation failed or resulted in an empty data frame.\n")
+  stop("The specificity of all K-mers meeting the sensitivity criteria is below the `kmer_specificity_cutoff`. Consider reducing the `kmer_specificity_cutoff` value in `variables.ini` file.\n")
 }
 
 ################################################################################

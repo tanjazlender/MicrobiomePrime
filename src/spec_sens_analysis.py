@@ -608,7 +608,7 @@ def process_exception_samples(exception_abundance, sensitivity_specificity, taxo
             (exception_abundance['Percent_abundance'] > 0) &
             (exception_abundance['PP_ID'].isin(sensitivity_specificity['PP_ID']))
         ]
-    
+        
     exception_string = ', '.join(specificity_exception)
     
     if len(filtered_exception_abundance) > 0:
@@ -687,10 +687,11 @@ def process_exception_samples(exception_abundance, sensitivity_specificity, taxo
         # Create a joined table        
         pp_exceptions_join = (
             sensitivity_specificity[['PP_ID']]
-            .assign(Exceptions=exception_string)
             .merge(positive_exceptions, on='PP_ID', how='left')
             .merge(pp_abundance_exceptions, on='PP_ID', how='left')
             .merge(pp_taxonomy_exceptions, on='PP_ID', how='left')
+            .assign(Exceptions=specificity_exception)
+            
         )
     
     else:
@@ -698,11 +699,11 @@ def process_exception_samples(exception_abundance, sensitivity_specificity, taxo
         pp_exceptions_join = (
             sensitivity_specificity[['PP_ID']]
             .assign(
-                Exceptions=exception_string,
                 Presence_exceptions_samples=None,
                 Positive_exceptions_samples=None,
                 Percent_abundance_exceptions_detailed=None,
-                Taxonomy_exceptions=None
+                Taxonomy_exceptions=None,
+                Exceptions=None
             )
         )
     
@@ -826,6 +827,7 @@ def process_sequence_ids(tntblast_results_filt, sensitivity_specificity, target_
     return pp_seqIDs_all
     
 def join_info(sensitivity_specificity, sensitivity_detailed, amplicon_sizes, primers_info, abundance_target, taxonomy_target, negative_target_samples, detected_nontarget, exceptions_info, pp_seqIDs, file_number):
+    
     # Perform left joins
     merged_df = (
         sensitivity_specificity
@@ -841,7 +843,7 @@ def join_info(sensitivity_specificity, sensitivity_detailed, amplicon_sizes, pri
         .assign(File_number=file_number)
     )
     
-    
+    # Change columns order
     desired_columns = [
         "PP_ID", "Specificity", "Specificity2", 
         "Sensitivity", "Sensitivity2", "Sensitivity2_detailed", 

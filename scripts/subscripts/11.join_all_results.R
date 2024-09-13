@@ -136,6 +136,14 @@ for (filename in file_list){
                " (progress:", counter, "/", file_list_length, ")\n"))
 }  
 
+# Define a function to replace empty strings with NA only for character columns
+replace_empty_with_na <- function(df) {
+  df %>%
+    mutate(across(where(is.character), ~ifelse(.x == "", NA, .x)))
+}
+
+# Apply the function to your data frame
+full_table <- replace_empty_with_na(final_results)
 
 
 # Define the output file path
@@ -146,7 +154,7 @@ output_file_path <- paste0(host_directory_path,
                     "_final_results.tsv")
 
 # Write the table
-write.table(final_results, 
+write.table(full_table, 
             output_file_path, 
             row.names = FALSE, 
             quote = FALSE,
