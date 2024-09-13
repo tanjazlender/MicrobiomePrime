@@ -256,12 +256,13 @@ In the second section, amplicon sequences are split into K-mers that are length 
   <img src="https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/0300193e-dc1b-44b1-bc9f-6231b781fafb" alt="splitting kmers_small">
 </p>
 
-A K-mer is considered invalid and is excluded from the analysis if it contains:
-- homopolymeric runs (four or more identical nucleotides in a row),
-- simple repeats (repeated sequences of four or more nucleotides) or
-- inverse repeats (self-complementary sequence motifs of four or more nucleotides).
+K-mers are excluded from the analysis if they:
+- contain homopolymeric runs (four or more identical nucleotides in a row),
+- contain simple repeats (repeated sequences of four or more nucleotides),
+- contain inverse repeats (self-complementary sequence motifs of four or more nucleotides),
+- or have a GC contenr outside the range of 45% to 60%.
 
-This is because in the following steps of the analysis, valid K-mers will be used as primers. And primers with the patterns described above are typically inefficient, leading to reduced amplification performance.
+These exclusions are necessary to ensure that the K-mers, which will later be used as PCR primers, do not introduce amplification errors or form secondary structures that could impair primer performance in PCR.
 
 This section encompasses a single script found in the `scripts/subscripts` folder:
 - 04.extract_valid_kmers.py: this script extracts K-mers according to the criteria described above.
