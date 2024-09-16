@@ -327,7 +327,12 @@ cd scripts/
 
 ## Progress and error monitoring
 
+During execution, log files for each subscript are generated in `scripts/current_log_files/`, tracking progress and errors step by step. If MicrobiomePrime encounters an issue and stops, the most recent log file will contain the relevant error message.
 
+Once the program completes successfully, log files are automatically moved into the following directory: `out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/log_files/`.
+
+Each log file is named after the corresponding subscript and provides detailed status updates. Upon successful completion of a subscript, the log file will display:
+**"DONE: The script has completed successfully."**
 
 ## Outputs
 MicrobiomePrime generates a primary results table detailing the performance of primer pairs, along with several additional tables containing information about the detected sequence IDs.
@@ -361,7 +366,7 @@ Description of column names in the main results table detailing the performance 
 | **N_detected_exception_samples**     | Number of detected samples that are neither classified as target nor non-target [source (number of detected samples from source/number of all samples from source)]. | Bird unknown (1/7)                                                                             |
 | **Percent_abundance_exceptions_detailed** | The average relative abundance of exception sequences (classified neither as target nor non-target) amplified by the primer pair for each source [source (% abundance, SD)]. | Bird unknown (2.5783) |
 
-The primary results table can be found in path: `MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/final_table/`.
+The primary results table can be found in path: `out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/final_table/`.
 
 </details>
 
@@ -381,7 +386,7 @@ Description of column names in the output tables containing the information abou
 | **N_seqIDs_nontarget**   | The number of sequence IDs from non-target sequences that were amplified by the primer pair.        | 3                                                                                                |
 | **File_number**          | The specific number assigned to each file in the analysis. This number helps locate intermediate results generated during the analysis. | 6 |
 
-The detected sequences tables can be found in path: `MicrobiomePrime/out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/detected_sequences/`.
+The detected sequences tables can be found in path: `out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/detected_sequences/`.
 
 </details>
 
@@ -411,7 +416,3 @@ The licenses for all dependencies used in this pipeline are detailed in the NOTI
 
 MicrobiomePrime is developed by Tanja Zlender, Lucija Brezocnik, Vili Podgorelec and Maja Rupnik.
 For support, please contact tanja.zlender@nlzoh.si.
-
-
-## Other - add to the readme
-- log files
