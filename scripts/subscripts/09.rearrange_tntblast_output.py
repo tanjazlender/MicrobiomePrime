@@ -71,6 +71,10 @@ def extract_info(text):
     Clamp3R = int(re.search(r'max 3\' clamp = (\d+)', text).group(1))
     HeuristicsF = re.search(r'forward primer heuristics = (.+)', text).group(1)
     HeuristicsR = re.search(r'reverse primer heuristics = (.+)', text).group(1)
+    Hairpin_Tm_F = re.search(r'forward primer hairpin tm = (\d+(\.\d+)?)', text).group(1)
+    Hairpin_Tm_R = re.search(r'reverse primer hairpin tm = (\d+(\.\d+)?)', text).group(1)
+    Homodimer_Tm_F = re.search(r'forward primer homodimer tm = (\d+(\.\d+)?)', text).group(1)
+    Homodimer_Tm_R = re.search(r'reverse primer homodimer tm = (\d+(\.\d+)?)', text).group(1)
     Heterodimer_Tm = re.search(r'heterodimer tm = (\d+(\.\d+)?)', text).group(1)
 
     if all(match is not None for match in [SeqID, Amplicon_size, Amplicon_range, PP_ID, PrimerF, PrimerR, TmF, TmR, GC_F, GC_R, MismatchF, MismatchR, Clamp3F, Clamp3R, HeuristicsF, HeuristicsR, Heterodimer_Tm]):
@@ -91,6 +95,10 @@ def extract_info(text):
             'Clamp3R': Clamp3R,
             'HeuristicsF': HeuristicsF,
             'HeuristicsR': HeuristicsR,
+            'Hairpin_Tm_F': Hairpin_Tm_F,
+            'Hairpin_Tm_R': Hairpin_Tm_R,
+            'Homodimer_Tm_F': Homodimer_Tm_F,
+            'Homodimer_Tm_R': Homodimer_Tm_R,
             'Heterodimer_Tm': Heterodimer_Tm
         }
     else:

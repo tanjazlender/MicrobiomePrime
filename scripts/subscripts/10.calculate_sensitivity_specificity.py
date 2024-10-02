@@ -164,11 +164,11 @@ def process_file(filename):
     
         # Write the joined table to a TSV file
         joined_table_path = os.path.join(output_directory_joined, f"{output_name_prefix}_markers{file_number}.tsv")
-        joined.to_csv(joined_table_path, sep='\t', index=False, quoting=False, encoding='utf-8')
+        joined.to_csv(joined_table_path, sep='\t', index=False, quoting=False, encoding='utf-8', na_rep='NA')
     
         # Write the pp_seqIDs to a TSV file
         seqID_table_path = os.path.join(output_directory_seqs, f"{output_name_prefix}_seqIDs{file_number}.tsv")
-        pp_seqIDs.to_csv(seqID_table_path, sep='\t', index=False, quoting=False)
+        pp_seqIDs.to_csv(seqID_table_path, sep='\t', index=False, quoting=False, encoding='utf-8', na_rep='NA')
     
         # Memory usage after processing
         mem_info_after = psutil.Process(os.getpid()).memory_info()
