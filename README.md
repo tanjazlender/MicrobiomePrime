@@ -309,11 +309,27 @@ This section includes the following scripts found in the `scripts/subscripts` fo
 
 
 ## Running the code
-**1. Navigate to the `scripts` directory:**
+
+**1. Clone the GitHub repository and move into the project folder**
+```
+git clone https://github.com/tanjazlender/MicrobiomePrime.git
+cd MicrobiomePrime
+```
+
+**2. (Optional) Remove example data and results to free up space and ensure a clean environment**
+```
+rm data/input_files/*
+rm data/generated_files/*
+rm -r out/*
+
+```
+
+**3. Navigate to the `scripts` directory:**
 ```
 cd scripts/
 ```
-**2. Run the script:**
+
+**4. Run the script:**
 
 - To run the script **using Slurm**, execute the following command::  
      ```bash
@@ -324,6 +340,7 @@ cd scripts/
      ```bash
      bash find_primer_pairs.sh
      ```
+>Before executing the code, ensure that you customize the variables and settings according to your specific requirements, as detailed in the [Variables and Settings](#variables-and-settings) section.
 
 ## Progress and error monitoring
 
