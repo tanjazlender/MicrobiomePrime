@@ -605,35 +605,45 @@ def process_detected_nontarget_samples(nontarget_abundance, sensitivity_specific
 def process_exception_samples(exception_abundance, sensitivity_specificity, taxonomy, specificity_exception):
     
     filtered_exception_abundance = exception_abundance[
-            (exception_abundance['Percent_abundance'] > 0) &
-            (exception_abundance['PP_ID'].isin(sensitivity_specificity['PP_ID']))
-        ]
-        
+        (exception_abundance['Percent_abundance'] > 0) &
+        (exception_abundance['PP_ID'].isin(sensitivity_specificity['PP_ID']))
+    ]
+    
     exception_string = ', '.join(specificity_exception)
     
     if len(filtered_exception_abundance) > 0:
-        # See which samples excluded from specificity calculations were detected using the given primer pairs
-        positive_exceptions = (
-            filtered_exception_abundance
-            .groupby(['Source', 'PP_ID', 'Nsamples'], as_index=False)
-            .agg({
-                'Sample': lambda x: ', '.join(sorted(set(x))),
-                'Percent_abundance': 'size'
-            })
-            .rename(columns={'Percent_abundance': 'N_positive_samples'})
-            .assign(Sensitivity2_detailed=lambda df: df.apply(
-                lambda row: f"{row['Source']} ({row['N_positive_samples']}/{row['Nsamples']})", axis=1
-            ))
-            .groupby('PP_ID', as_index=False)
-            .agg({
-                'Sensitivity2_detailed': lambda x: ', '.join(x),
-                'Sample': lambda x: ', '.join(x)
-            })
-            .rename(columns={
-                'Sensitivity2_detailed': 'Presence_exceptions_samples',
-                'Sample': 'Positive_exceptions_samples'
-            })
+        # Calculate detailed sensitivity
+        exception_abundance_grouped = (
+            filtered_exception_abundance 
+            .groupby(['Source', 'PP_ID', 'Nsamples'])
+            .agg(
+                N_positive_exceptions_samples=('Sample', 'nunique'),
+                Positive_exceptions_samples=('Sample', lambda x: ', '.join(x.unique()))
+            )
+            .reset_index()
         )
+    
+        exception_abundance_grouped['Presence_exceptions_samples'] = (
+            exception_abundance_grouped
+            .apply(lambda row: f"{row['Source']} ({row['N_positive_exceptions_samples']}/{row['Nsamples']})", axis=1)
+        )
+
+        positive_exceptions = (
+            exception_abundance_grouped
+            .groupby('PP_ID')
+            .apply(lambda df: pd.Series({
+                'Presence_exceptions_samples': ', '.join(
+                    f"{row['Source']} ({row['N_positive_exceptions_samples']}/{row['Nsamples']})"
+                    for _, row in df.iterrows()
+                ),
+                'Positive_exceptions_samples': ', '.join(
+                    f"{row['Source']} ({row['Positive_exceptions_samples']})"
+                    for _, row in df.iterrows()
+                )
+            }))
+            .reset_index()
+        )
+        
         
         # Calculate relative abundances of markers within samples excluded from specificity calculations
         exception_abundance_mean = (
@@ -672,6 +682,7 @@ def process_exception_samples(exception_abundance, sensitivity_specificity, taxo
                 )
             )
             .drop(columns=['Percent_abundance_exceptions', 'Percent_abundance_exceptions_SD'])
+            .rename(columns={'Source': 'Exceptions'})
         )
         
         # Assign taxonomy to each marker found in specificity exception samples
@@ -683,15 +694,12 @@ def process_exception_samples(exception_abundance, sensitivity_specificity, taxo
             .agg({'Taxonomy_exceptions': lambda x: ', '.join(sorted(set(x)))})
         )
         
-        
         # Create a joined table        
         pp_exceptions_join = (
             sensitivity_specificity[['PP_ID']]
             .merge(positive_exceptions, on='PP_ID', how='left')
             .merge(pp_abundance_exceptions, on='PP_ID', how='left')
-            .merge(pp_taxonomy_exceptions, on='PP_ID', how='left')
-            .assign(Exceptions=specificity_exception)
-            
+            .merge(pp_taxonomy_exceptions, on='PP_ID', how='left')   
         )
     
     else:
@@ -703,7 +711,7 @@ def process_exception_samples(exception_abundance, sensitivity_specificity, taxo
                 Positive_exceptions_samples=None,
                 Percent_abundance_exceptions_detailed=None,
                 Taxonomy_exceptions=None,
-                Exceptions=None
+                Exceptions=exception_string
             )
         )
     
