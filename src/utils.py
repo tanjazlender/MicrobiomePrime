@@ -6,7 +6,11 @@ def clean_directory(path):
     if os.path.exists(path):
         existing_files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
         for f in existing_files:
-            os.remove(os.path.join(path, f))
+            if not f.startswith('.nfs'):  # Skip .nfs files
+                try:
+                    os.remove(os.path.join(path, f))
+                except OSError:
+                    pass 
             
 
 def check_if_empty(df, filename):

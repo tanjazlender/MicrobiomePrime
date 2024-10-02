@@ -72,12 +72,12 @@ def get_primers_info(tntblast_results, pp_presence):
             f'Tm{suffix}_T': f'Tm{suffix}_target',
             f'Mismatch{suffix}_T': f'Mismatch{suffix}_target',
             f'Tm{suffix}_NT': f'Tm{suffix}_nontarget',
-            f'Mismatch{suffix}_NT': f'Mismatch{suffix}_nontarget'
+            f'Mismatch{suffix}_NT': f'Mismatch{suffix}_nontarget',
         }
         
         # Process primer target-specific information
         primers_target_info = (
-            tntblast_results[[f'Primer{suffix}', f'Tm{suffix}', f'Mismatch{suffix}', f'Heuristics{suffix}', 'Heterodimer_Tm', 'PP_ID', 'SeqID']]
+            tntblast_results[[f'Primer{suffix}', f'Tm{suffix}', f'Mismatch{suffix}', 'PP_ID', 'SeqID']]
             .assign(**{f'Tm{suffix}': lambda df: df[f'Tm{suffix}'].round(2)})
             .merge(pp_presence, on=['PP_ID', f'Primer{suffix}'], how='left')
             .assign(Target_nontarget=lambda df: df['Target_nontarget'].str.split(','))
@@ -106,14 +106,19 @@ def get_primers_info(tntblast_results, pp_presence):
         
         # Process general primer information
         primers_general_info = (
-            tntblast_results[[f'Primer{suffix}', f'Tm{suffix}', f'Mismatch{suffix}', f'Heuristics{suffix}', 'Heterodimer_Tm']]
+            tntblast_results[[f'Primer{suffix}', f'Tm{suffix}', f'Mismatch{suffix}', f'Heuristics{suffix}', 
+                f'Hairpin_Tm_{suffix}', f'Homodimer_Tm_{suffix}', 'Heterodimer_Tm']]
             .groupby(f'Primer{suffix}')
             .agg(
                 Tm_max_temp=(f'Tm{suffix}', 'max'),
-                Heuristics_temp=(f'Heuristics{suffix}', lambda x: '/'.join(x.unique()))
+                Heuristics_temp=(f'Heuristics{suffix}', lambda x: '/'.join(x.unique())),
+                Hairpin_Tm=(f'Hairpin_Tm_{suffix}', 'first'),
+                Homodimer_Tm=(f'Homodimer_Tm_{suffix}', 'first'),
+                Heterodimer_Tm=('Heterodimer_Tm', 'first')
             )
             .assign(Tm_max_temp=lambda df: df['Tm_max_temp'].round(2))
-            .rename(columns={'Heuristics_temp': f'Heuristics{suffix}', 'Tm_max_temp': f'Tm{suffix}_max'})
+            .rename(columns={'Heuristics_temp': f'Heuristics{suffix}', 'Tm_max_temp': f'Tm{suffix}_max',
+                'Hairpin_Tm': f'Hairpin_Tm_{suffix}', 'Homodimer_Tm': f'Homodimer_Tm_{suffix}'})
         )
     
         # Merge the general and target-specific primer information
@@ -133,7 +138,8 @@ def get_primers_info(tntblast_results, pp_presence):
     # Select and merge primer information
     primers_info = (
         merged_primers_infoF
-        .merge(merged_primers_infoR, left_on='PP_ID', right_on='PP_ID', how='left')
+        .merge(merged_primers_infoR.drop(columns=['Heterodimer_Tm']), 
+            left_on='PP_ID', right_on='PP_ID', how='left')
     )
 
     # Filter rows where mismatches are not allowed
@@ -869,7 +875,10 @@ def join_info(sensitivity_specificity, sensitivity_detailed, amplicon_sizes, pri
         "MismatchF_target", "MismatchF_nontarget", 
         "MismatchR_target", "MismatchR_nontarget", 
         "Amplicon_sizes_target", "Amplicon_sizes_nontarget", 
-        "HeuristicsF", "HeuristicsR",
+        "HeuristicsF", "HeuristicsR", 
+        "Hairpin_Tm_F", "Hairpin_Tm_R", 
+        "Homodimer_Tm_F", "Homodimer_Tm_R",
+        "Heterodimer_Tm",
         "File_number"
     ]
     
