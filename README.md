@@ -322,7 +322,6 @@ cd MicrobiomePrime
 rm data/input_files/*
 rm data/generated_files/*
 rm -r out/*
-
 ```
 
 **3. Navigate to the `scripts` directory:**
