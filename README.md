@@ -410,12 +410,12 @@ Description of column names in the main results table detailing the performance 
 The primary results table can be found in path: `out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/final_table/`. 
 
 <a id="heuristics"></a>
-The forward and reverse primer heuristics show how each primer satisfies a list of empirical primer design rules;
-- POLY_3_GC: Avoid runs of 3 or more G's or C's at the 3' prime end.
-- MULTI_5_GC: The 5 bases at the 5' end should contain no more than 3 G's or C's if no two pyrimidines (T, C) are adjacent, 2 G's or C's otherwise.
-- NO_POLY_RUNS: Polyprimidine (T, C) and polypurine (A, G) runs should be avoided.
-- NO_3_T: Avoid 3' terminal T's.
-- PCR_VALID: All rules above are satisfied.
+**The forward and reverse primer heuristics show how each primer satisfies a list of empirical primer design rules;**
+- **POLY_3_GC**: Avoid runs of 3 or more G's or C's at the 3' prime end.
+- **MULTI_5_GC**: The 5 bases at the 5' end should contain no more than 3 G's or C's if no two pyrimidines (T, C) are adjacent, 2 G's or C's otherwise.
+- **NO_POLY_RUNS**: Polyprimidine (T, C) and polypurine (A, G) runs should be avoided.
+- **NO_3_T**: Avoid 3' terminal T's.
+- **PCR_VALID**: All rules above are satisfied.
 
 </details>
 
