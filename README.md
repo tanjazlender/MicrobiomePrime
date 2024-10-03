@@ -3,16 +3,16 @@ MicrobiomePrime is a tool for identifying primer pairs with high specificity and
 You can find more about MicrobiomePrime at: (link available soon)
 
 ## Contents
-- [Installation and requirements](Installation-and-requirements)
-- [Data preprocessing](Data-preprocessing)
-- [Inputs](Inputs)
-- [Variables and settings](Variables-and-settings)
-- [Code overview](Code-overview)
-- [Running the code](Running-the-code)
-- [Progress and error monitoring](Progress-and-error-monitoring)
-- [Outputs](Outputs)
-- [Definitions](Definitions)
-- [License and third-party software](License-and-third-party-software)
+- [Installation and requirements](#installation-and-requirements)
+- [Data preprocessing](#data-preprocessing)
+- [Inputs](#inputs)
+- [Variables and settings](#variables-and-settings)
+- [Code overview](#code-overview)
+- [Running the code](#running-the-code)
+- [Progress and error monitoring](#progress-and-error-monitoring)
+- [Outputs](#outputs)
+- [Definitions](#definitions)
+- [License and third-party software](#license-and-third-party-software)
 
 ## Installation and requirements
 MicrobiomePrime is intended to be run in a x86-64 Linux OS (tested on Ubuntu). 
