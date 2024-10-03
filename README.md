@@ -173,12 +173,11 @@ To adjust the MicrobiomePrime analysis to your specific needs, you can adjust va
 Key variables that need to be defined are: 
 
 - `target`
-- `kmer_size`
 - `kmer_sensitivity_cutoff`
 - `kmer_specificity_cutoff`
 - `marker_sensitivity_cutoff`
 - `marker_specificity_cutoff`
-- `max_mismatch` and/or `max_primer_delta`
+- `max_mismatch` or `max_primer_delta`
 
 The rest of the variables can stay undefined.
 
