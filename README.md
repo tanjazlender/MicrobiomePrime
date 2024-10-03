@@ -398,8 +398,8 @@ Description of column names in the main results table detailing the performance 
 | **MismatchR_nontarget**              | A range of mismatches of the reverse primer to the non-target sequences, limited by max_mismatch (explained in the [Variables](variables) section).   | [0-0]                                                                                           | 
 | **Amplicon_sizes_target**            | A list of unique amplicon sizes generated from the amplification of target sequences.                                                                 | 125, 126                                                                                        |
 | **Amplicon_sizes_nontarget**         | A list of unique amplicon sizes generated from the amplification of non-target sequences.                                                             | 80, 81, 125                                                                                     |
-| **HeuristicsF**                      | A set of empirical primer design rules met by the forward primer (the rules are detailed [below](the forward and reverse primer heuristics show how each primer satisfies a list of empirical primer design rules;)).         | PCR_VALID                                                                                       |
-| **HeuristicsR**                      | A set of empirical primer design rules met by the reverse primer (the rules are detailed [below](the forward and reverse primer heuristics show how each primer satisfies a list of empirical primer design rules;)).         | MULTI_5_GC                                                                                      |
+| **HeuristicsF**                      | A set of empirical primer design rules met by the forward primer (the rules are detailed [below](#heuristics)).         | PCR_VALID                                                                                       |
+| **HeuristicsR**                      | A set of empirical primer design rules met by the reverse primer (the rules are detailed [below](#heuristics)).         | MULTI_5_GC                                                                                      |
 | **Hairpin_Tm_F**                     | The melting temperature of hairpin structures formed by the forward primer [°C].                                                                      | 14.457                                                                                          |
 | **Hairpin_Tm_R**                     | The melting temperature of hairpin structures formed by the reverse primer [°C].                                                                      | 0                                                                                               |
 | **Homodimer_Tm_F**                   | The melting temperature of homodimer structures formed by the forward primer[°C].                                                                     | 0                                                                                               |
@@ -409,6 +409,7 @@ Description of column names in the main results table detailing the performance 
 
 The primary results table can be found in path: `out/{Source}/sens{kmer_sensitivity_cutoff}_spec{kmer_specificity_cutoff}/final_table/`. 
 
+<a id="heuristics"></a>
 The forward and reverse primer heuristics show how each primer satisfies a list of empirical primer design rules;
 - POLY_3_GC: Avoid runs of 3 or more G's or C's at the 3' prime end.
 - MULTI_5_GC: The 5 bases at the 5' end should contain no more than 3 G's or C's if no two pyrimidines (T, C) are adjacent, 2 G's or C's otherwise.
