@@ -457,11 +457,11 @@ The detected sequences tables can be found in path: `out/{Source}/sens{kmer_sens
 
 
 ## License and third-party software
-MicrobiomePrime is distributed under a ??? licence. Additionally, it redistributes the following third party software:
+MicrobiomePrime is distributed under a MIT licence. Additionally, it redistributes the following third party software:
 - [ThermonucleotideBLAST](https://public.lanl.gov/jgans/tntblast/tntblast_doc.html)
 - [OpenMPI](https://www.open-mpi.org/)
 
 The licenses for all dependencies used in this pipeline are detailed in the NOTICE file.
 
-MicrobiomePrime is developed by Tanja Zlender, Lucija Brezocnik, Vili Podgorelec and Maja Rupnik.
+MicrobiomePrime is developed by Tanja Zlendera and Lucija Brezocnik.
 For support, please contact tanja.zlender@nlzoh.si.
