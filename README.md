@@ -167,10 +167,10 @@ Ensure that the input files are formatted according to the specifications. Caref
 
 ## Variables and settings
 
-To adjust the MicrobiomePrime analysis to your specific needs, you can adjust variables and settings in the `variables.ini` and `settings.ini` files located in the `scripts` folder.
+To adjust the MicrobiomePrime analysis to your specific needs, you can configure variables and settings in the `variables.ini` and `settings.ini` files located in the `scripts` folder.
 
 #### Variables
-Key variables that need to be defined are: 
+Key variables that must be defined include:
 
 - `target`
 - `kmer_sensitivity_cutoff`
@@ -179,14 +179,14 @@ Key variables that need to be defined are:
 - `marker_specificity_cutoff`
 - `max_mismatch` or `max_primer_delta`
 
-The rest of the variables can stay undefined.
+The remaining variables may remain undefined.
 
 <details>
   <summary>See all MicrobiomePrime variables and their descriptions</summary>
 
 | Variable                 | Explanation                                                                                               | Example                              | Default Value |
 |--------------------------|-----------------------------------------------------------------------------------------------------------|--------------------------------------|---------------|
-| `target_group_name`      | Name of the target source group to be analyzed. Only needs to be set if you define more than one target sources. | `source_group_name=Anatids`          | /             |
+| `target_group_name`      | Name of the target source group to be analyzed. Only needs to be set if you define more than one target source. | `source_group_name=Anatids`          | /             |
 | `target`                 | Target source(s). Multiple sources must be separated with commas.                                         | `target=Stork, Duck, Goose`          | /             |
 | `specificity_exception`  | Source(s) excluded from specificity calculations. Multiple sources must be separated with commas.         | `specificity_exception=Bird_unknown` | /             |
 | `kmer_size`              | Size of K-mers (and primers) to be generated.                                                             | `kmer_size=22`                       | `22`          |
@@ -207,7 +207,7 @@ The rest of the variables can stay undefined.
 
 >Note: The `kmer_sensitivity_cutoff` and `marker_sensitivity_cutoff` are related but serve different purposes. The `kmer_sensitivity_cutoff` is used prior to creating primer pairs, determining the minimum proportion of target samples that must contain the K-mer for it to be considered a valid primer. The `marker_sensitivity_cutoff` applies to the final marker and reflects the sensitivity of the entire marker amplification, which is influenced by the performance of both (forward and reverse) primers.
 
->Similarly, the `kmer_specificity_cutoff` and `marker_sensitivity_cutoff` are related but serve different purposes. The `kmer_specificity_cutoff` is used prior to creating primer pairs and determines the minimum proporion of non-target samples that do not contain the K-mer for it to be considered a valid primer. The `marker_specificity_cutoff` applies to the final marker and reflects the specificity of the entire marker amplification, which is influenced by the performance of both (forward and reverse) primers.
+>Similarly, the `kmer_specificity_cutoff` and `marker_sensitivity_cutoff` are related but serve different purposes. The `kmer_specificity_cutoff` is used prior to creating primer pairs and determines the minimum proportion of non-target samples that do not contain the K-mer for it to be considered a valid primer. The `marker_specificity_cutoff` applies to the final marker and reflects the specificity of the entire marker amplification, which is influenced by the performance of both (forward and reverse) primers.
 >
 </details>
 
@@ -215,8 +215,8 @@ The rest of the variables can stay undefined.
 
 In the settings file:
 
-- Define `tntblast_path` unless it is accessible via system's `PATH`.
-- Define `cpus` and `memory` only when running the code via Slurm.
+- Define `tntblast_path` unless it is accessible via system `PATH`.
+- Define `cpus` and `memory` only when the code is run via Slurm.
 
 <details>
   <summary>See all MicrobiomePrime settings and their descriptions.</summary>
@@ -224,7 +224,7 @@ In the settings file:
 MicrobiomePrime settings:
 Setting | Explanation | Example 
 --- | --- | --- 
-`tntblast_path` | The path of ThermonucleotideBLAST on your computer. Leave empty if the executable is accessible via system's `PATH`.  | `tntblast_path=/usr/bin/thermonucleotideBLAST/tntblast` 
+`tntblast_path` | The path to ThermonucleotideBLAST on your computer. Leave empty if the executable is accessible via system's `PATH`.  | `tntblast_path=/usr/bin/thermonucleotideBLAST/tntblast` 
 `cpus` | Number of CPUs allocated for running the program. | `cpus=250`
 `memory` | Amount of RAM (in GB) available for this analysis. Ensure that you allocate sufficient memory based on your input data requirements. | `memory=500` 
 
