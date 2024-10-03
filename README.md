@@ -3,8 +3,8 @@ MicrobiomePrime is a tool for identifying primer pairs with high specificity and
 You can find more about MicrobiomePrime at: (link available soon)
 
 ## Contents
-- [Installation and requirements](Installation and requirements)
-- [Data preprocessing](Data preprocessing)
+- [Installation and requirements](installation and requirements)
+- [Data preprocessing](data preprocessing)
 - [Inputs](Inputs)
 - [Variables and settings](Variables and settings)
 - [Code overview](Code overview)
