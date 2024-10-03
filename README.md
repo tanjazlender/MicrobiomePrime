@@ -59,7 +59,7 @@ For the analysis, you will need the following four files:
 
 File name: `metadata.csv` or `metadata.tsv`
 
-This file contains the information about the samples being analysed. 
+This file contains the information about the samples being analyzed. 
 
 The metadata file should include columns labeled `Sample`, which represents the names of the samples, and `Source`, which indicates the source of the microbiota for each sample. 
 
@@ -82,7 +82,7 @@ File name: `relabund_tab.csv` or `relabund_tab.tsv`
 This table provides the relative abundances of various microbial sequences (identified as OTUs, ASVs, or ZOTUs or any other sequence ID) across different samples. 
 Each row corresponds to a specific sample, and each column represents a unique sequence ID. 
 
-The sum of each row should be 1.
+The sum of each row should equal 1.
 
 Example table with relative abundances:
 
@@ -104,9 +104,9 @@ File name: `sequences.fa`
 
 This file contains the DNA sequences detected in the samples in a FASTA format. 
 
-Each sequence is associated with a unique identifier or sequence ID (e.g. OTU001, OTU002, OTU003,...).
+Each sequence is associated with a unique identifier or sequence ID (e.g., OTU001, OTU002, OTU003,...).
 
-Example metadata file:
+Example FASTA file:
 
 ```plaintext
 >Otu1
@@ -145,9 +145,9 @@ The sequence IDs in the FASTA file should match the sequence IDs in the relative
 File name: `taxonomy.csv` or `taxonomy.tsv`
 
 This file contains the taxonomic classification of the sequences identified in the samples. 
-Each sequence ID is assigned to different taxonomic ranks, such as domain, phylum, class, order, family, and genus.
+Each sequence ID is assigned at different taxonomic ranks, such as domain, phylum, class, order, family, and genus.
 
-The table should contain the following column names: `SeqID`, `Domain`, `Phylum`, `Class`, `Order`, `Family` and `Genus`. If a sequence cannot be identified at a particular taxonomic level, leave the corresponding cell empty. 
+The table should contain the following column names: `SeqID`, `Domain`, `Phylum`, `Class`, `Order`, `Family` and `Genus`. If a sequence cannot be identified at a particular taxonomic level, leave the corresponding cell blank. 
 
 SeqID | Domain | Phylum | Class | Order | Family | Genus  
 --- | --- | --- | --- | --- | --- | ---
@@ -163,7 +163,7 @@ The sequence IDs in this file should match those in the relative abundances tabl
 
 </details>
 
-Ensure that the input files are formatted according to our specifications. Carefully verify the file names, row names, column names, and table formatting.
+Ensure that the input files are formatted according to the specifications. Carefully verify the file names, row names, column names, and table formatting.
 
 ## Variables and settings
 
