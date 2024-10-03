@@ -1,5 +1,5 @@
 # MicrobiomePrime
-MicrobiomePrime is a tool for identifying primer pairs with high specificity and sensitivity for a particular source of microbiota by analysing amplicon sequences. The pipeline was originally developed for use in Microbial Source Tracking (MST).
+MicrobiomePrime is a tool for identifying primer pairs with high specificity and sensitivity for a particular source of microbiota by analyzing amplicon sequences. The pipeline was originally developed for use in Microbial Source Tracking (MST).
 You can find more about MicrobiomePrime at: (link available soon)
 
 ## Contents
@@ -15,7 +15,7 @@ You can find more about MicrobiomePrime at: (link available soon)
 - [License and third-party software](#license-and-third-party-software)
 
 ## Installation and requirements
-MicrobiomePrime is intended to be run in a x86-64 Linux OS (tested on Ubuntu). 
+MicrobiomePrime is intended to be run in an x86-64 Linux OS (tested on Ubuntu). 
 
 **1. Create a conda environment**
 
@@ -41,12 +41,12 @@ ThermonucleotideBLAST is a tool for *in silico* PCR that must be installed separ
 
 OpenMPI is used for parallelization to speed up the analysis. While ThermonucleotideBLAST can run without OpenMPI, it will take significantly longer. To install OpenMPI, follow the instructions on the [OpenMPI website](https://www.open-mpi.org/).
 
->Note: Due to the complexity and high computational demands of sequencing data, using a High Performance Computing (HPC) system may be necessary to ensure efficient processing and analysis of large datasets.
+>Note: Due to the complexity and high computational demands of sequencing data, using a High-Performance Computing (HPC) system may be necessary to ensure efficient processing and analysis of large datasets.
 
 ## Data preprocessing
-Before using MicrobiomePrime, preprocess your raw amplicon sequences by removing primer sequences, quality filtering, detecting and removing chimeras, clustering or denoising sequences, and normalizing the data. Ensure each sequence is assigned a unique sequence ID (SeqID) with letters followed by numbers (e.g. OTU001, OTU002, OTU003).
+Before using MicrobiomePrime, preprocess your raw amplicon sequences by removing primer sequences, quality filtering, detecting and removing chimeras, clustering or denoising sequences, and normalizing the data. Ensure each sequence is assigned a unique sequence ID (SeqID) with letters followed by numbers (e.g., OTU001, OTU002, OTU003).
 
-Suitable software options data preprocessing include [Usearch](https://www.drive5.com/usearch/), [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/), and [Mothur](https://mothur.org/).
+Suitable software options for data preprocessing include [Usearch](https://www.drive5.com/usearch/), [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/), and [Mothur](https://mothur.org/).
 
 In the final step of data preprocessing, calculate the relative abundances of each sequence within each sample. Ensure that the preprocessed file outputs adhere to the required format specified in the "Inputs" section.
 
