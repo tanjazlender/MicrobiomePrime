@@ -15,8 +15,7 @@ The following objects are masked from ‘package:base’:
     intersect, setdiff, setequal, union
 
 Reading input files.
-Verifying if all specified specificity exceptions are present in the metadata file.
-All defined targets are found in metadata.
+All defined exceptions are found in metadata.
 Joining with `by = join_by(Sample)`
 
 Calculating K-mer sensitivity.
@@ -24,7 +23,21 @@ Joining with `by = join_by(seqID)`
 K-mer sensitivity calculation completed.
 
 Calculating K-mer specificity.
+Progress:1/5.
 Joining with `by = join_by(seqID)`
+Joining with `by = join_by(kmer)`
+Progress:2/5.
+Joining with `by = join_by(seqID)`
+Joining with `by = join_by(kmer)`
+Progress:3/5.
+Joining with `by = join_by(seqID)`
+Joining with `by = join_by(kmer)`
+Progress:4/5.
+Joining with `by = join_by(seqID)`
+Joining with `by = join_by(kmer)`
+Progress:5/5.
+Joining with `by = join_by(seqID)`
+Joining with `by = join_by(kmer)`
 Joining with `by = join_by(kmer)`
 K-mer specificity calculation completed.
 

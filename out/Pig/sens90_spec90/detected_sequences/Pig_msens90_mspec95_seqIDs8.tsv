@@ -1,0 +1,9 @@
+PP_ID	SeqIDs_all	seqIDs_target_only	seqIDs_nontarget_only	N_seqIDs_target	N_seqIDs_nontarget	File_number
+Pig1Fw:Pig123Rv	Zotu812, Zotu4781, Zotu22648, Zotu65478	NA	NA	4	NA	8
+Pig1Fw:Pig124Rv	Zotu812, Zotu4781, Zotu22648, Zotu25995, Zotu65478	NA	NA	5	NA	8
+Pig1Fw:Pig192Rv	Zotu812, Zotu4781, Zotu22648, Zotu25995, Zotu65478	NA	NA	5	NA	8
+Pig1Fw:Pig208Rv	Zotu812, Zotu4781, Zotu25995, Zotu65478	NA	NA	4	NA	8
+Pig1Fw:Pig216Rv	Zotu812, Zotu4781, Zotu25995	NA	NA	3	NA	8
+Pig1Fw:Pig45Rv	Zotu812, Zotu4781, Zotu25995, Zotu65478	NA	NA	4	NA	8
+Pig1Fw:Pig75Rv	Zotu812, Zotu4781, Zotu65478	NA	NA	3	NA	8
+Pig1Fw:Pig76Rv	Zotu812, Zotu4781, Zotu9750, Zotu22648, Zotu25995, Zotu65478	NA	NA	6	NA	8

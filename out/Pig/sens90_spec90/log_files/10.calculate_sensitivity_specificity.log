@@ -7,9 +7,18 @@ Calculating the number of samples.
 Joining relabund_table and metadata.
 Memory from settings: 16 GB
 Number of processes based on input data and available memory: 7
-Finished analysing file Pig_sens90_spec90_results_table3.txt. Memory after: 71.04 MB Virtual memory: 1122.55 MB
-Finished analysing file Pig_sens90_spec90_results_table5.txt. Memory after: 77.05 MB Virtual memory: 1128.44 MB
-Finished analysing file Pig_sens90_spec90_results_table2.txt. Memory after: 80.45 MB Virtual memory: 1132.04 MB
-Finished analysing file Pig_sens90_spec90_results_table1.txt. Memory after: 80.12 MB Virtual memory: 1131.61 MB
-Finished analysing file Pig_sens90_spec90_results_table4.txt. Memory after: 76.70 MB Virtual memory: 1128.23 MB
+Pig_sens90_spec90_results_table7.txt does not contain primer pairs meeting the specified criteria.
+Finished analysing file Pig_sens90_spec90_results_table2.txt. Memory after: 57.34 MB Virtual memory: 1110.13 MB
+Finished analysing file Pig_sens90_spec90_results_table1.txt. Memory after: 60.09 MB Virtual memory: 1111.73 MB
+Finished analysing file Pig_sens90_spec90_results_table8.txt. Memory after: 55.19 MB Virtual memory: 595.88 MB
+Finished analysing file Pig_sens90_spec90_results_table3.txt. Memory after: 55.95 MB Virtual memory: 596.59 MB
+Finished analysing file Pig_sens90_spec90_results_table5.txt. Memory after: 60.14 MB Virtual memory: 1111.67 MB
+Finished analysing file Pig_sens90_spec90_results_table6.txt. Memory after: 59.46 MB Virtual memory: 1111.07 MB
+Finished analysing file Pig_sens90_spec90_results_table9.txt. Memory after: 67.04 MB Virtual memory: 1118.46 MB
+Finished analysing file Pig_sens90_spec90_results_table10.txt. Memory after: 66.59 MB Virtual memory: 1118.05 MB
+Finished analysing file Pig_sens90_spec90_results_table4.txt. Memory after: 61.15 MB Virtual memory: 1112.74 MB
+Finished analysing file Pig_sens90_spec90_results_table14.txt. Memory after: 58.86 MB Virtual memory: 1110.41 MB
+Finished analysing file Pig_sens90_spec90_results_table13.txt. Memory after: 63.27 MB Virtual memory: 1114.77 MB
+Finished analysing file Pig_sens90_spec90_results_table12.txt. Memory after: 64.80 MB Virtual memory: 1116.34 MB
+Finished analysing file Pig_sens90_spec90_results_table11.txt. Memory after: 66.14 MB Virtual memory: 1117.71 MB
 DONE: The script has completed successfully.

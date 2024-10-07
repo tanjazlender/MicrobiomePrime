@@ -13,11 +13,19 @@ Reading variables.
 Reading variables.
 Checking for and removing any existing files in the output directory.
 [1] TRUE
-Finished processing file number 1 (progress:1/5)
-Finished processing file number 2 (progress:2/5)
-Finished processing file number 3 (progress:3/5)
-Finished processing file number 4 (progress:4/5)
-Finished processing file number 5 (progress:5/5)
+Finished processing file number 1 (progress:1/13)
+Finished processing file number 10 (progress:2/13)
+Finished processing file number 11 (progress:3/13)
+Finished processing file number 12 (progress:4/13)
+Finished processing file number 13 (progress:5/13)
+Finished processing file number 14 (progress:6/13)
+Finished processing file number 2 (progress:7/13)
+Finished processing file number 3 (progress:8/13)
+Finished processing file number 4 (progress:9/13)
+Finished processing file number 5 (progress:10/13)
+Finished processing file number 6 (progress:11/13)
+Finished processing file number 8 (progress:12/13)
+Finished processing file number 9 (progress:13/13)
 The final results have been saved to: out/Pig/sens90_spec90/final_results/Pig_msens90_mspec95_final_results.tsv
 
 DONE: The script has completed successfully.
