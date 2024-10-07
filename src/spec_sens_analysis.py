@@ -615,8 +615,6 @@ def process_exception_samples(exception_abundance, sensitivity_specificity, taxo
         (exception_abundance['PP_ID'].isin(sensitivity_specificity['PP_ID']))
     ]
     
-    exception_string = ', '.join(specificity_exception)
-    
     if len(filtered_exception_abundance) > 0:
         # Calculate detailed sensitivity
         exception_abundance_grouped = (
@@ -716,8 +714,7 @@ def process_exception_samples(exception_abundance, sensitivity_specificity, taxo
                 Presence_exceptions_samples=None,
                 Positive_exceptions_samples=None,
                 Percent_abundance_exceptions_detailed=None,
-                Taxonomy_exceptions=None,
-                Exceptions=exception_string
+                Taxonomy_exceptions=None
             )
         )
     
@@ -840,7 +837,12 @@ def process_sequence_ids(tntblast_results_filt, sensitivity_specificity, target_
     
     return pp_seqIDs_all
     
-def join_info(sensitivity_specificity, sensitivity_detailed, amplicon_sizes, primers_info, abundance_target, taxonomy_target, negative_target_samples, detected_nontarget, exceptions_info, pp_seqIDs, file_number):
+def join_info(sensitivity_specificity, sensitivity_detailed, amplicon_sizes, primers_info, abundance_target, taxonomy_target, negative_target_samples, detected_nontarget, exceptions_info, pp_seqIDs, file_number, specificity_exception):
+    
+    if specificity_exception:
+        exception_string = ', '.join(specificity_exception)
+    else:
+        exception_string = 'NA'
     
     # Perform left joins
     merged_df = (
@@ -854,7 +856,10 @@ def join_info(sensitivity_specificity, sensitivity_detailed, amplicon_sizes, pri
         .merge(detected_nontarget, how='left')
         .merge(exceptions_info, how='left')
         .merge(pp_seqIDs[['PP_ID', 'N_seqIDs_target']], how='left', on='PP_ID')
-        .assign(File_number=file_number)
+        .assign(
+            File_number=file_number,
+            Exceptions=exception_string
+        )
     )
     
     # Change columns order

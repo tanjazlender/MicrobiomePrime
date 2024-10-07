@@ -156,7 +156,7 @@ def process_file(filename):
     
         joined = analysis.join_info(
             sensitivity_specificity, sensitivity_detailed, amplicon_sizes, primers_info, abundance_target, taxonomy_target,
-            negative_target_samples, detected_nontarget, exceptions_info, pp_seqIDs, file_number)
+            negative_target_samples, detected_nontarget, exceptions_info, pp_seqIDs, file_number, specificity_exception)
     
         ############################# Write output tables ########################## 
         # Define output file names
