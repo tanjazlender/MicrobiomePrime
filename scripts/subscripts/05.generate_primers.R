@@ -34,7 +34,7 @@ specificity_exception_raw <- if (!is.null(variables$settings$specificity_excepti
   ""
 }
 
-# Check if the string specificity_exceptionis not empty
+# Check if the string specificity_exception is not empty
 if (nchar(specificity_exception_raw) > 0) {
   # Split by comma if there are any commas
   specificity_exception <- unlist(strsplit(specificity_exception_raw, ",\\s*"))
@@ -77,13 +77,12 @@ if (file.exists("data/input_files/relabund_tab.tsv")) {
 }
 
 # Check if all specificity exceptions are found in metadata and print an error if necessary
-cat("Verifying if all specified specificity exceptions are present in the metadata file.\n")
 exceptions_not_found <- specificity_exception[!specificity_exception %in% metadata$Source]
 
 if (length(exceptions_not_found) > 0) {
-  stop(paste0("These targets were not found in the metadata file: ", paste(exceptions_not_found, collapse = ", "), "\n"))
+  stop(paste0("These exceptions were not found in the metadata file: ", paste(exceptions_not_found, collapse = ", "), "\n"))
 } else {
-  cat("All defined targets are found in metadata.\n")
+  cat("All defined exceptions are found in metadata.\n")
 }
 
 # Create an empty data.table to store the combined data
@@ -115,12 +114,11 @@ for (target_source_x in target) {
 # Remove duplicated rows
 kmer_seqIDs <- unique(kmer_seqIDs)
 
-
 ################################################################################
 ################# Calculate K-mer sensitivity and specificity ##################
 
 # Separate seqIDs
-kmer_seqID <- separate_rows(kmer_seqIDs, seqIDs, sep = ",") %>%
+kmer_seqID <- separate_rows(kmer_seqIDs, seqIDs, sep = ", ") %>%
   rename("seqID" = "seqIDs") %>%
   as.data.table
 
@@ -131,8 +129,6 @@ seqID_kmers <- kmer_seqID[, .(kmers = paste(unique(kmer), collapse = ", ")), by 
 relabund_tab_long <- data.frame(relabund_tab, Sample = rownames(relabund_tab)) %>%
   pivot_longer(names_to = "seqID", values_to = "relabund", -Sample) %>%
   left_join(select(metadata, c("Sample", "Source")))
-
-
 
 ############################## K-mer sensitivity ###############################
 cat("\nCalculating K-mer sensitivity.\n")
@@ -179,35 +175,73 @@ metadata_nontarget <- metadata %>%
 no_nontarget_samples <- length(unique(metadata_nontarget$Sample))
 
 relabund_tab_long_nontarget <- relabund_tab_long %>%
+  filter(relabund>0) %>%
   filter(., Source %in% metadata_nontarget$Source)
 
 highly_sensitive_nontarget_kmers <- kmer_seqID %>%
   filter(seqID %in% unique(relabund_tab_long_nontarget$seqID),
          kmer %in% sensitivity$kmer) %>%
-  group_by(seqID) %>%
-  summarise(kmers = paste0(unique(kmer), collapse = ", "))
-
-highly_sensitive_relabund <- highly_sensitive_nontarget_kmers %>%
-  left_join(relabund_tab_long_nontarget) %>%
-  tidyr::separate_rows(kmers, sep = ", ") 
-
-library(data.table)
-
-# Convert to data.table
-setDT(highly_sensitive_relabund)
-
-# Perform the operations
-nontarget_PA <- highly_sensitive_relabund[, .(relabund = sum(relabund)), by = .(Sample, kmers, Source)
-                                          ][, PA := as.integer(relabund > 0)][
-                                            , .(kmer = kmers, relabund, PA)]
-
-specificity <- nontarget_PA %>%
   group_by(kmer) %>%
-  summarise(FP = sum(PA),
-            TN = no_nontarget_samples - FP,
-            specificity = TN/(TN+FP)*100) %>%
-  filter(., specificity >= kmer_specificity_cutoff) %>%
-  left_join(sensitivity)
+  summarise(seqID = paste0(unique(seqID), collapse = ", "))
+
+setDT(highly_sensitive_nontarget_kmers)
+
+# Set a chunk size (adjust based on memory limitations)
+chunk_size <- 50
+
+# Split the highly_sensitive_nontarget_kmers into chunks
+highly_sensitive_nontarget_kmers_chunks <- split(
+  highly_sensitive_nontarget_kmers, 
+  (seq_len(nrow(highly_sensitive_nontarget_kmers)) - 1) %/% chunk_size
+)
+
+# Split the data into chunks based on the chunk_size
+num_chunks <- ceiling(nrow(highly_sensitive_nontarget_kmers) / chunk_size)
+
+# Initialize a list to store results
+chunks_joined <- list()
+
+# Calculate kmer specificity in chunks
+for (i in seq_len(num_chunks)) {
+  
+  cat("Progress:", i, "/", num_chunks, ".\n", sep = "")
+  
+  chunk <- highly_sensitive_nontarget_kmers_chunks[[i]]
+  
+  chunk_seqID_kmers <- chunk %>%
+    tidyr::separate_rows(seqID, sep = ", ") %>%
+    group_by(seqID) %>%
+    summarise(kmers = paste0(unique(kmer), collapse = ", "))
+
+  highly_sensitive_relabund <- relabund_tab_long_nontarget %>%
+    filter(seqID %in% chunk_seqID_kmers$seqID) %>%
+    left_join(chunk_seqID_kmers) %>%
+    tidyr::separate_rows(kmers, sep = ", ")
+  
+  setDT(highly_sensitive_relabund)
+  
+  nontarget_PA <- highly_sensitive_relabund[, .(relabund = sum(relabund)), by = .(Sample, kmers, Source)
+  ][, PA := as.integer(relabund > 0)][
+    , .(kmer = kmers, relabund, PA)]
+  
+  chunk_specificity <- nontarget_PA %>%
+    group_by(kmer) %>%
+    summarise(FP = sum(PA),
+              TN = no_nontarget_samples - FP,
+              specificity = TN/(TN+FP)*100) %>%
+    #filter(., specificity >= kmer_specificity_cutoff) %>%
+    left_join(sensitivity) %>%
+    select(c("kmer", "specificity"))
+  
+  chunks_joined[[i]] <- chunk_specificity
+  
+  gc()  
+}
+
+specificity <- data.frame(kmer = sensitivity$kmer, ID = sensitivity$ID) %>%
+  left_join(bind_rows(chunks_joined)) %>%
+  mutate(specificity = ifelse(is.na(specificity), 100, specificity)) %>%
+  filter(., specificity >= kmer_specificity_cutoff)
 
 # Check if the specificity data frame contains data and print an error if necessary
 if (!is.null(specificity) && nrow(specificity) > 0) {
