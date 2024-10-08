@@ -1,5 +1,6 @@
 
-![image](https://github.com/user-attachments/assets/23643e00-70a3-4d89-848e-8b593f5f6594)
+![image](https://github.com/user-attachments/assets/29ac8ac3-1974-46b7-b5c9-2be9ee1785da)
+
 
 
 MicrobiomePrime is a tool for identifying primer pairs with high specificity and sensitivity for a particular source of microbiota by analyzing amplicon sequences. The pipeline was originally developed for use in Microbial Source Tracking (MST).
