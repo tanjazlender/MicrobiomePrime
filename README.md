@@ -9,7 +9,7 @@
 
 
 
-MicrobiomePrime is a tool for identifying primer pairs with high specificity and sensitivity for a particular source of microbiota by analyzing amplicon sequences. The pipeline was originally developed for use in Microbial Source Tracking (MST).
+MicrobiomePrime is a tool for identifying primer pairs with high specificity and sensitivity for a particular source of microbiota by analyzing amplicon sequences. It was originally developed for use in Microbial Source Tracking (MST).
 You can find more about MicrobiomePrime at: (link available soon)
 
 ## Contents
