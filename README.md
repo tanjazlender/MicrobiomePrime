@@ -470,5 +470,5 @@ MicrobiomePrime is distributed under a MIT licence. Additionally, it redistribut
 
 The licenses for all dependencies used in this pipeline are detailed in the NOTICE file.
 
-MicrobiomePrime is developed by Tanja Zlender and Lucija Brezocnik.
+MicrobiomePrime was developed by Tanja Zlender and Lucija Brezocnik. The logo was designed by Alina Kovalenko (alinakovalenko37@gmail.com).
 For support, please contact tanja.zlender@nlzoh.si.
