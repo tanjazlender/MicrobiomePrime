@@ -333,12 +333,17 @@ rm data/generated_files/*
 rm -r out/*
 ```
 
-**3. Navigate to the `scripts` directory:**
+**3. Activate the conda environment if it is not already activated**
+```
+conda activate MicrobiomePrime
+```
+
+**4. Navigate to the `scripts` directory:**
 ```
 cd scripts/
 ```
 
-**4. Run the script:**
+**5. Run the script:**
 
 - To run the script **using Slurm**, execute the following command:  
      ```bash
