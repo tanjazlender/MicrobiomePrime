@@ -68,9 +68,21 @@ if (length(missing_targets) > 0) {
 ######################## Write sequence ID lists ###############################
 cat("Writing sequence IDs.\n")
 
+# Create a subdirectory for K-mers
+kmer_dir <- file.path("data/generated_files/kmers")
+
+if (!file.exists(kmer_dir)) {
+  dir.create(kmer_dir, showWarnings = FALSE)
+}
+
 # Create subdirectories for sequence ID list files and FASTA files to be generated
+sequences_dir <- file.path("data/generated_files/sequences")
 fasta_dir <- file.path("data/generated_files/sequences/fasta_files")
 seqID_dir <- file.path("data/generated_files/sequences/seqID_lists")
+
+if (!file.exists(sequences_dir)) {
+  dir.create(sequences_dir, showWarnings = FALSE)
+}
 
 if (!file.exists(fasta_dir)) {
   dir.create(fasta_dir, showWarnings = FALSE)
