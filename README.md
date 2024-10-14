@@ -329,7 +329,7 @@ cd MicrobiomePrime
 **2. (Optional) Remove example data and results to free up space and ensure a clean environment**
 ```
 rm data/input_files/*
-rm data/generated_files/*
+rm -r data/generated_files/*
 rm -r out/*
 ```
 
