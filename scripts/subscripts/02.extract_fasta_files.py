@@ -47,7 +47,7 @@ config = configparser.ConfigParser()
 config.read('scripts/variables.ini')
 
 target = config.get('settings', 'target')
-target_list = [t.strip() for t in target.split(',')]
+target_list = [t.strip().replace(' ', '-') for t in target.split(',')]
 
 # Define fasta file path
 singleline_fasta = "data/generated_files/sequences/fasta_files/sequences_singleline.fa"
