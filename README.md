@@ -18,7 +18,7 @@ You can find more about MicrobiomePrime at: (link available soon)
 - [License and third-party software](#license-and-third-party-software)
 
 ## Installation and requirements
-MicrobiomePrime is intended to be run in an x86-64 Linux OS (tested on Ubuntu). 
+MicrobiomePrime is intended to be run in an x86-64 Linux OS (tested on Ubuntu). In addition to the system requirements, ensure that both **R** and **Python** are installed.
 
 **1. Create a conda environment**
 
