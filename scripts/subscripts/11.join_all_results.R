@@ -68,6 +68,12 @@ pattern <- paste0(target_group_ID,
                   "_mspec", marker_specificity_cutoff, 
                   "_markers", "\\d+.tsv")
 
+# Check if there are any input files and print an error if necessary
+input_files <- list.files(path = paste0(input_directory_path), full.names = TRUE)
+
+if (length(input_files) == 0) {
+  stop("No primer pairs meeting the defined criteria found.")
+}
 
 # List existing files in the directory and delete them
 existing_files <- list.files(path = paste0(host_directory_path, "/final_results"), full.names = TRUE)
