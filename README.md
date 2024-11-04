@@ -293,15 +293,15 @@ This section includes the following scripts found in the `scripts/subscripts` fo
 
 
 <details>
-<summary> Section 4: Assessing the sensitivity and specificity of primer pairs in an *in silico* PCR analysis</summary>
+<summary> Section 4: Assessing the sensitivity and specificity of primer pairs in an in silico PCR analysis</summary>
 
-In the final section, we conduct an in silico PCR analysis using the primer pairs generated in Section 3. Based on the results, performance metrics including marker sensitivity and marker specificity are calculated.
+In the final section, we conduct an *in silico* PCR analysis using the primer pairs generated in Section 3. Based on the results, performance metrics including marker sensitivity and marker specificity are calculated.
 
 > Note: Although 100% sensitivity and 100% specificity would be ideal, it is often challenging to achieve in practice.
 
 This section includes the following scripts found in the `scripts/subscripts` folder:
 - 07.split_PP_lists.py: this script divides the lists of primer pairs into smaller sets to facilitate easier analysis and to produce more manageable intermediate output files.
-- 08.run_tntblast.py: this script uses the ThermonucleotideBLAST program to perform in silico PCR with the generated primer pairs.
+- 08.run_tntblast.py: this script uses the ThermonucleotideBLAST program to perform *in silico* PCR with the generated primer pairs.
 - 09.rearrange_tntblast_output.py: rearranges the ThermonucleotideBLAST output into a table format.
 - 10.calculate_sensitivity_specificity.py: calculates marker sensitivity, specificity and other performance criteria.
 - 11.join_all_results.R: joins all performance criteria and primer information into a single file.
