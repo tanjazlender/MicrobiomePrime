@@ -1,12 +1,5 @@
 <img src="https://github.com/user-attachments/assets/ef2c4b2f-5e0e-474e-a068-76fb67d10961" alt="logo" width="700"/>
 
-
-![Tanja Popravljeno 2 0](https://github.com/user-attachments/assets/56083f8a-30a3-45cc-bda3-f6d3524c5a73)
-
-
-![Tanja Popravljeno Belo Ozadje](https://github.com/user-attachments/assets/37622147-4d05-4dac-aa74-c706d298c273)
-
-
 ![Tanja Popravljeno modrooo](https://github.com/user-attachments/assets/1e4c39a0-e8da-40fa-8de5-ae814b547754)
 
 
