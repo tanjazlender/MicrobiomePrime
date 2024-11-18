@@ -445,7 +445,7 @@ The detected sequences tables can be found in path: `out/{Source}/sens{kmer_sens
 
 </details>
 
->**Note:** The primer pairs should always be validated in the laboratory with both target and non-target samples. Test the sensitivity and specificity of the primer pairs using methods such as conventional PCR, real-time PCR, or digital PCR.
+>**Note:** The primer pairs should always be validated *in vitro* (e.g. using conventional, real-time or digital PCR) on both target and non-target samples.
 
 ## Definitions
 
