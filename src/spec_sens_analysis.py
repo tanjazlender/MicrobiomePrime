@@ -649,8 +649,8 @@ def process_exception_samples(exception_abundance, sensitivity_specificity, taxo
         )
         
         
-        # Calculate relative abundances of markers within samples excluded from specificity calculations
-        exception_abundance_mean = (
+        # Calculate relative abundances of markers within samples excluded from specificity calculations    
+        exception_abundance_mean_source = (
             filtered_exception_abundance
             .groupby(['PP_ID', 'Source', 'Nsamples'], as_index=False)
             .agg({
@@ -659,36 +659,32 @@ def process_exception_samples(exception_abundance, sensitivity_specificity, taxo
         )
         
         # Flatten the MultiIndex columns
-        exception_abundance_mean.columns = ['_'.join(col).strip().rstrip('_') for col in exception_abundance_mean.columns]
+        exception_abundance_mean_source.columns = ['_'.join(col).strip().rstrip('_') for col in exception_abundance_mean_source.columns]
 
-        pp_abundance_exceptions = (
-            exception_abundance_mean
+        pp_abundance_exceptions_detailed = (
+            exception_abundance_mean_source
             .rename(columns={
                 'Percent_abundance_mean': 'Percent_abundance_exceptions',
                 'Percent_abundance_std': 'Percent_abundance_exceptions_SD'
             })
-            .groupby('PP_ID', as_index=False)
-            .agg({
-                'Source': 'first',
-                'Percent_abundance_exceptions': lambda x: ', '.join(map(str, x.fillna(''))),
-                'Percent_abundance_exceptions_SD': lambda x: ', '.join(map(str, x.fillna('')))
-            })
-            .assign(
-                Percent_abundance_exceptions_detailed=lambda df: df.apply(
+            .assign(Percent_abundance_exceptions_detailed=lambda df:
+                df.apply(
                     lambda row: (
-                        f"{row['Source']} ({round(float(row['Percent_abundance_exceptions']), 4)}"
-                        + (f" SD={round(float(row['Percent_abundance_exceptions_SD']), 4)}" 
-                           if pd.notna(row['Percent_abundance_exceptions_SD']) and row['Percent_abundance_exceptions_SD'].strip() != ''
-                           else "") +
-                        ")"
+                        f"{row['Source']} ({row['Percent_abundance_exceptions']:.4f})"
+                        if pd.isna(row['Percent_abundance_exceptions_SD'])
+                        else f"{row['Source']} ({row['Percent_abundance_exceptions']:.4f} SD={row['Percent_abundance_exceptions_SD']:.4f})"
                     ),
                     axis=1
                 )
             )
-            .drop(columns=['Percent_abundance_exceptions', 'Percent_abundance_exceptions_SD'])
-            .rename(columns={'Source': 'Exceptions'})
+            .groupby('PP_ID', as_index=False)
+            .agg({
+                'Percent_abundance_exceptions_detailed': lambda x: ', '.join(x)
+            })
         )
         
+        pp_abundance_exceptions_detailed['Exceptions'] = ', '.join(specificity_exception)
+            
         # Assign taxonomy to each marker found in specificity exception samples
         pp_taxonomy_exceptions = (
             filtered_exception_abundance 
@@ -702,7 +698,7 @@ def process_exception_samples(exception_abundance, sensitivity_specificity, taxo
         pp_exceptions_join = (
             sensitivity_specificity[['PP_ID']]
             .merge(positive_exceptions, on='PP_ID', how='left')
-            .merge(pp_abundance_exceptions, on='PP_ID', how='left')
+            .merge(pp_abundance_exceptions_detailed, on='PP_ID', how='left')
             .merge(pp_taxonomy_exceptions, on='PP_ID', how='left')   
         )
     
