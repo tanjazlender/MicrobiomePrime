@@ -2,7 +2,7 @@
 
 
 MicrobiomePrime is a tool for identifying primer pairs with high specificity and sensitivity for a particular source of microbiota by analyzing amplicon sequences. It was originally developed for use in Microbial Source Tracking (MST).
-You can find more about MicrobiomePrime at: (link available soon)
+You can find more about MicrobiomePrime at: https://www.biorxiv.org/content/10.1101/2025.07.08.663663v1.
 
 ## Contents
 - [Installation and requirements](#installation-and-requirements)
