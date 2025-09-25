@@ -242,6 +242,8 @@ cd MicrobiomePrime
 ```
 
 **2. Clean example data**
+Skip this step if you want to run the provided example dataset.
+If you are analyzing your own dataset, it is recommended to remove the example data to free up space and start with a clean environment.
 ```
 rm data/input_files/*
 rm -r data/generated_files/*
