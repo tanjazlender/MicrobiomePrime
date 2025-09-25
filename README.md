@@ -9,10 +9,10 @@ You can find more about MicrobiomePrime at: https://www.biorxiv.org/content/10.1
 - [Data preprocessing](#data-preprocessing)
 - [Inputs](#inputs)
 - [Variables and settings](#variables-and-settings)
-- [Code overview](#code-overview)
 - [Running the code](#running-the-code)
 - [Progress and error monitoring](#progress-and-error-monitoring)
 - [Outputs](#outputs)
+- [Code overview](#code-overview)
 - [Definitions](#definitions)
 - [License and third-party software](#license-and-third-party-software)
 
@@ -50,7 +50,7 @@ Before using MicrobiomePrime, preprocess your raw amplicon sequences by removing
 
 Suitable software options for data preprocessing include [Usearch](https://www.drive5.com/usearch/), [Qiime2](https://qiime2.org/), [DADA2](https://benjjneb.github.io/dada2/), and [Mothur](https://mothur.org/).
 
-In the final step of data preprocessing, calculate the relative abundances of each sequence within each sample. Ensure that the preprocessed file outputs adhere to the required format specified in the "Inputs" section.
+In the final step of data preprocessing, calculate the relative abundances of each sequence within each sample. Ensure that the preprocessed file outputs adhere to the required format specified in the [Inputs](#inputs) section.
 
 ## Inputs
 
@@ -233,83 +233,6 @@ Setting | Explanation | Example
 </details>
 
 
-## Code overview
-
-The code consists of four main sections:
-
-<details>
-<summary> Section 1: Preparing the data</summary>
-
-This section prepares the data for K-mer generation using the following subscripts from the `scripts/subscripts` folder:
-
-- 00.verify_input_formatting.R: verifies whether the input is formatted correctly.
-- 01.write_target_seqIDs.R: creates a list of sequence IDs found in target samples.
-- 02.extract_fasta_files.py: extract FASTA sequences based on the list of sequence IDs found in target samples.
-- 03.organize_directories.py: creates and organizes directories for storing analysis outputs.
-
-</details>
-
-
-<details>
-<summary> Section 2: Generating K-mers</summary>
-
-In the second section, amplicon sequences are split into K-mers that are length of a primer. The sequences are split in a one bp window slide approach as shown on the picture below.
-<p align="center">
-  <img src="https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/0300193e-dc1b-44b1-bc9f-6231b781fafb" alt="splitting kmers_small">
-</p>
-
-K-mers are excluded from the analysis if they:
-- contain homopolymeric runs (four or more identical nucleotides in a row),
-- contain simple repeats (repeated sequences of four or more nucleotides),
-- contain inverse repeats (self-complementary sequence motifs of four or more nucleotides),
-- or have a GC contenr outside the range of 45% to 60%.
-
-These exclusions are necessary to ensure that the K-mers, which will later be used as PCR primers, do not introduce amplification errors or form secondary structures that could impair primer performance in PCR.
-
-This section encompasses a single script found in the `scripts/subscripts` folder:
-- 04.extract_valid_kmers.py: this script extracts K-mers according to the criteria described above.
-
-</details>
-
-
-
-<details>
-<summary> Section 3: Generating primer pairs</summary>
-
-Primers are essentially K-mers produced in Section 2. 
-When designing primer pairs, we use two key cutoffs:
-- kmer_sensitivity_cutoff
-- kmer_specificity_cutoff
-  
-For a primer pair to be considered valid, both primers must meet or exceed the kmer_sensitivity_cutoff. Additionally, at least one of the primers must meet or exceed the kmer_specificity_cutoff.
-
-This section includes the following scripts found in the `scripts/subscripts` folder:
-- 05.generate_primers.R: this script generates primers by filtering K-mers based on their sensitivity and specificity.
-- 06.generate_PPs.py: this script combines the primers from the previous script into primer pairs.
-
-</details>
-
-
-
-
-<details>
-<summary> Section 4: Assessing the sensitivity and specificity of primer pairs in an in silico PCR analysis</summary>
-
-In the final section, we conduct an *in silico* PCR analysis using the primer pairs generated in Section 3. Based on the results, performance metrics including marker sensitivity and marker specificity are calculated.
-
-> Note: Although 100% sensitivity and 100% specificity would be ideal, it is often challenging to achieve in practice.
-
-This section includes the following scripts found in the `scripts/subscripts` folder:
-- 07.split_PP_lists.py: this script divides the lists of primer pairs into smaller sets to facilitate easier analysis and to produce more manageable intermediate output files.
-- 08.run_tntblast.py: this script uses the ThermonucleotideBLAST program to perform *in silico* PCR with the generated primer pairs.
-- 09.rearrange_tntblast_output.py: rearranges the ThermonucleotideBLAST output into a table format.
-- 10.calculate_sensitivity_specificity.py: calculates marker sensitivity, specificity and other performance criteria.
-- 11.join_all_results.R: joins all performance criteria and primer information into a single file.
-
-</details>
-
-
-
 ## Running the code
 
 **1. Clone the GitHub repository and move into the project folder**
@@ -318,24 +241,31 @@ git clone https://github.com/tanjazlender/MicrobiomePrime.git
 cd MicrobiomePrime
 ```
 
-**2. (Optional) Remove example data and results to free up space and ensure a clean environment**
+**2. Clean example data**
 ```
 rm data/input_files/*
 rm -r data/generated_files/*
 rm -r out/*
 ```
 
-**3. Activate the conda environment if it is not already activated**
+**3. Activate the conda environment (if not already active)**
 ```
 conda activate MicrobiomePrime
 ```
 
-**4. Navigate to the `scripts` directory:**
+**4. Add input files**
+Place all input files in the following directory:
+```
+MicrobiomePrime/data/input_files/
+```
+>A detailed description of each input file, including format and required content, can be found under the [Inputs](#inputs) section
+
+**5. Navigate to the `scripts` directory:**
 ```
 cd scripts/
 ```
 
-**5. Run the script:**
+**6. Run the script:**
 
 - To run the script **using Slurm**, execute the following command:  
      ```bash
@@ -446,6 +376,82 @@ The detected sequences tables can be found in path: `out/{Source}/sens{kmer_sens
 </details>
 
 >**Note:** The primer pairs should always be validated *in vitro* (e.g. using conventional, real-time or digital PCR) on both target and non-target samples.
+
+## Code overview
+
+The code consists of four main sections:
+
+<details>
+<summary> Section 1: Preparing the data</summary>
+
+This section prepares the data for K-mer generation using the following subscripts from the `scripts/subscripts` folder:
+
+- 00.verify_input_formatting.R: verifies whether the input is formatted correctly.
+- 01.write_target_seqIDs.R: creates a list of sequence IDs found in target samples.
+- 02.extract_fasta_files.py: extract FASTA sequences based on the list of sequence IDs found in target samples.
+- 03.organize_directories.py: creates and organizes directories for storing analysis outputs.
+
+</details>
+
+
+<details>
+<summary> Section 2: Generating K-mers</summary>
+
+In the second section, amplicon sequences are split into K-mers that are length of a primer. The sequences are split in a one bp window slide approach as shown on the picture below.
+<p align="center">
+  <img src="https://github.com/tanjazlender/MicrobiomePrime/assets/100705053/0300193e-dc1b-44b1-bc9f-6231b781fafb" alt="splitting kmers_small">
+</p>
+
+K-mers are excluded from the analysis if they:
+- contain homopolymeric runs (four or more identical nucleotides in a row),
+- contain simple repeats (repeated sequences of four or more nucleotides),
+- contain inverse repeats (self-complementary sequence motifs of four or more nucleotides),
+- or have a GC contenr outside the range of 45% to 60%.
+
+These exclusions are necessary to ensure that the K-mers, which will later be used as PCR primers, do not introduce amplification errors or form secondary structures that could impair primer performance in PCR.
+
+This section encompasses a single script found in the `scripts/subscripts` folder:
+- 04.extract_valid_kmers.py: this script extracts K-mers according to the criteria described above.
+
+</details>
+
+
+
+<details>
+<summary> Section 3: Generating primer pairs</summary>
+
+Primers are essentially K-mers produced in Section 2. 
+When designing primer pairs, we use two key cutoffs:
+- kmer_sensitivity_cutoff
+- kmer_specificity_cutoff
+  
+For a primer pair to be considered valid, both primers must meet or exceed the kmer_sensitivity_cutoff. Additionally, at least one of the primers must meet or exceed the kmer_specificity_cutoff.
+
+This section includes the following scripts found in the `scripts/subscripts` folder:
+- 05.generate_primers.R: this script generates primers by filtering K-mers based on their sensitivity and specificity.
+- 06.generate_PPs.py: this script combines the primers from the previous script into primer pairs.
+
+</details>
+
+
+
+
+<details>
+<summary> Section 4: Assessing the sensitivity and specificity of primer pairs in an in silico PCR analysis</summary>
+
+In the final section, we conduct an *in silico* PCR analysis using the primer pairs generated in Section 3. Based on the results, performance metrics including marker sensitivity and marker specificity are calculated.
+
+> Note: Although 100% sensitivity and 100% specificity would be ideal, it is often challenging to achieve in practice.
+
+This section includes the following scripts found in the `scripts/subscripts` folder:
+- 07.split_PP_lists.py: this script divides the lists of primer pairs into smaller sets to facilitate easier analysis and to produce more manageable intermediate output files.
+- 08.run_tntblast.py: this script uses the ThermonucleotideBLAST program to perform *in silico* PCR with the generated primer pairs.
+- 09.rearrange_tntblast_output.py: rearranges the ThermonucleotideBLAST output into a table format.
+- 10.calculate_sensitivity_specificity.py: calculates marker sensitivity, specificity and other performance criteria.
+- 11.join_all_results.R: joins all performance criteria and primer information into a single file.
+
+</details>
+
 
 ## Definitions
 
