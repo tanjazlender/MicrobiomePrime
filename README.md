@@ -241,9 +241,12 @@ git clone https://github.com/tanjazlender/MicrobiomePrime.git
 cd MicrobiomePrime
 ```
 
-**2. Clean example data**
-Skip this step if you want to run the provided example dataset.
-If you are analyzing your own dataset, it is recommended to remove the example data to free up space and start with a clean environment.
+**2. Clean example data (optional)**
+
+The provided example dataset can be **used to verify that MicrobiomePrime is working correctly**. Do not delete it if you plan to run the example.
+
+If you are analyzing your **own dataset**, it is recommended to remove the example data to free up space and start with a clean environment.
+
 ```
 rm data/input_files/*
 rm -r data/generated_files/*
@@ -256,7 +259,9 @@ conda activate MicrobiomePrime
 ```
 
 **4. Add input files**
+
 Place all input files in the following directory:
+
 ```
 MicrobiomePrime/data/input_files/
 ```
