@@ -26,9 +26,9 @@ gc_upper_bound = 0.0
 
 # define the length of the kmer. If nothing is set in the variables,
 # set the length of kmer to 22
-kmer_size = config.get('settings', 'kmer_size')
+kmer_size = config.get('settings', 'primer_length')
 if kmer_size != '':
-    kmer_size = int(config.get('settings', 'kmer_size'))
+    kmer_size = int(config.get('settings', 'primer_length'))
 else:
     kmer_size = 22
 
