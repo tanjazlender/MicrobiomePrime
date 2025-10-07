@@ -187,7 +187,7 @@ The remaining variables may remain undefined.
 | `target_group_name`      | Name of the target source group to be analyzed. Only needs to be set if you define more than one target source. | `source_group_name=Anatids`          | /             |
 | `target`                 | Target source(s). Multiple sources must be separated with commas.                                         | `target=Stork, Duck, Goose`          | /             |
 | `specificity_exception`  | Source(s) excluded from specificity calculations. Multiple sources must be separated with commas.         | `specificity_exception=Bird_unknown` | /             |
-| `kmer_size`              | Size of K-mers (and primers) to be generated.                                                             | `kmer_size=22`                       | `22`          |
+| `primer_length`              | Size of K-mers (and primers) to be generated.                                                             | `primer_length=22`                       | `22`          |
 | `kmer_sensitivity_cutoff`| Minimum sensitivity value for a K-mer to be used as a primer in in-silico PCR.                            | `kmer_sensitivity_cutoff=50`         | /             |
 | `kmer_specificity_cutoff`| Minimum specificity value for a K-mer to be used as a primer. At least one primer (forward or reverse) must meet this criteria. | `kmer_specificity_cutoff=70`         | /             |
 | `marker_sensitivity_cutoff` | Minimum sensitivity of markers amplified with a given primer pair.  | `marker_sensitivity_cutoff=60`       | /             |
