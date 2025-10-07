@@ -192,11 +192,11 @@ if (length(target) > 1 & is.null(target_group_name)) {
   warning_messages <- c(warning_messages, paste("Warning: setting target_group_name in the variables.ini file is recommended when more than one target source is defined."))
 }
 
-# Check whether kmer_size is set
-kmer_size <- as.numeric(variables$settings$kmer_size)
+# Check whether primer_length is set
+kmer_size <- as.numeric(variables$settings$primer_length)
 
 if (length(kmer_size) == 0) {
-  error_messages <- c(error_messages, "Error: kmer_size value is missing in the variables.ini file.")
+  error_messages <- c(error_messages, "Error: primer_length value is missing in the variables.ini file.")
 }
 
 # Check whether sensitivity and specificity criteria are set
