@@ -43,9 +43,7 @@ primer_clamp = config.get('settings', 'primer_clamp')
 max_mismatch = config.get('settings', 'max_mismatch')
 
 config.read('scripts/settings.ini')
-tntblast_path_folder = config.get('settings', 'tntblast_path')
-tntblast_executable = config.get('settings', 'tntblast_executable')
-tntblast_path = f"{tntblast_path_folder}{tntblast_executable}"
+tntblast_path = "thermonucleotideBLAST/tntblast"
 cpus = config.get('settings', 'cpus')
 
 # Ensure the TNTBLAST executable exists

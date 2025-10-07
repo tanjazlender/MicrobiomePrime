@@ -35,11 +35,7 @@ Once the environment named MicrobiomePrime is created, activate it using:
 conda activate MicrobiomePrime
 ```
 
-**3. Install ThermonucleotideBLAST**
-
-ThermonucleotideBLAST is a tool for *in silico* PCR that must be installed separately. Follow the installation instructions on the [official ThermonucleotideBLAST page](https://public.lanl.gov/jgans/tntblast/tntblast_doc.html).
-
-**4. Install OpenMPI (Optional but highly recommended)**
+**3. Install OpenMPI (Optional but highly recommended)**
 
 OpenMPI is used for parallelization to speed up the analysis. While ThermonucleotideBLAST can run without OpenMPI, it will take significantly longer. To install OpenMPI, follow the instructions on the [OpenMPI website](https://www.open-mpi.org/).
 
@@ -216,9 +212,7 @@ The remaining variables may remain undefined.
 #### Settings
 
 In the settings file:
-
-- Define `tntblast_path` unless it is accessible via system `PATH`.
-- Define `cpus` and `memory` only when the code is run via Slurm.
+- Define `cpus`, `memory` and `time` only when the code is run via Slurm.
 
 <details>
   <summary>See all MicrobiomePrime settings and their descriptions.</summary>
@@ -226,9 +220,9 @@ In the settings file:
 MicrobiomePrime settings:
 Setting | Explanation | Example 
 --- | --- | --- 
-`tntblast_path` | The path to ThermonucleotideBLAST on your computer. Leave empty if the executable is accessible via system's `PATH`.  | `tntblast_path=/usr/bin/thermonucleotideBLAST/tntblast` 
 `cpus` | Number of CPUs allocated for running the program. | `cpus=250`
 `memory` | Amount of RAM (in GB) available for this analysis. Ensure that you allocate sufficient memory based on your input data requirements. | `memory=500` 
+`time` | Maximum job runtime in DD-HH:MM:SS format | `time=02-12:00:00`
 
 </details>
 
@@ -477,7 +471,7 @@ This section includes the following scripts found in the `scripts/subscripts` fo
 
 ## License and third-party software
 MicrobiomePrime is distributed under a MIT licence. Additionally, it redistributes the following third party software:
-- [ThermonucleotideBLAST](https://public.lanl.gov/jgans/tntblast/tntblast_doc.html)
+- [ThermonucleotideBLAST v2.61](https://github.com/jgans/thermonucleotideBLAST)
 - [OpenMPI](https://www.open-mpi.org/)
 
 The licenses for all dependencies used in this pipeline are detailed in the NOTICE file.
