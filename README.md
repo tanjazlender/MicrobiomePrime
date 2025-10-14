@@ -14,7 +14,7 @@ You can find more about MicrobiomePrime at: https://www.biorxiv.org/content/10.1
 - [Outputs](#outputs)
 - [Code overview](#code-overview)
 - [Definitions](#definitions)
-- [License and third-party software](#license-and-third-party-software)
+- [License](#license)
 
 ## Installation and requirements
 MicrobiomePrime is intended to be run in an x86-64 Linux OS (tested on Ubuntu). In addition to the system requirements, ensure that both **R** and **Python** are installed.
@@ -469,12 +469,12 @@ This section includes the following scripts found in the `scripts/subscripts` fo
 - **Target source(s)** - the environment(s) or host(s) of interest for which we aim to develop highly specific and sensitive primer pairs.
 
 
-## License and third-party software
-MicrobiomePrime is distributed under a MIT licence. Additionally, it redistributes the following third party software:
+## License
+MicrobiomePrime is distributed under the [MIT licence](./LICENSE). Additionally, it redistributes the following third-party software:
 - [ThermonucleotideBLAST v2.61](https://github.com/jgans/thermonucleotideBLAST)
 - [OpenMPI](https://www.open-mpi.org/)
 
-The licenses for all dependencies used in this pipeline are detailed in the NOTICE file.
+The licenses for all dependencies used in this pipeline are detailed in the [NOTICE file](./NOTICE).
 
-MicrobiomePrime was developed by Tanja Zlender and Lucija Brezocnik. The logo was designed by Alina Kovalenko (alinakovalenko37@gmail.com).
+MicrobiomePrime was developed by Tanja Zlender and Lucija Brezočnik. The logo was designed by Alina Kovalenko (alinakovalenko37@gmail.com).
 For support, please contact tanja.zlender@nlzoh.si.
