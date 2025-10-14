@@ -19,19 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
-
------------------------------------------------
-Third-Party Licenses and Attributions
------------------------------------------------
-
-This project includes software components developed at Los Alamos National 
-Laboratory (LANL), operated by Triad National Security, LLC for the U.S. 
-Department of Energy/National Nuclear Security Administration, under 
-contract 89233218CNA000001. 
-
-These components are distributed under the BSD 3-Clause License.
-
-The full license text for this third-party software can be found at:
-`./thermonucleotideBLAST/LICENSE`
